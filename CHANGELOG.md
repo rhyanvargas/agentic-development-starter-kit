@@ -5,6 +5,13 @@ All notable changes to **The Agentic Development Starter Kit (ADSK)** are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.6](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.10.5...v0.10.6) (2026-07-24)
+
+
+### Fixed
+
+* **evals:** tighten Tier 2 signal and close with_skill misses ([#44](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/44)) ([564e599](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/564e59946c61064ca9587798d3988bdbef4aebb1))
+
 ## [0.10.5](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.10.4...v0.10.5) (2026-07-24)
 
 
