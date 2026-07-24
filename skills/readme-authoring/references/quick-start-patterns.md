@@ -38,8 +38,8 @@ npx my-cli --profile delivery --yes
 
 | Flag | Meaning |
 |------|---------|
-| `--profile <id>` | … |
-| `--yes` / `-y` | Skip prompts … |
+| `--profile <id>` | … (only if evidenced in the package) |
+| `--yes` | Skip prompts … (only if evidenced; do **not** add `-y` unless the CLI actually documents it) |
 
 ### Alternatives
 
@@ -48,10 +48,13 @@ npx my-cli --profile delivery --yes
 | Other install mode | short command or link |
 ```
 
+**Flag hygiene:** Document only flags proven in `--help`, `package.json` bin docs, or the user’s prompt. Never invent short aliases or sibling flags “for completeness.”
+
 ## Anti-patterns
 
 - Leading with the CI command (`--yes`, many flags) as the “recommended” path
 - Explaining every flag in the same breath as the first install command
+- Inventing short aliases (`-y`, `-f`, …) or extra flags not in the evidenced CLI surface
 - Three install stories (CLI + skills-only + script sync) before the reader runs anything
 - Headings that sound like a product brief instead of a how-to (“Use in your app…”)
 - “kit shape”, “adopter”, “wiring” in the first viewport without a plain-language gloss

@@ -80,6 +80,16 @@ Compute pass-rate (and optional time/token) deltas into `benchmark.json`. Patter
 - Pass only with skill → keep; understand which instruction caused it
 - High variance → tighten ambiguous instructions
 
+## Recommended next actions (after every Tier 2 pass)
+
+Do **not** end on a score table alone. Map grading evidence to concrete steps (full decision table: `skill-optimizer` → `references/eval-loop.md`):
+
+1. **Do now** — fix any `with_skill` FAILs (skill instructions/refs), or paste SCORECARD/PR notes when scores changed
+2. **Do next** — tighten no-signal assertions; re-run only the affected skill
+3. **Skip / defer** — full force re-run of all arms, broad rewrites, or further iteration when deltas have plateaued
+
+Cursor `/run-skill-evals` must append this section automatically.
+
 ## Trigger evals
 
 Separate from output quality. Store labeled queries under `evals/trigger/eval_queries.json`:
@@ -148,7 +158,8 @@ Tier 1 has **no path filters** so the required `tier1` status always reports (in
 2. **Run agents** for each `eval-<id>/`: clean context **with** skill, then **without**; paste prompts from `cases.json`; save outputs under each arm.
 3. **Grade** each `grading.json` (PASS/FAIL + evidence). Prefer scripts for mechanical checks; LLM/blind A/B for semantic ones ([Grading](#grading)).
 4. **Paste** the aggregate table from `scorecard-paste.md` into [evals/SCORECARD.md](evals/SCORECARD.md). Update that skill’s **Eval readiness** note when benchmarked.
-5. Keep workspaces gitignored (`.adsk-tier2-out/`, `*-workspace/`, `**/iteration-*/`).
+5. **Recommend next actions** — required close-out ([above](#recommended-next-actions-after-every-tier-2-pass)); prioritize `with_skill` misses over chasing larger Δ.
+6. Keep workspaces gitignored (`.adsk-tier2-out/`, `*-workspace/`, `**/iteration-*/`).
 
 SCORECARD numeric deltas come from **Tier 2**, not Tier 1. Do not add `skills-evals-soft` as a required branch-protection check.
 

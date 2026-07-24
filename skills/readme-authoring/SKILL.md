@@ -18,7 +18,7 @@ repo actually does.
 ## Principles
 
 - **Audience first** — OSS users ≠ new hires ≠ future-you in a config folder.
-- **Evidence over invention** — claims, commands, and APIs must match files.
+- **Evidence over invention** — claims, commands, flags, and APIs must match files or the user’s stated surface. Do not invent short aliases (e.g. `-y`) unless evidenced.
 - **Shortest path to working** — one happy-path command early; flags and alternate installs below.
 - **Quick Start first viewport** — prefer `## Quick Start`; interactive/zero-flag path first; Non-interactive second (see `references/quick-start-patterns.md` for npm/CLI packages).
 - **Link, don’t duplicate** — deeper docs stay linked.
@@ -68,7 +68,7 @@ Present a short gap list before writing:
 - [ ] Install/run commands match lockfile / scripts / CI
 - [ ] Quick Start leads with the interactive/happy path (flags under Non-interactive if needed)
 - [ ] Examples are real or clearly marked as illustrative with verified APIs
-- [ ] Links resolve; no invented features or deps
+- [ ] Links resolve; no invented features, deps, flags, or flag aliases
 - [ ] Audience-appropriate sections only (checklist)
 - [ ] Ask: anything else the reader needs that we missed?
 

@@ -43,6 +43,17 @@
         "States that a rename-only change does not require the full optimizer rewrite of body/evals",
         "Still mentions skills-ref validate or a minimal check after the rename"
       ]
+    },
+    {
+      "id": 5,
+      "prompt": "Tier 2 just finished for readme-authoring: with_skill 20/21, without_skill 19/21 (Δ +0.047). The only with_skill FAIL was inventing a `-y` flag alias not in the prompt. Scores are not on SCORECARD yet. What should we do next?",
+      "expected_output": "Ends with Recommended next actions: prioritize fixing the with_skill invented-flag miss in readme-authoring, then update SCORECARD / re-run that skill only; defer a full all-skills force re-run.",
+      "assertions": [
+        "Includes a Recommended next actions (or clearly labeled next-steps) section — not scores alone",
+        "Prioritizes fixing the with_skill FAIL (invented flag / readme-authoring) before chasing a larger Δ",
+        "Mentions updating SCORECARD (or kit score publish) and/or re-running only the affected skill",
+        "Does not recommend a full rewrite of unrelated skills or a force re-run of every first-party skill as the primary next step"
+      ]
     }
   ]
 }
