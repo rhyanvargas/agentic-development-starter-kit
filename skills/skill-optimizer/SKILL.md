@@ -67,7 +67,7 @@ Name each reference and the **condition** to load it. Soft triggers (“see over
 
 Iterate: fail train queries → generalize description/instructions → recheck held-out queries. Do not overfit keywords from individual failures.
 
-Load `references/eval-loop.md` when adding or revising evals (also `docs/evaluating-skills.md` in this repo). For a with/without pass in Cursor, prefer `/run-skill-evals`.
+Load `references/eval-loop.md` when adding or revising evals, or when finishing `/run-skill-evals` (also `docs/evaluating-skills.md` in this repo). After any with/without grade pass, **always** end with **Recommended next actions** from that reference — do not leave the user to ask what to do next.
 
 ### 6. Layout
 
@@ -91,6 +91,6 @@ Load `references/layout.md` when creating a skill or unsure where files go (kit 
 |-----------|----------------|
 | `references/description-checklist.md` | Drafting or revising the `description` field |
 | `references/token-budget.md` | Trimming `SKILL.md` or deciding cut vs move |
-| `references/eval-loop.md` | Adding or revising trigger/output evals |
+| `references/eval-loop.md` | Adding/revising evals, or finishing a with/without grade pass (includes required next-actions table) |
 | `references/layout.md` | Creating a skill or choosing kit vs adopter path |
 | `references/official-links.md` | User asks for agentskills.io policy/spec links |

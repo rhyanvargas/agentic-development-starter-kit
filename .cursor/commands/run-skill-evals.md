@@ -33,4 +33,5 @@ Follow **`skills/skill-optimizer`** → `references/eval-loop.md` (or `.agents/s
    - **without_skill** — same prompt without the skill (or prior version); save output
 5. Grade each assertion PASS/FAIL with evidence into `grading.json` (or equivalent). Prefer mechanical checks when possible.
 6. Summarize pass-rate Δ (and token/time Δ if available). For kit first-party skills, offer a SCORECARD paste row; for company skills, report in-chat / PR notes (do not invent kit SCORECARD edits unless asked).
-7. Reminder: Tier 1 (`./scripts/check-skills-ci.sh` in the kit) only checks harness shape — it does not replace this loop.
+7. **Required close-out:** load `skill-optimizer` → `references/eval-loop.md` → **After grading — recommended next actions**. Append a **Recommended next actions** section (Do now / Do next / Skip) mapped from the decision table — fix `with_skill` FAILs first, then SCORECARD/PR notes, then assertion tighten. Offer to execute the top action when it is a small obvious edit. Do not end on scores alone.
+8. Reminder: Tier 1 (`./scripts/check-skills-ci.sh` in the kit) only checks harness shape — it does not replace this loop.

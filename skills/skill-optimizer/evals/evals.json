@@ -6,11 +6,11 @@
       "prompt": "Create a new skill that helps our team write consistent ADR files. Put it in the right place for an adopter app using ADSK, keep SKILL.md lean, and include trigger evals.",
       "expected_output": "Skill under .agents/skills/ (not root skills/), with what+when description, progressive disclosure if needed, ~20 trigger queries, and skills-ref validate guidance. Mentions near-miss boundaries if relevant.",
       "assertions": [
-        "Places skill under .agents/skills/ for adopter context (or documents kit vs adopter paths)",
-        "Description includes what and when",
-        "Mentions or creates evals/trigger queries",
-        "Keeps SKILL.md lean / uses progressive disclosure appropriately",
-        "Mentions validation with skills-ref"
+        "Places skill under .agents/skills/ for adopter context (not kit root skills/ as the install path)",
+        "Description includes what and when (and a near-miss boundary when relevant)",
+        "Specifies ~20 trigger queries with a mix of should/should-not cases",
+        "Keeps SKILL.md lean / uses progressive disclosure with when-to-load conditions",
+        "Mentions validation with skills-ref validate"
       ]
     },
     {
@@ -18,9 +18,10 @@
       "prompt": "This SKILL.md is 400 lines of rationale and a full slash-command table. Optimize it for token cost without losing the procedure.",
       "expected_output": "Moves rationale and command catalogs to references with when-to-load conditions; keeps gated procedure in SKILL.md; applies the would-the-agent-get-this-wrong test.",
       "assertions": [
-        "Recommends moving non-essential content out of SKILL.md",
-        "Requires explicit when-to-load for references",
-        "Preserves core procedural steps in the main skill body"
+        "Recommends moving rationale / command catalogs out of SKILL.md into references/",
+        "Requires explicit when-to-load (or when-to-read) conditions for each reference",
+        "Preserves core procedural steps / gates in the main SKILL.md body",
+        "Applies a token test such as “would the agent get this wrong without it?”"
       ]
     },
     {
@@ -28,9 +29,9 @@
       "prompt": "Our skill keeps firing when users ask for DevOps CI/CD strategy. Fix the description only.",
       "expected_output": "Adds a clear Do-not-use / near-miss boundary and suggests trigger eval queries covering that false positive; does not rewrite the whole skill body unnecessarily.",
       "assertions": [
-        "Updates or proposes description boundary for DevOps/CI-CD near-miss",
-        "References or updates trigger eval near-miss queries",
-        "Does not expand SKILL.md body as the primary fix"
+        "Updates or proposes a Do-not-use / near-miss boundary for DevOps/CI-CD strategy",
+        "Adds or updates trigger eval near-miss queries for that false positive",
+        "Treats the fix as description/trigger-scoped — does not rewrite the whole SKILL.md body as the primary change"
       ]
     },
     {
@@ -38,9 +39,20 @@
       "prompt": "I only want to rename the skill folder from my_skill to my-skill. Do we need the full optimizer gates?",
       "expected_output": "Recognizes a narrow naming fix: align folder name with YAML name (lowercase/hyphens), validate, skip a full rewrite of body/evals unless description or behavior also changes.",
       "assertions": [
-        "Addresses name/folder hyphen conventions",
-        "Does not require rewriting the entire skill body or inventing new progressive-disclosure content for a rename-only task",
-        "Still mentions validation or a minimal check after the rename"
+        "Addresses name/folder hyphen conventions (folder name = YAML name)",
+        "States that a rename-only change does not require the full optimizer rewrite of body/evals",
+        "Still mentions skills-ref validate or a minimal check after the rename"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Tier 2 just finished for readme-authoring: with_skill 20/21, without_skill 19/21 (Δ +0.047). The only with_skill FAIL was inventing a `-y` flag alias not in the prompt. Scores are not on SCORECARD yet. What should we do next?",
+      "expected_output": "Ends with Recommended next actions: prioritize fixing the with_skill invented-flag miss in readme-authoring, then update SCORECARD / re-run that skill only; defer a full all-skills force re-run.",
+      "assertions": [
+        "Includes a Recommended next actions (or clearly labeled next-steps) section — not scores alone",
+        "Prioritizes fixing the with_skill FAIL (invented flag / readme-authoring) before chasing a larger Δ",
+        "Mentions updating SCORECARD (or kit score publish) and/or re-running only the affected skill",
+        "Does not recommend a full rewrite of unrelated skills or a force re-run of every first-party skill as the primary next step"
       ]
     }
   ]

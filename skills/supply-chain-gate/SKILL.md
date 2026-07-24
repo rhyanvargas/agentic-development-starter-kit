@@ -45,6 +45,7 @@ literal 100s on every package-health gauge when the product needs `fs` / spawn.
 ### 3. Report before done
 
 - [ ] Alert types listed with block/warn/monitor stance
+- [ ] **Policy source cited** — `references/policy-allowlist.md` and/or repo `SECURITY.md` (Socket policy section); do not triage by vibes alone
 - [ ] Code or policy change named (or explicit “no change; cool-down only”)
 - [ ] Manual Socket dashboard / secret steps called out if still required
 - [ ] Near-miss: hand off Dependabot YAML, release-please, or DevOps strategy

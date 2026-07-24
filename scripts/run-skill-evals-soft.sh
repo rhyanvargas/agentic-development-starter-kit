@@ -263,7 +263,8 @@ This artifact prepares one skill for a maintainer-run Tier 2 iteration.
    - **without_skill:** clean context, no skill → same prompt → grade
 3. Prefer scripted checks for mechanical assertions; LLM/blind A/B for semantic ones (see `docs/evaluating-skills.md`).
 4. Fill `scorecard-paste.md` aggregate row; paste into `docs/evals/SCORECARD.md`.
-5. Optional: zip this directory and attach to a GitHub Actions run artifact, or open a docs PR with SCORECARD numbers.
+5. **Recommended next actions** (required): map FAILs via `skill-optimizer` → `references/eval-loop.md` — fix `with_skill` misses first, then SCORECARD, then assertion tighten. Cursor: `/run-skill-evals` appends this automatically.
+6. Optional: zip this directory and attach to a GitHub Actions run artifact, or open a docs PR with SCORECARD numbers.
 
 ## Cases
 
@@ -358,6 +359,7 @@ Generated: {now}
 1. For each skill subdirectory, run `eval-*/with_skill` and `without_skill` arms (see that skill's `tier2-summary.md`).
 2. Grade each `grading.json`; fill that skill's aggregate row in `scorecard-paste.md`.
 3. Paste rows from `scorecard-paste-all.md` (or per-skill paste files) into `docs/evals/SCORECARD.md`.
+4. Emit **Recommended next actions** (fix `with_skill` FAILs first) — see `skill-optimizer` → `references/eval-loop.md` or `/run-skill-evals`.
 
 Regenerate: `./scripts/run-skill-evals-soft.sh` or `./scripts/run-skill-evals-soft.sh --all`
 """
@@ -406,7 +408,7 @@ package_all_skills() {
 
   write_batch_artifacts "${parent_out}" "${DISCOVERED_SKILLS[@]}" || return 1
   echo "Packaged ${#DISCOVERED_SKILLS[@]} skills → ${parent_out}"
-  echo "Next: grade each skill's eval-*/ dirs; paste scorecard-paste-all.md into docs/evals/SCORECARD.md"
+  echo "Next: grade each skill's eval-*/ dirs; paste scorecard-paste-all.md into docs/evals/SCORECARD.md; emit Recommended next actions (see skill-optimizer eval-loop.md)"
 }
 
 run_self_test() {
@@ -457,7 +459,7 @@ if [[ -n "${SKILL_NAME}" ]]; then
     OUT_DIR="${REPO_ROOT}/.adsk-tier2-out/${SKILL_NAME}"
   fi
   package_skill "${SKILL_NAME}" "${OUT_DIR}" || exit 1
-  echo "Next: grade eval-*/{with,without}_skill/grading.json then paste scorecard-paste.md into docs/evals/SCORECARD.md"
+  echo "Next: grade eval-*/{with,without}_skill/grading.json; paste scorecard-paste.md into docs/evals/SCORECARD.md; emit Recommended next actions"
   exit 0
 fi
 
