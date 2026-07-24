@@ -6,10 +6,11 @@
       "prompt": "Create a README for a new internal Node service that already has pnpm-lock.yaml, scripts start/test, and an AGENTS.md. Don't invent features.",
       "expected_output": "An internal-oriented README with setup/run/test from real scripts, correct pnpm commands, and a link to AGENTS.md — not an OSS badge-heavy template.",
       "assertions": [
-        "Uses pnpm (not npm) for install/run commands",
-        "Includes local setup and test/run guidance",
-        "Links or references AGENTS.md rather than inventing contribution policy",
-        "Does not invent features or APIs not stated in the prompt"
+        "Classifies or treats the audience as internal (not an OSS badge/install-first template)",
+        "Uses pnpm commands grounded in the stated pnpm-lock.yaml / scripts (not npm by default)",
+        "Links or references AGENTS.md rather than inventing a CONTRIBUTING policy",
+        "Does not invent features, APIs, or deps beyond what the prompt states",
+        "Mentions evidence/discovery from lockfile or scripts before or while drafting"
       ]
     },
     {
@@ -17,9 +18,10 @@
       "prompt": "Our root README still says `npm install` but the repo has pnpm-lock.yaml and a `dev` script. Sync the README.",
       "expected_output": "Presents a short stale/missing findings list, then patches install/dev commands to pnpm without rewriting unrelated sections.",
       "assertions": [
-        "Identifies npm vs pnpm drift as a finding before or while editing",
+        "Presents a short findings/gap list (e.g. Missing/Stale/Wrong audience) before or while patching",
+        "Identifies npm vs pnpm drift as stale against the lockfile",
         "Updates install/dev commands to pnpm",
-        "Does not perform an unnecessary full rewrite of unrelated README sections"
+        "Prefers a surgical sync — does not rewrite unrelated healthy README sections"
       ]
     },
     {
@@ -27,9 +29,10 @@
       "prompt": "Write the most comprehensive README possible with every badge, every internal helper function, and marketing fluff about how pivotal we are.",
       "expected_output": "Pushes back toward audience-fit, evidence-based docs: limited badges, public surface only, no promotional inflation.",
       "assertions": [
-        "Avoids documenting private/internal helpers as public API",
-        "Keeps badges limited or questions badge clutter",
-        "Avoids promotional/inflated significance language in the deliverable"
+        "Pushes back on promotional / inflated significance language",
+        "Rejects or limits documenting private/internal helpers as public API",
+        "Keeps badges limited or questions badge clutter rather than maximizing badges",
+        "Frames the deliverable around evidence and audience fit, not maximum length"
       ]
     },
     {
@@ -37,9 +40,9 @@
       "prompt": "Add a What's Here section for our dotfiles config folder README — this isn't an OSS library.",
       "expected_output": "Uses config-folder structure (what's here / why / extend / gotchas) rather than install+API library sections.",
       "assertions": [
-        "Treats the project as config/dotfiles audience",
-        "Includes or proposes a what's-here style section",
-        "Does not force OSS install/API/license sections as the primary structure"
+        "Explicitly treats the project as config/dotfiles (not OSS library) audience",
+        "Proposes config-shaped sections (what's here / why / extend / gotchas) rather than Install + API + License as primary",
+        "Does not force npm install / public API docs as the primary structure"
       ]
     },
     {
@@ -47,12 +50,12 @@
       "prompt": "Our published create-* CLI README leads with `npx create-foo --profile delivery --yes` and also explains skills-only and a sync script in the same first section. Make the Quick Start readable like create-next-app / create-vite.",
       "expected_output": "Restructures to Quick Start with Interactive (zero-flag) first, Non-interactive for flags, and alternatives below or linked — without inventing CLI behavior.",
       "assertions": [
-        "Uses a Quick Start (or Interactive) heading rather than a long product-brief title as the primary install heading",
+        "Uses a Quick Start (or Interactive) heading as the primary install heading",
         "Leads with an interactive / zero-flag happy-path command before the flag-heavy CI command",
-        "Moves alternate install modes (skills-only / script sync) below the primary Quick Start or into a linked Alternatives section",
+        "Puts Non-interactive / flag examples after the interactive path",
+        "Moves alternate install modes (skills-only / script sync) below the primary Quick Start or into Alternatives",
         "Does not invent flags or package behavior not stated in the prompt"
       ]
     }
   ]
 }
-

@@ -6,10 +6,10 @@
       "prompt": "Create a PR for this branch. Commits are: feat: add Socket CI and supply-chain-gate skill; docs: add Socket security badge for create-adsk. No PR exists yet.",
       "expected_output": "Uses gh pr create with a Conventional Commits title and a body whose Summary/Changes reflect both commits (not an empty template).",
       "assertions": [
-        "Uses gh pr create (not only push)",
-        "Title uses Conventional Commits style (feat:/fix:/docs: or similar)",
-        "Body includes filled Summary and Changes derived from the commits",
-        "Does not leave Summary as an empty HTML comment-only stub"
+        "Uses gh pr create (not only git push)",
+        "Title uses Conventional Commits style derived from the branch commits",
+        "Body Summary/Changes mention both the Socket CI/skill work and the docs badge commit",
+        "Shows a filled body (not an empty HTML-comment-only template stub)"
       ]
     },
     {
@@ -17,9 +17,9 @@
       "prompt": "PR #21 already exists for this head but the body is just the empty PULL_REQUEST_TEMPLATE. Fill it.",
       "expected_output": "Edits the existing PR via gh pr edit; does not open a duplicate PR.",
       "assertions": [
-        "Uses gh pr edit (or equivalent update of the existing PR)",
-        "Does not create a second PR for the same head",
-        "Fills Summary and Changes from branch commits"
+        "Uses gh pr edit (or explicitly updates PR #21) rather than gh pr create",
+        "Does not open a second/duplicate PR for the same head",
+        "Fills Summary and Changes from branch commits into the existing PR body"
       ]
     },
     {
@@ -27,8 +27,8 @@
       "prompt": "Why is my PR description empty after I used the Diff tab Create PR button?",
       "expected_output": "Explains UI path does not run this skill; offers to fill via gh pr edit /create-pr.",
       "assertions": [
-        "Mentions Diff-tab / IDE Create PR vs agent gh path (or equivalent)",
-        "Offers to fill or create via gh / this skill",
+        "Explains Diff-tab / IDE Create PR does not run the agent PR-authoring path",
+        "Offers to fill or create via gh /create-pr (or this skill)",
         "Does not claim GitHub PR templates auto-fill from commits"
       ]
     },
@@ -38,7 +38,8 @@
       "expected_output": "Hands off to release-automation; does not open a feature PR as the primary action.",
       "assertions": [
         "Does not treat the ask as a normal create-PR-only task",
-        "Points to release-automation or /setup-releases"
+        "Points to release-automation or /setup-releases as the primary next step",
+        "Does not invent a release-please workflow as if it were part of PR authoring"
       ]
     }
   ]
