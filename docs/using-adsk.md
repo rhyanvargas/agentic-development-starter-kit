@@ -10,11 +10,11 @@ Skills in **your** project live under `.agents/skills/` ([agentskills.io](https:
 
 ### Two-tool model
 
-| Goal | Use |
-|------|-----|
-| Install skill folders only | `npx skills add …` (section 1) |
+| Goal                                                                | Use                                                                                                                                                                     |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Install skill folders only                                          | `npx skills add …` (section 1)                                                                                                                                          |
 | Adopt ADSK as a **profile** (skills + Cursor wiring + saved config) | **`npx create-adsk`** — [`packages/create-adsk`](../packages/create-adsk); see [product/create-adsk.md](product/create-adsk.md) and [`profiles.json`](../profiles.json) |
-| Cursor commands without the CLI | Kit checkout + `sync-adsk.sh adopter` (section 2) |
+| Cursor commands without the CLI                                     | Kit checkout + `sync-adsk.sh adopter` (section 2)                                                                                                                       |
 
 ---
 
@@ -28,12 +28,12 @@ npx create-adsk
 
 Follow the prompts. Pick a **profile** (kit depth), then optional **packs** (methodology: `product-value-loop`, `engineering-methods`), then install. See [product/profiles-and-packs.md](product/profiles-and-packs.md).
 
-| Profile | What you get |
-|---------|----------------|
-| `core` | `spec-driven-workflow` + Cursor commands |
-| `delivery` | Core + DevOps strategy + release automation + Cursor commands |
-| `maintainer` | Delivery + skill-optimizer + readme-authoring + supply-chain-gate + pull-request-authoring + Cursor commands + stock rules |
-| `skills-only` | All first-party skills; no `.cursor/` writes |
+| Profile       | What you get                                                                                                               |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `core`        | `spec-driven-workflow` + Cursor commands                                                                                   |
+| `delivery`    | Core + DevOps strategy + release automation + Cursor commands                                                              |
+| `maintainer`  | Delivery + skill-optimizer + readme-authoring + supply-chain-gate + pull-request-authoring + Cursor commands + stock rules |
+| `skills-only` | All first-party skills; no `.cursor/` writes                                                                               |
 
 ### Non-interactive
 
@@ -43,6 +43,8 @@ npx create-adsk --profile core --yes --packs engineering-methods
 ```
 
 `--profile` chooses the profile; `--yes` skips prompts (`core` if you omit `--profile`). Packs: `--packs <ids>` or `--with-optional-packs` (all). Playbooks: [product-value-loop.md](product-value-loop.md), [engineering-methods.md](engineering-methods.md).
+
+**Packs vs first-party layout:** Profile skills are **first-party ADSK** — they install with `evals/` (and usually `references/`). Optional packs pull **upstream** skills (wondelai, deanpeters, Superpowers, …) **as those authors ship them**, so many pack skills will not have an ADSK-style `evals/` folder. That is expected, not a broken install. See [§5 Evaluating skills](#5-evaluating-skills-adopters).
 
 Later: `npx create-adsk update` · `npx create-adsk status`.  
 Flags and local kit path: [`packages/create-adsk/README.md`](../packages/create-adsk/README.md).
@@ -61,11 +63,11 @@ You can ask the agent in plain language, for example:
 
 If the app already has `.adsk/config.json`, prefer `npx create-adsk update`. Otherwise the agent should run [`scripts/sync-adsk.sh`](../scripts/sync-adsk.sh) — not hand-copy files.
 
-| You are in… | Agent should run |
-|-------------|------------------|
-| **This kit repo** | `./scripts/sync-adsk.sh kit` |
-| **Your app (create-adsk adopted)** | `npx create-adsk update` (or status) |
-| **Your app (script path)** | `<kit>/scripts/sync-adsk.sh adopter --from <kit>` from the app root |
+| You are in…                        | Agent should run                                                    |
+| ---------------------------------- | ------------------------------------------------------------------- |
+| **This kit repo**                  | `./scripts/sync-adsk.sh kit`                                        |
+| **Your app (create-adsk adopted)** | `npx create-adsk update` (or status)                                |
+| **Your app (script path)**         | `<kit>/scripts/sync-adsk.sh adopter --from <kit>` from the app root |
 
 **Script-path requirement:** the agent needs a kit checkout (path you provide, an existing clone, or it clones GitHub once). `npx skills add` installs skills only; it does **not** install the sync script into your app. After the first Cursor sync, `/sync-adsk` is available and points the agent at the same flow. `create-adsk` vendors Cursor artifacts in the package — no kit clone required for update.
 
@@ -101,7 +103,7 @@ ADSK’s first-party skills cover **spec → plan → implement → review**. To
 Discover → Research → Prioritize → Plan → Execute → measure → Discover
 ```
 
-Those upstream skills are listed under `optional` in [`recommended-skills.json`](../recommended-skills.json). Install **project-local** (team share) and/or **global** (`-g`, personal) after your trust review; do not treat them as ADSK first-party packages. With create-adsk, select packs interactively or pass `--packs` / `--with-optional-packs`.
+Those upstream skills are listed under `optional` in [`recommended-skills.json`](../recommended-skills.json). Install **project-local** (team share) and/or **global** (`-g`, personal) after your trust review; do not treat them as ADSK first-party packages (they often omit ADSK `evals/` — see [§5](#5-evaluating-skills-adopters)). With create-adsk, select packs interactively or pass `--packs` / `--with-optional-packs`.
 
 ---
 
@@ -131,12 +133,12 @@ Skills work without this. Prefer [section 0](#0-recommended-adopt-a-profile-with
 
 ### What the sync does
 
-| Artifact | Behavior |
-|----------|----------|
+| Artifact            | Behavior                                                                               |
+| ------------------- | -------------------------------------------------------------------------------------- |
 | `.cursor/commands/` | Writes/updates stock ADSK commands; rewrites `skills/<name>` → `.agents/skills/<name>` |
-| `.cursor/rules/` | Adds stock rules (`skill-authoring`, `testing`, `project-cmds`) only if missing |
-| `.agents/skills/` | Runs `npx skills update` (or `add` if none installed) |
-| Specs / plans | Never overwritten; ensures empty `.cursor/docs/specs/` + `.cursor/plans/` exist |
+| `.cursor/rules/`    | Adds stock rules (`skill-authoring`, `testing`, `project-cmds`) only if missing        |
+| `.agents/skills/`   | Runs `npx skills update` (or `add` if none installed)                                  |
+| Specs / plans       | Never overwritten; ensures empty `.cursor/docs/specs/` + `.cursor/plans/` exist        |
 
 Useful flags: `--dry-run`, `--commands-only`, `--skip-skills`, `--force-rules`, `--rules all|none`, `--skills-from-path` (offline copy from kit `skills/`).
 
@@ -172,11 +174,11 @@ npx skills update
 
 If the CLI asks for **Update scope**:
 
-| Scope | Choose when |
-|-------|-------------|
+| Scope       | Choose when                                                      |
+| ----------- | ---------------------------------------------------------------- |
 | **Project** | You installed with `npx skills add …` in this repo (recommended) |
-| **Global** | You installed with `-g` |
-| **Both** | You keep the same skills in project **and** global |
+| **Global**  | You installed with `-g`                                          |
+| **Both**    | You keep the same skills in project **and** global               |
 
 For a normal app install, pick **Project**.
 
@@ -230,12 +232,15 @@ More authoring guidance: [skill-authoring.md](skill-authoring.md).
 
 Evals are a **maintainer quality loop**, not something every app re-runs on every PR.
 
-| Situation | Do this |
-|-----------|---------|
-| Trust stock first-party skills | Read [evals/SCORECARD.md](evals/SCORECARD.md) — published with/without deltas |
-| Author or change a **company** skill | `/optimize-skill` → harness + `/run-skill-evals` before ship |
-| Changed model or major skill behavior | Re-run `/run-skill-evals` for that skill only |
-| Day-to-day feature PRs | Do **not** re-benchmark; use normal `/review` |
+| Situation                             | Do this                                                                       |
+| ------------------------------------- | ----------------------------------------------------------------------------- |
+| Trust stock first-party skills        | Read [evals/SCORECARD.md](evals/SCORECARD.md) — published with/without deltas |
+| Pack / upstream skill has no `evals/` | Expected — packs install upstream as authored; do not invent stub evals       |
+| Author or change a **company** skill  | `/optimize-skill` → harness + `/run-skill-evals` before ship                  |
+| Changed model or major skill behavior | Re-run `/run-skill-evals` for that skill only                                 |
+| Day-to-day feature PRs                | Do **not** re-benchmark; use normal `/review`                                 |
+
+First-party ADSK skills under your profile include `evals/` when installed via `npx skills` / create-adsk. Pack skills (e.g. product-value-loop) live alongside them in `.agents/skills/` but follow upstream layout.
 
 **Easy path:** after Cursor sync, invoke `/run-skill-evals` (thin command). Full playbook: [evaluating-skills.md](evaluating-skills.md). Kit Tier 1 CI (`check-skills-ci.sh`) only checks harness shape — pass rates come from the agent with/without loop (Tier 2).
 
@@ -257,12 +262,12 @@ Hard LLM pass-rate gates and `create-adsk eval` are **out of scope** until cost/
 
 ## Notes
 
-| Topic | Detail |
-|-------|--------|
-| This ADSK repo | Package source under `skills/`; not used that way in your app |
-| Profile adopt | [`packages/create-adsk`](../packages/create-adsk) · [product/create-adsk.md](product/create-adsk.md) |
-| Cursor sync (script) | [`scripts/sync-adsk.sh`](../scripts/sync-adsk.sh) `adopter` |
-| Ask the agent | Preferred UX; agent runs create-adsk or the sync script (see above) |
-| Cursor-only skills | `.cursor/skills/` works; prefer `.agents/skills/` for portability |
-| Upstream PRs | [CONTRIBUTING.md](../CONTRIBUTING.md) |
-| Releases | [CHANGELOG.md](../CHANGELOG.md) · [RELEASE.md](RELEASE.md) |
+| Topic                | Detail                                                                                               |
+| -------------------- | ---------------------------------------------------------------------------------------------------- |
+| This ADSK repo       | Package source under `skills/`; not used that way in your app                                        |
+| Profile adopt        | [`packages/create-adsk`](../packages/create-adsk) · [product/create-adsk.md](product/create-adsk.md) |
+| Cursor sync (script) | [`scripts/sync-adsk.sh`](../scripts/sync-adsk.sh) `adopter`                                          |
+| Ask the agent        | Preferred UX; agent runs create-adsk or the sync script (see above)                                  |
+| Cursor-only skills   | `.cursor/skills/` works; prefer `.agents/skills/` for portability                                    |
+| Upstream PRs         | [CONTRIBUTING.md](../CONTRIBUTING.md)                                                                |
+| Releases             | [CHANGELOG.md](../CHANGELOG.md) · [RELEASE.md](RELEASE.md)                                           |
