@@ -5,6 +5,18 @@ All notable changes to **The Agentic Development Starter Kit (ADSK)** are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.8](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.10.7...v0.10.8) (2026-07-25)
+
+
+### Fixed
+
+* **create-adsk:** set types node for TypeScript 7 build ([#52](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/52)) ([b3b8432](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/b3b843285c53a6964e74cdaff7315a11c5ef632a))
+
+
+### Changed
+
+* define ADSK ground-truth trust contract ([#54](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/54)) ([f4e36f5](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/f4e36f501f8e536f4bf1bd9dcd5a6e03addf4917))
+
 ## [0.10.7](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.10.6...v0.10.7) (2026-07-25)
 
 
