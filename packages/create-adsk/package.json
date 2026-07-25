@@ -1,6 +1,6 @@
 {
   "name": "create-adsk",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Adopt the Agentic Development Starter Kit as a versioned profile (skills + Cursor wiring).",
   "type": "module",
   "bin": {
