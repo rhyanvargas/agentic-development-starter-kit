@@ -230,7 +230,7 @@ More authoring guidance: [skill-authoring.md](skill-authoring.md).
 
 ## 5. Evaluating skills (adopters)
 
-Evals are a **maintainer quality loop**, not something every app re-runs on every PR.
+Evals are a **maintainer quality loop**, not something every app re-runs on every PR. How ADSK defines inspectable trust (skill vs delivery ground truth): [evaluating-skills.md § Ground truth](evaluating-skills.md#ground-truth-adsk).
 
 | Situation                             | Do this                                                                       |
 | ------------------------------------- | ----------------------------------------------------------------------------- |

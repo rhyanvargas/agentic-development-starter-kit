@@ -2,6 +2,8 @@
 
 Decision aid for adopters: which skills to keep, treat as optional, or skip.
 
+This table is the published **skill ground truth** for first-party ADSK skills (with/without-skill pass rates). Delivery work still needs **delivery ground truth** (specs + fail-closed verify) — see [evaluating-skills.md § Ground truth](../evaluating-skills.md#ground-truth-adsk). Upstream / pack skills are **not** scored here; use the [trust checklist](#trust-checklist-any-upstream-skill).
+
 Scoring axes (1–5): **Fit** (lifecycle value), **Portability**, **Clarity**, **Trust**, **Eval readiness**.
 
 ## First-party skills

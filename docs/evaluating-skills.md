@@ -2,6 +2,19 @@
 
 How to test whether a skill produces good outputs using **eval-driven iteration**. Based on [Evaluating skill output quality](https://agentskills.io/skill-creation/evaluating-skills).
 
+## Ground truth (ADSK)
+
+ADSK does not treat agent confidence as a vibe check. Trust comes from **evidence chains** you can inspect:
+
+| Chain | What “good” means | Where the evidence lives |
+|-------|-------------------|--------------------------|
+| **Skill ground truth** | A skill beats **no skill** on labeled assertions (trigger + output), not a single happy path | First-party `evals/` + published with/without Δ in [evals/SCORECARD.md](evals/SCORECARD.md); harness integrity on every PR (Tier 1 below) |
+| **Delivery ground truth** | Work is done only when requirements are testable and verify passes | `spec-driven-workflow`: `REQ-XXX` + acceptance criteria + fail-closed `project-cmds` (no trustworthy “done” without verify — [agent-autonomy.md](product/agent-autonomy.md)) |
+
+**Scope of measured lift:** SCORECARD numeric deltas cover **first-party** kit skills only. Recommended / pack / upstream skills use the [trust checklist](evals/SCORECARD.md#trust-checklist-any-upstream-skill) — they are not SCORECARD-benchmarked unless you run `/run-skill-evals` yourself.
+
+**What this is not (yet):** hard CI pass-rate gates (Tier 3) and published token Δ on every row — both deferred until baselines are stable. Until then, adopter default is: read SCORECARD; re-run only after a skill or model change.
+
 ## Adopters first
 
 | Goal | Action |
