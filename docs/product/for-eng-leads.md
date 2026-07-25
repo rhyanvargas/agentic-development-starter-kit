@@ -117,7 +117,7 @@ Tune the mandate to org risk; the kit gives you the **mechanism**, not a single 
 | **Re-run when** | Skill behavior/description changed, or the team switched models |
 | **Do not** | Add hard LLM pass-rate CI gates yet; do not expect `create-adsk eval` (deferred) |
 
-Adopter quick path: [using-adsk.md — Evaluating skills](../using-adsk.md#5-evaluating-skills-adopters). Playbook: [evaluating-skills.md](../evaluating-skills.md).
+Adopter quick path: [using-adsk.md — Evaluating skills](../using-adsk.md#5-evaluating-skills-adopters). Playbook: [evaluating-skills.md](../evaluating-skills.md) ([ground truth](../evaluating-skills.md#ground-truth-adsk) = skill SCORECARD + delivery specs/verify).
 
 ## When ADSK is the right kit
 

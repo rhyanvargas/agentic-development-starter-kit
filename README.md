@@ -118,7 +118,7 @@ cd agentic-development-starter-kit
 | [docs/product/create-adsk.md](docs/product/create-adsk.md) | Product contract — create-adsk profiles |
 | [docs/product/for-eng-leads.md](docs/product/for-eng-leads.md) | Eng-lead pitch — team standard vs skills.sh |
 | [docs/product/profiles-and-packs.md](docs/product/profiles-and-packs.md) | Profile (depth) × pack (methodology) model |
-| [docs/evals/SCORECARD.md](docs/evals/SCORECARD.md) | First-party with/without eval results (trust by default) |
+| [docs/evals/SCORECARD.md](docs/evals/SCORECARD.md) | First-party with/without eval results ([ground truth](docs/evaluating-skills.md#ground-truth-adsk)) |
 | [packages/create-adsk](packages/create-adsk) | `create-adsk` CLI (init / update / status) |
 | [`profiles.json`](profiles.json) | Machine-readable adopter profiles |
 | [docs/product-value-loop.md](docs/product-value-loop.md) | Optional pack: discover → research → prioritize → plan → execute |
@@ -133,7 +133,7 @@ cd agentic-development-starter-kit
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contributions; do not vendor upstream skills |
 | [`scripts/sync-adsk.sh`](scripts/sync-adsk.sh) | `kit` / `self-check` after first-party skill changes |
 | [docs/upgrading.md](docs/upgrading.md#kit-maintainers) | Sync / upgrade playbook |
-| [docs/skill-authoring.md](docs/skill-authoring.md) / [evaluating-skills.md](docs/evaluating-skills.md) | Author + eval skills |
+| [docs/skill-authoring.md](docs/skill-authoring.md) / [evaluating-skills.md](docs/evaluating-skills.md) | Author + eval skills (incl. [ground truth](docs/evaluating-skills.md#ground-truth-adsk)) |
 | [docs/lifecycle-coverage.md](docs/lifecycle-coverage.md) / [docs/evals/SCORECARD.md](docs/evals/SCORECARD.md) | Coverage map |
 | [docs/RELEASE.md](docs/RELEASE.md) / [CHANGELOG.md](CHANGELOG.md) | Kit release-please **and** optional npm `create-adsk` publish |
 
