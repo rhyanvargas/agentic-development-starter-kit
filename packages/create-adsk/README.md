@@ -19,12 +19,14 @@ npx create-adsk
 
 Follow the prompts. You pick a **profile** (kit depth), optionally select **packs** (`product-value-loop`, `engineering-methods`), then the CLI installs skills, syncs Cursor commands when the profile includes them, and writes `.adsk/config.json`.
 
-| Profile | You get |
-|---------|---------|
-| `core` | Spec-driven workflow + Cursor commands |
-| `delivery` | Core + DevOps strategy + release automation |
-| `maintainer` | Delivery + skill/README/PR authoring + supply-chain gate + stock rules |
-| `skills-only` | All first-party skills; no `.cursor/` writes |
+Profile skills are first-party ADSK (include `evals/`). Packs install upstream skills as those authors ship them — often without an ADSK-style `evals/` folder. Details: [`docs/using-adsk.md`](../../docs/using-adsk.md#5-evaluating-skills-adopters).
+
+| Profile       | You get                                                                |
+| ------------- | ---------------------------------------------------------------------- |
+| `core`        | Spec-driven workflow + Cursor commands                                 |
+| `delivery`    | Core + DevOps strategy + release automation                            |
+| `maintainer`  | Delivery + skill/README/PR authoring + supply-chain gate + stock rules |
+| `skills-only` | All first-party skills; no `.cursor/` writes                           |
 
 Source: [`profiles.json`](../../profiles.json). Contract: [`docs/product/create-adsk.md`](../../docs/product/create-adsk.md).
 
@@ -34,12 +36,12 @@ Source: [`profiles.json`](../../profiles.json). Contract: [`docs/product/create-
 npx create-adsk --profile delivery --yes
 ```
 
-| Flag | Meaning |
-|------|---------|
-| `--profile <id>` | Choose a profile without prompting |
-| `--yes` / `-y` | Skip prompts (`core` if `--profile` is omitted; packs off unless `--packs` / `--with-optional-packs`) |
-| `--packs <ids>` | Comma-separated pack IDs (e.g. `engineering-methods`) |
-| `--with-optional-packs` | Include all packs |
+| Flag                    | Meaning                                                                                               |
+| ----------------------- | ----------------------------------------------------------------------------------------------------- |
+| `--profile <id>`        | Choose a profile without prompting                                                                    |
+| `--yes` / `-y`          | Skip prompts (`core` if `--profile` is omitted; packs off unless `--packs` / `--with-optional-packs`) |
+| `--packs <ids>`         | Comma-separated pack IDs (e.g. `engineering-methods`)                                                 |
+| `--with-optional-packs` | Include all packs                                                                                     |
 
 See `npx create-adsk --help` for the full option list.
 
@@ -55,9 +57,9 @@ Other useful flags: `--dry-run`, `--scope project|global`, `--force-rules`, `--t
 
 ## Two tools
 
-| Tool | Owns |
-|------|------|
-| **`npx skills`** | Skill folders in `.agents/skills/` |
+| Tool                  | Owns                                                 |
+| --------------------- | ---------------------------------------------------- |
+| **`npx skills`**      | Skill folders in `.agents/skills/`                   |
 | **`npx create-adsk`** | ADSK profile (skills + Cursor + `.adsk/config.json`) |
 
 ## Local kit path (optional)
@@ -83,10 +85,10 @@ node dist/cli.js --help
 
 Kit GitHub releases (`v*`) and this npm package are **independent**.
 
-| You want… | Do this |
-|-----------|---------|
-| Land code on GitHub | PR → green `tier1` → merge to `main` |
-| Kit changelog / GitHub Release | Merge the release-please PR when ready |
-| New `npx create-adsk` on npm | Bump `package.json` version on `main`, then tag `create-adsk-vX.Y.Z` |
+| You want…                      | Do this                                                              |
+| ------------------------------ | -------------------------------------------------------------------- |
+| Land code on GitHub            | PR → green `tier1` → merge to `main`                                 |
+| Kit changelog / GitHub Release | Merge the release-please PR when ready                               |
+| New `npx create-adsk` on npm   | Bump `package.json` version on `main`, then tag `create-adsk-vX.Y.Z` |
 
 Full workflow: [`docs/RELEASE.md`](../../docs/RELEASE.md). Publishing uses [Trusted Publishing](https://docs.npmjs.com/trusted-publishers/) via [`.github/workflows/publish-create-adsk.yml`](../../.github/workflows/publish-create-adsk.yml).
