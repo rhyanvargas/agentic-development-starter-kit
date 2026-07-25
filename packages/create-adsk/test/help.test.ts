@@ -12,6 +12,7 @@ import {
 } from "../src/banner.js";
 import {
   FORBIDDEN_HELP_PHRASES,
+  POST_INSTALL_SKILL_LAYOUT_TIP,
   TWO_TOOL_BLURB,
 } from "../src/help-copy.js";
 
@@ -41,6 +42,13 @@ describe("help (REQ-012, REQ-014)", () => {
     }
     expect(help.toLowerCase()).not.toContain(" kit mode");
     expect(help).not.toMatch(/\bkit\b.*symlink/i);
+  });
+
+  it("documents first-party vs pack skill layout after install", () => {
+    expect(POST_INSTALL_SKILL_LAYOUT_TIP).toMatch(/first-party ADSK skills/i);
+    expect(POST_INSTALL_SKILL_LAYOUT_TIP).toMatch(/evals\//i);
+    expect(POST_INSTALL_SKILL_LAYOUT_TIP).toMatch(/upstream/i);
+    expect(POST_INSTALL_SKILL_LAYOUT_TIP).toMatch(/expected/i);
   });
 
   it("renders a skills-style landing banner", () => {
