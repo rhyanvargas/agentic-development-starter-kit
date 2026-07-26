@@ -8,9 +8,9 @@ Complete reference for all spec-driven workflow commands.
 
 | Command | Purpose | When to Use |
 |---------|---------|-------------|
-| `/draft-spec` | Generate spec from idea | Starting a new feature |
-| `/plan-impl` | Create implementation plan | Before coding medium+ changes |
-| `/implement-spec` | Generate code from spec | After spec is approved |
+| `/draft-spec` | Generate feature or bugfix spec | Starting a new feature or non-trivial bug |
+| `/plan-impl` | Create / **resync** implementation plan | Before coding medium+ changes; after living-spec REQ edits |
+| `/implement-spec` | Generate code from spec | After spec (and plan, if any) is approved |
 | `/review` | Quality check | After implementation |
 | `/extract-spec` | Document existing code | Brownfield projects |
 | `/quick-start` | Initialize workflow | First-time setup |
@@ -37,9 +37,10 @@ Generate a specification document from a feature idea.
 ```
 
 ### Behavior
-1. Asks clarifying questions if needed
+1. Asks clarifying questions if needed; chooses Requirements-First (default), Design-First, or Bugfix when appropriate
 2. Searches codebase for context
 3. Resolves output home (`artifact-homes.md`); Cursor default `.cursor/docs/specs/{feature-name}.md`
+4. On medium+, suggests analyze (`analyze-requirements.md`) before `/plan-impl`
 
 ### Output
 - Spec file with requirements, constraints, acceptance criteria
@@ -67,9 +68,9 @@ Create an implementation plan from a specification.
 ```
 
 ### Behavior
-1. Reads and analyzes the spec
-2. Breaks down into concrete steps (prefer build vs verify/review split for parallel QA)
-3. Identifies files to create/modify
+1. Reads the spec; runs Medium+ cross-requirement analyze (or confirms N/A)
+2. Breaks down into concrete steps (prefer build vs verify/review split for parallel QA); **resyncs** todos when REQs changed since last plan
+3. Identifies files to create/modify; for bugfix specs, maps FIX + KEEP items
 4. Plans tests and verification; for Large (and ambiguous Medium), requires a **tracer bullet** task or “N/A — architecture proven” justification
 5. Writes **trackable todos** (Cursor: YAML frontmatter `todos` — see `cursor-adapter.md`)
 

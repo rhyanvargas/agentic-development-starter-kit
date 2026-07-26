@@ -68,6 +68,8 @@ Write a **delta** spec for the desired change:
 
 Link the baseline. Call out migrations, compatibility, and rollback concerns.
 
+For a **surgical bug** (not a feature delta), use the bugfix template instead — Current / Expected / Unchanged — see [Bugfix Workflow](bugfix-workflow.md).
+
 ### 4. Plan (medium/large)
 
 ```
@@ -104,5 +106,7 @@ Check regressions, compatibility, and that undocumented behavior was not silentl
 ## Related
 
 - [Greenfield Workflow](greenfield-workflow.md)
+- [Bugfix Workflow](bugfix-workflow.md)
+- [Analyze Requirements](analyze-requirements.md)
 - [Spec Writing Guide](spec-writing-guide.md)
 - [Commands Reference](commands-reference.md)

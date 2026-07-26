@@ -112,8 +112,17 @@ Prevent scope creep:
 ### Keep the spec alive
 
 - Update the spec when decisions or scope change (before coding the change when possible)
+- After material REQ edits, **resync the plan** (`/plan-impl` or refresh Cursor YAML `todos`) before implement
 - Commit specs with the code
 - Reference `REQ-XXX` or spec sections in PRs
+
+### Analyze before planning (medium+)
+
+Cross-check the full REQ set for conflicts, ambiguity, and missing edges (`analyze-requirements.md`) before `/plan-impl`. Skip only when the set is tiny and already reviewed.
+
+### Bugfix with a regression fence
+
+For non-trivial bugs, document Current / Expected / **Unchanged** (`bugfix-workflow.md`) so the fix does not rewrite neighbors.
 
 ### Common rationalizations
 
@@ -250,6 +259,7 @@ Don't let specs rot:
 ### Spec-Driven Development
 - [Martin Fowler: Understanding SDD](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html)
 - [Alex Merced: AI-Assisted Coding Guide](https://dev.to/alexmercedcoder/a-practical-guide-to-ai-assisted-coding-tools-2fh5)
+- [Kiro Specs](https://kiro.dev/docs/specs.md) — reference for gated requirements/design/tasks, Analyze Requirements, and Bugfix Current/Expected/Unchanged (absorb patterns; do not vendor `.kiro/specs/` layout or PBT-as-core)
 - Patterns absorbed (not vendored): [addyosmani/agent-skills@spec-driven-development](https://skills.sh/addyosmani/agent-skills/spec-driven-development) (assumption surfacing, gated phases, success-criteria reframing); [github/awesome-copilot@create-specification](https://skills.sh/github/awesome-copilot/create-specification) (AI-ready language); [mattpocock/skills@to-spec](https://skills.sh/mattpocock/skills/to-spec) (preferred test seams — formerly `to-prd`); [warpdotdev/common-skills@write-product-spec](https://skills.sh/warpdotdev/common-skills/write-product-spec) (consumer-facing PRODUCT half vs TECH)
 
 ### General AI Coding

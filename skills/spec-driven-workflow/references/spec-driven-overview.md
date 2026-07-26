@@ -106,7 +106,7 @@ See [Problem Size Guide](problem-size-guide.md) for details.
 
 ### Commands
 Pre-built workflows for the SDD cycle:
-- `/draft-spec` → `/plan-impl` → `/implement-spec` → `/review`
+- `/draft-spec` → (analyze) → `/plan-impl` → `/implement-spec` → `/review`
 
 ### Rules
 Persistent context so AI follows your standards:

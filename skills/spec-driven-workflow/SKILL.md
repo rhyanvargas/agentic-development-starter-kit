@@ -1,12 +1,14 @@
 ---
 name: spec-driven-workflow
 description: >-
-  Draft specs, plan implementation, implement from specs, review against
-  specs, extract specs from existing code, and size greenfield/brownfield
-  work. Use when the user wants testable requirements, living specs,
-  spec-driven development, or /draft-spec /plan-impl /implement-spec
-  /review /extract-spec. Do not use for DevOps/CI-CD strategy design,
-  README authoring, Agent Skill optimization, or trivial one-line fixes.
+  Draft specs, analyze requirements, plan implementation, implement from
+  specs, review against specs, extract specs from existing code, run
+  surgical bugfix specs, and size greenfield/brownfield work. Use when
+  the user wants testable requirements, living specs, spec-driven
+  development, bugfix with regression fences, Design-First vs
+  Requirements-First, or /draft-spec /plan-impl /implement-spec /review
+  /extract-spec. Do not use for DevOps/CI-CD strategy design, README
+  authoring, Agent Skill optimization, or trivial one-line fixes.
 ---
 
 # Spec-Driven Workflow
@@ -19,7 +21,7 @@ The spec is the shared source of truth for what to build and how to know it is d
 |------|----------|
 | Trivial | Skip formal workflow; handle in chat |
 | Small | Draft spec → implement |
-| Medium | Draft spec → plan → implement → review |
+| Medium | Draft spec → analyze → plan → implement → review |
 | Large | Research first, then full workflow |
 
 Read `references/problem-size-guide.md` when size is unclear.
@@ -29,19 +31,22 @@ Read `references/problem-size-guide.md` when size is unclear.
 Do not advance phases until the current artifact is good enough (user review for medium+; self-check for small).
 
 ```
-SIZE → SPECIFY → PLAN (medium+) → CLEAR → IMPLEMENT → REVIEW
-              ↑______________ living spec ______________|
+SIZE → SPECIFY → ANALYZE (medium+) → PLAN (medium+) → CLEAR → IMPLEMENT → REVIEW
+                    ↑______________ living spec + plan sync ______________|
 ```
 
 1. **Size** — Match depth to problem size (table above).
-2. **Specify** — Surface assumptions first, then write testable requirements (`REQ-XXX` preferred). Read `references/spec-writing-guide.md`.
-3. **Plan** (medium+) — Break work into concrete, verifiable tasks. Prefer a written plan before multi-file changes.
+2. **Specify** — Surface assumptions first, then write testable requirements (`REQ-XXX` preferred). Default **Requirements-First**. Read `references/spec-writing-guide.md`.
+   - **Bugfix** (non-obvious / high-risk defects): use Current / Expected / **Unchanged** — read `references/bugfix-workflow.md`.
+   - **Design-First** (strict NFRs, existing architecture, feasibility before scope): draft TECH/approach first, then derive REQs — see `references/spec-writing-guide.md`.
+3. **Analyze** (medium+) — Cross-requirement check for conflicts, ambiguity, and gaps before planning. Read `references/analyze-requirements.md`.
+4. **Plan** (medium+) — Break work into concrete, verifiable tasks. Prefer a written plan before multi-file changes.
    - **Tracer bullet** (Large, and Medium when architecture/integration is ambiguous): include a thin vertical slice + one verify **before** multi-phase implement, or an explicit “N/A — architecture proven” justification. See `references/problem-size-guide.md`.
    - Prefer splitting **build** tasks from **verify/review** tasks so QA can proceed in parallel with the next REQ slice (optional for Small).
-4. **Clear** (Medium+) — Persist exploration into the living spec/plan; start implement lean. Do not carry the full exploration transcript as working context. Bounded explore (subagent or dedicated chat) is fine; durable findings must already be in artifacts.
-5. **Implement** — Follow the spec/plan; map each requirement to tests unless non-behavioral with explicit justification.
-6. **Review** — Check correctness, security-sensitive paths, test coverage, and spec compliance.
-7. **Brownfield** — Document existing behavior with extract-spec before large changes. Read `references/brownfield-workflow.md`.
+5. **Clear** (Medium+) — Persist exploration into the living spec/plan; start implement lean. Do not carry the full exploration transcript as working context. Bounded explore (subagent or dedicated chat) is fine; durable findings must already be in artifacts.
+6. **Implement** — Follow the spec/plan; map each requirement to tests unless non-behavioral with explicit justification.
+7. **Review** — Check correctness, security-sensitive paths, test coverage, and spec compliance (for bugfixes: regression fence).
+8. **Brownfield** — Document existing behavior with extract-spec before large changes. Read `references/brownfield-workflow.md`.
 
 ### Before writing a spec
 
@@ -68,9 +73,11 @@ SUCCESS CRITERIA:
 
 Do not silently fill ambiguous requirements — that is the failure mode SDD exists to prevent.
 
-### Living spec
+### Living spec + plan sync
 
 Update the spec when decisions or scope change; prefer updating the spec before implementing the change. Link PRs back to the spec section or `REQ-XXX` they satisfy.
+
+**After material REQ/design edits:** re-run `/plan-impl` (or refresh Cursor Plan YAML `todos`) so tasks match the living spec. Do not implement against a stale plan.
 
 ## Artifact homes
 
@@ -94,7 +101,9 @@ Load references only when needed:
 | `references/artifact-homes.md` | Creating/locating specs or plans; path unclear |
 | `references/cursor-adapter.md` | Cursor `/` commands or `.cursor/plans` / `.cursor/docs` homes |
 | `references/problem-size-guide.md` | Size unclear or contested |
-| `references/spec-writing-guide.md` | Writing or reviewing a spec |
+| `references/spec-writing-guide.md` | Writing or reviewing a spec; Design-First vs Requirements-First |
+| `references/analyze-requirements.md` | Medium+ before `/plan-impl`, or after material REQ edits |
+| `references/bugfix-workflow.md` | Non-trivial bug fix; regression fence needed |
 | `references/greenfield-workflow.md` | New feature, no existing behavior to preserve |
 | `references/brownfield-workflow.md` | Changing or documenting existing code |
 | `references/commands-reference.md` | Slash-command usage or options |
@@ -107,6 +116,9 @@ Load references only when needed:
 
 - Assumptions surfaced before drafting when requirements are ambiguous.
 - Requirements are specific and testable.
+- Medium+ specs get a cross-requirement analyze pass (or explicit “N/A — tiny REQ set already reviewed”) before plan.
 - Medium+ specs name preferred test seams (highest useful existing boundary) when behavior is non-trivial.
+- Bugfix specs (when used) document Unchanged behavior and tests cover the fence.
+- After material living-spec edits, the plan/todos are resynced before implement.
 - Implemented requirements have automated tests (or a short justification when truly non-behavioral).
 - **Fail-closed verify:** Before claiming done, run `project-cmds` (or documented project verify). If verify is **not** configured, do **not** claim done — instruct `/quick-start` or set `project-cmds` / portable equivalent. “Looks good” without verify is forbidden.

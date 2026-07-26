@@ -8,8 +8,10 @@ Match your workflow to the size of the problem.
 |------|----------|-------|-------|----------|
 | **Trivial** | Typo, rename, 1-line fix | No | No | Chat directly |
 | **Small** | Single file, clear scope | Yes | Optional | `/draft-spec` → `/implement-spec` |
-| **Medium** | Multi-file, 1-5 day work | Yes | Yes | Full workflow |
-| **Large** | Epic, unclear scope | Yes | Yes | Research first |
+| **Medium** | Multi-file, 1-5 day work | Yes | Yes | Spec → analyze → plan → implement → review |
+| **Large** | Epic, unclear scope | Yes | Yes | Research first, then full workflow |
+
+Non-trivial bugs: use [Bugfix Workflow](bugfix-workflow.md) sized like Small/Medium above (not Trivial).
 
 ## Trivial Changes
 
@@ -79,10 +81,11 @@ Then skip to implementation:
 ### How to handle
 1. `/draft-spec "Add user profile editing feature"`
 2. Review and refine spec
-3. `/plan-impl .cursor/docs/specs/user-profile.md`
-4. Review plan
-5. `/implement-spec .cursor/docs/specs/user-profile.md`
-6. `/review --spec .cursor/docs/specs/user-profile.md`
+3. Cross-requirement analyze (`analyze-requirements.md`); update living spec
+4. `/plan-impl .cursor/docs/specs/user-profile.md` (re-run if REQs change later)
+5. Review plan
+6. `/implement-spec .cursor/docs/specs/user-profile.md`
+7. `/review --spec .cursor/docs/specs/user-profile.md`
 
 ### Why full workflow?
 - Multiple files = coordination needed

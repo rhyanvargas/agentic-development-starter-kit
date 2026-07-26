@@ -76,6 +76,26 @@
         "Does not recommend installing to-prd or to-spec as the ADSK/product PRD solution",
         "Points to ADSK spec-driven workflow (and optionally product-value-loop for discovery) instead of a parallel SDD pack"
       ]
+    },
+    {
+      "id": 8,
+      "prompt": "We have a medium-sized living spec with 8 REQ items for checkout. Before /plan-impl, what pass should you run and what kinds of issues should it catch?",
+      "expected_output": "Runs or describes the cross-requirement analyze pass (conflicts, ambiguity, constraint clashes, missing edges, trace gaps) and updates the living spec from findings — does not jump straight to a stale plan.",
+      "assertions": [
+        "Names an analyze / cross-requirement pass before planning",
+        "Mentions at least two of: conflicts, ambiguity, gaps/edges, constraint clashes",
+        "Does not skip analysis by jumping straight to implementation tasks for this medium case"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Non-obvious race in checkout: sometimes double-charges. Draft the bugfix path — what sections must the artifact include so we do not rewrite unrelated cart behavior?",
+      "expected_output": "A bugfix-oriented artifact with Current (defect), Expected (fix), and Unchanged (regression fence / KEEP) behaviors, plus tests that cover both FIX and KEEP.",
+      "assertions": [
+        "Includes current/defect behavior and expected/correct behavior",
+        "Explicitly documents unchanged / regression-fence / KEEP behaviors",
+        "Ties verification or tests to both the fix and the unchanged fence"
+      ]
     }
   ]
 }

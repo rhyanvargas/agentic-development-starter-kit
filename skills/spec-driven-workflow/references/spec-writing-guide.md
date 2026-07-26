@@ -50,6 +50,19 @@ Before locking requirements, name where you will prove the behavior from the out
 
 Do not put specific file paths or code snippets in the product half of a split spec — seams and interfaces belong in TECH / plan once product intent is stable.
 
+## Entry mode: Requirements-First vs Design-First
+
+Default is **Requirements-First** (behavior → optional TECH → plan).
+
+| Mode | Start with | Then | Use when |
+|------|------------|------|----------|
+| **Requirements-First** (default) | Consumer-facing REQs / acceptance | Approach, plan, implement | Product features, flexible architecture |
+| **Design-First** | TECH / approach (architecture, algorithms, NFRs) | Derive feasible REQs from that design | Strict latency/throughput/compliance, porting an existing design, feasibility before locking scope |
+
+Design-First still ends in **testable REQs** before implement — design alone is not done. Prefer one file with Overview → Approach → Requirements unless a PRODUCT/TECH split helps review. Do **not** invent a mandatory three-file `.kiro/specs/` layout.
+
+For non-trivial **bugs**, use `bugfix-workflow.md` (Current / Expected / Unchanged) instead of a feature entry mode.
+
 ## Functional vs Technical
 
 ### Functional Spec (What)
@@ -197,7 +210,9 @@ Add as needed:
 
 ## Acceptance Criteria
 
-Use Given-When-Then format:
+Prefer **Given-When-Then** (default). **EARS** is an optional equivalent when the team likes `WHEN` / `THE SYSTEM SHALL` — do not require both.
+
+### Given-When-Then (default)
 
 ```markdown
 ## Acceptance Criteria
@@ -217,6 +232,18 @@ Use Given-When-Then format:
 - When I search for anything
 - Then I see a friendly error message
 ```
+
+### EARS (optional)
+
+```markdown
+WHEN a user searches for a partial name
+THE SYSTEM SHALL return matching users case-insensitively (max 20 per page)
+
+WHEN no users match the search
+THE SYSTEM SHALL display "No results found"
+```
+
+Keep `REQ-XXX` IDs either way so plans and tests stay traceable.
 
 ## Constraints Section
 
@@ -295,11 +322,14 @@ Before running `/implement-spec`:
 - [ ] Ambiguous assumptions were surfaced and resolved (or listed as open questions)
 - [ ] Overview explains what and why
 - [ ] Requirements are specific and testable
-- [ ] Acceptance criteria cover happy path
+- [ ] Acceptance criteria cover happy path (GWT or EARS)
 - [ ] Edge cases documented
 - [ ] Constraints stated
 - [ ] Out of scope defined
 - [ ] Preferred test seams named (medium+) and confirmed when they imply new boundaries
+- [ ] Medium+: cross-requirement analyze done (or N/A) — see `analyze-requirements.md`
+- [ ] Bugfix (if applicable): Unchanged fence present — see `bugfix-workflow.md`
 - [ ] If PRODUCT/TECH split: product half stays consumer-facing; impl lives in TECH
 - [ ] No implementation details in the product/requirements half (unless necessary)
 - [ ] Spec is saved in the project (not only in chat)
+- [ ] Plan/todos resynced if REQs changed after an earlier `/plan-impl`
