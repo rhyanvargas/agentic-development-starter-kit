@@ -1,0 +1,50 @@
+{
+  "skill_name": "solution-architecture",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Medium feature with unclear integration: we need an architecture packet for a B2B notifications service that talks to email and webhooks. Keep it sized for Medium — not an enterprise eight-artifact dump. Prefer logical views before AWS icons.",
+      "expected_output": "A sized Medium packet: architecture brief, context + container views, one dynamic flow, top ADRs/risks; logical-first; no mandatory full enterprise packet or vendor-icon focus.",
+      "assertions": [
+        "Produces or outlines an architecture brief with outcome and top quality attributes",
+        "Includes system context and container (or layered) views",
+        "Includes at least one dynamic/workflow view",
+        "Records ADRs or major decisions and a lite risk register (or top risks)",
+        "Explicitly sizes for Medium rather than requiring a full eight-artifact enterprise packet",
+        "States logical architecture before vendor/cloud icon mapping (or equivalent)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Just draft the feature REQs for password reset with acceptance criteria — no diagrams.",
+      "expected_output": "Declines to run a full architecture packet session as primary work; redirects to spec-driven-workflow / feature spec drafting.",
+      "assertions": [
+        "Does not produce a full C4 architecture packet as the primary deliverable",
+        "Recognizes the ask as feature requirements / SDD rather than solution architecture",
+        "Redirects to or recommends spec-driven-workflow / draft-spec (or equivalent)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Design our CI/CD promotion model across dev/stage/prod and rollback strategy.",
+      "expected_output": "Treats this as DevOps strategy, not C4 solution architecture; redirects to devops-strategy-facilitator.",
+      "assertions": [
+        "Declines or redirects away from a C4 architecture packet as the primary response",
+        "Recognizes the ask as delivery/CI-CD strategy rather than solution architecture diagrams",
+        "Points to devops-strategy-facilitator or /design-devops-strategy (or equivalent)"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Large AI agent platform: produce the architecture packet including AI lifecycle/governance and risk controls. Do not invent DDS departmental policy.",
+      "expected_output": "Large + AI packet with brief, C4 views, deployment/trust, AI lifecycle view, ADRs, AI-aware risks; portable guidance without org-specific DDS policy invention.",
+      "assertions": [
+        "Includes AI lifecycle/governance considerations (evals, versions, monitoring, or human escalation)",
+        "Covers deployment or trust boundaries for Large scope",
+        "Addresses AI-specific risks (e.g. prompt injection, excessive agency, data in logs) with prevent/detect/respond style controls",
+        "Does not invent organization-specific DDS/departmental policy as settled fact",
+        "Keeps logical architecture before vendor logo mapping"
+      ]
+    }
+  ]
+}

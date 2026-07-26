@@ -55,7 +55,7 @@ Use two axes:
 
 | | Mechanism |
 |--|-----------|
-| **Must stay consistent** (high blast radius) | Profile + required packs — e.g. spec→ship spine, DevOps/release (`delivery`), supply-chain + README standards (`maintainer`), product discovery loop when you opt in |
+| **Must stay consistent** (high blast radius) | Profile + required packs — e.g. spec→ship spine, solution architecture + DevOps/release (`delivery`), supply-chain + README standards (`maintainer`), product discovery loop when you opt in |
 | **May stay independent** | Engineers still use skills.sh / `npx skills` for niche or experimental skills |
 | **Guardrail** | [`recommended-skills.json`](../../recommended-skills.json) `do_not_add` — avoid colliding SDD/README stacks that fork the team baseline |
 

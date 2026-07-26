@@ -20,9 +20,10 @@
       "rules": "none"
     },
     "delivery": {
-      "description": "SDD plus DevOps strategy and release automation.",
+      "description": "SDD plus solution architecture, DevOps strategy, and release automation.",
       "skills": [
         "spec-driven-workflow",
+        "solution-architecture",
         "devops-strategy-facilitator",
         "release-automation"
       ],
@@ -33,6 +34,7 @@
       "description": "Full first-party kit including skill authoring and README workflows.",
       "skills": [
         "spec-driven-workflow",
+        "solution-architecture",
         "devops-strategy-facilitator",
         "release-automation",
         "skill-optimizer",
@@ -47,6 +49,7 @@
       "description": "All first-party skills; no Cursor commands or rules writes.",
       "skills": [
         "spec-driven-workflow",
+        "solution-architecture",
         "devops-strategy-facilitator",
         "release-automation",
         "skill-optimizer",

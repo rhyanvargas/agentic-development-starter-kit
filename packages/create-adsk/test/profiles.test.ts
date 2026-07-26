@@ -8,6 +8,7 @@ describe("profiles", () => {
     const delivery = getProfile(profiles, "delivery");
     expect(delivery.skills).toEqual([
       "spec-driven-workflow",
+      "solution-architecture",
       "devops-strategy-facilitator",
       "release-automation",
     ]);

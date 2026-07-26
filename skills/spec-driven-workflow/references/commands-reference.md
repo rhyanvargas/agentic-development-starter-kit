@@ -14,6 +14,7 @@ Complete reference for all spec-driven workflow commands.
 | `/review` | Quality check | After implementation |
 | `/extract-spec` | Document existing code | Brownfield projects |
 | `/quick-start` | Initialize workflow | First-time setup |
+| `/design-architecture` | Sized C4 architecture packet + ADRs | Large / ambiguous Medium architecture |
 | `/design-devops-strategy` | Design CI/CD + branching strategy | Delivery / platform decisions |
 | `/optimize-skill` | Optimize a skill for triggers/tokens | Creating or editing skills |
 | `/update-readme` | Sync README with codebase | Keep README accurate |
@@ -258,6 +259,26 @@ Initialize the spec-driven workflow for a project.
 ```
 "Fix the typo in README.md"            # Direct chat
 ```
+
+---
+
+## /design-architecture
+
+Collaborate on a sized solution-architecture packet (brief, C4 views, ADRs, risks).
+
+### Usage
+```
+/design-architecture
+/design-architecture "Notifications service — Medium, unclear webhook integration"
+```
+
+### Behavior
+1. Sizes rigor (Small skip / Medium packet / Large / AI extensions)
+2. Drafts brief + required C4 views (logical first)
+3. Records ADRs and a lite risk register; links from the living spec/plan
+
+### Skill
+`skills/solution-architecture`
 
 ---
 

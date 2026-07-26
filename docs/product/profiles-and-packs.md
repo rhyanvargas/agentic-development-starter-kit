@@ -35,7 +35,7 @@ Pack     = which methodology contracts apply?    (consistency domains)
 | Profile       | Role                                                                         |
 | ------------- | ---------------------------------------------------------------------------- |
 | `core`        | Spec-driven delivery spine + Cursor commands                                 |
-| `delivery`    | Core + DevOps strategy + release automation                                  |
+| `delivery`    | Core + solution architecture + DevOps strategy + release automation          |
 | `maintainer`  | Delivery + skill authoring, README, supply-chain, PR authoring + stock rules |
 | `skills-only` | All first-party skills; no `.cursor/` writes                                 |
 
@@ -82,6 +82,7 @@ Map common “we need consistency here” asks to **profile depth** or **packs**
 | Consistency need                                                   | Prefer                                                                                                                                                                                     |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Spec → plan → implement → review                                   | Profile ≥ `core`                                                                                                                                                                           |
+| C4 / solution architecture packets, ADRs                           | Profile ≥ `delivery` (`solution-architecture` / `/design-architecture`)                                                                                                                    |
 | Branching, CI/CD strategy, release automation                      | Profile ≥ `delivery`                                                                                                                                                                       |
 | README standards, skill authoring, supply-chain gate, PR authoring | Profile `maintainer` (or grow a future docs/security **pack** when playbook-ready)                                                                                                         |
 | Product discovery → roadmap → then SDD                             | Pack: `product-value-loop`                                                                                                                                                                 |

@@ -1,0 +1,22 @@
+[
+  { "query": "Draw a C4 system context diagram for our billing service", "should_trigger": true },
+  { "query": "Help me create a solution architecture packet before we build the platform", "should_trigger": true },
+  { "query": "/design-architecture for the new agent routing service", "should_trigger": true },
+  { "query": "We need a container diagram and trust boundaries for prod", "should_trigger": true },
+  { "query": "Write an ADR for choosing a central supervisor vs independent agents", "should_trigger": true },
+  { "query": "Architecture review of our deployment and network boundaries", "should_trigger": true },
+  { "query": "Map logical layers and component responsibilities before picking AWS services", "should_trigger": true },
+  { "query": "Document the dynamic request flow including failure paths", "should_trigger": true },
+  { "query": "Build a lite risk register for our architecture choices", "should_trigger": true },
+  { "query": "Produce an architecture brief with top quality attributes and open decisions", "should_trigger": true },
+  { "query": "Draft a spec for the notifications feature with REQ acceptance criteria", "should_trigger": false },
+  { "query": "Implement the approved export-csv spec", "should_trigger": false },
+  { "query": "Design a CI/CD and branching strategy for our new service", "should_trigger": false },
+  { "query": "Help us decide build-once promote vs rebuild per environment", "should_trigger": false },
+  { "query": "Set up release-please and auto CHANGELOG from Conventional Commits", "should_trigger": false },
+  { "query": "Update the README to document our architecture overview section", "should_trigger": false },
+  { "query": "Optimize this skill's SKILL.md description", "should_trigger": false },
+  { "query": "Triage the Socket alert on this dependency PR", "should_trigger": false },
+  { "query": "Write unit tests first for this bug fix", "should_trigger": false },
+  { "query": "Generate draw.io AWS icons for this diagram — I already have the logical architecture", "should_trigger": false }
+]

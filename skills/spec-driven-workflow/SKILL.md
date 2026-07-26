@@ -5,8 +5,9 @@ description: >-
   specs, extract specs from existing code, and size greenfield/brownfield
   work. Use when the user wants testable requirements, living specs,
   spec-driven development, or /draft-spec /plan-impl /implement-spec
-  /review /extract-spec. Do not use for DevOps/CI-CD strategy design,
-  README authoring, Agent Skill optimization, or trivial one-line fixes.
+  /review /extract-spec. Do not use for C4/solution architecture packets
+  (use solution-architecture), DevOps/CI-CD strategy design, README
+  authoring, Agent Skill optimization, or trivial one-line fixes.
 ---
 
 # Spec-Driven Workflow
@@ -36,6 +37,7 @@ SIZE → SPECIFY → PLAN (medium+) → CLEAR → IMPLEMENT → REVIEW
 1. **Size** — Match depth to problem size (table above).
 2. **Specify** — Surface assumptions first, then write testable requirements (`REQ-XXX` preferred). Read `references/spec-writing-guide.md`.
 3. **Plan** (medium+) — Break work into concrete, verifiable tasks. Prefer a written plan before multi-file changes.
+   - **Architecture packet** (Large, and Medium when architecture/integration is ambiguous): require system context + container views (or “N/A — architecture proven”) and link ADRs for irreversible choices via `solution-architecture` / `/design-architecture` before multi-phase implement. See `references/problem-size-guide.md`.
    - **Tracer bullet** (Large, and Medium when architecture/integration is ambiguous): include a thin vertical slice + one verify **before** multi-phase implement, or an explicit “N/A — architecture proven” justification. See `references/problem-size-guide.md`.
    - Prefer splitting **build** tasks from **verify/review** tasks so QA can proceed in parallel with the next REQ slice (optional for Small).
 4. **Clear** (Medium+) — Persist exploration into the living spec/plan; start implement lean. Do not carry the full exploration transcript as working context. Bounded explore (subagent or dedicated chat) is fine; durable findings must already be in artifacts.

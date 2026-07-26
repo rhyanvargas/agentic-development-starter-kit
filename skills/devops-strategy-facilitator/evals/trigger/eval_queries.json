@@ -10,6 +10,7 @@
   { "query": "Define artifact storage and promotion path for container images", "should_trigger": true },
   { "query": "we don't have a delivery model yet — help us pick envs + promotion", "should_trigger": true },
   { "query": "Draft a spec for the notifications feature", "should_trigger": false },
+  { "query": "Draw a C4 container diagram and trust boundaries for our services", "should_trigger": false },
   { "query": "Extract a spec from the payments module", "should_trigger": false },
   { "query": "Write unit tests first for this bug fix", "should_trigger": false },
   { "query": "Write a Dockerfile for this Node app", "should_trigger": false },

@@ -45,6 +45,7 @@ describe("init integration", () => {
 		expect(calls.length).toBe(1);
 		const argv = calls[0].join(" ");
 		expect(argv).toContain("--skill spec-driven-workflow");
+		expect(argv).toContain("--skill solution-architecture");
 		expect(argv).toContain("--skill devops-strategy-facilitator");
 		expect(argv).toContain("--skill release-automation");
 		expect(argv).not.toMatch(/\bfind\b/);
