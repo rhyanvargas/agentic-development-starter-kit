@@ -13,6 +13,7 @@ Adopter UX must follow the product contract. Do not invent a skill-marketplace i
 |----------|------|
 | Product contract | `docs/product/create-adsk.md` |
 | Eng-lead pitch | `docs/product/for-eng-leads.md` |
+| Org rules (adopters) | `docs/customizing-org-rules.md` |
 | Profiles × packs model | `docs/product/profiles-and-packs.md` |
 | Profile matrix | `profiles.json` |
 | Living spec | `.cursor/docs/specs/create-adsk.md` |

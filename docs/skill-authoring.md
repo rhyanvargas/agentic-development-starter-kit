@@ -31,7 +31,7 @@ See:
 
 Token test for each paragraph: *Would the agent get this wrong without it?* If no, cut or move to a reference with a hard when-to-load condition.
 
-**Always-on vs skill depth (lean steering):** Put stable constraints in rules / `AGENTS.md`. Put playbook depth in skills + `references/`. Thin Cursor commands should link to skills, not copy them. Prefer the kit Prefer table (Rules / Commands / Skills) over growing always-on text.
+**Always-on vs skill depth (lean steering):** Put stable constraints in rules / `AGENTS.md`. Put playbook depth in skills + `references/`. Thin Cursor commands should link to skills, not copy them. Prefer the kit Prefer table (Rules / Commands / Skills) over growing always-on text. Adopter org policy (survive kit updates): [customizing-org-rules.md](customizing-org-rules.md).
 
 ## Validation
 

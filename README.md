@@ -115,6 +115,7 @@ cd agentic-development-starter-kit
 | Doc | Topic |
 |-----|--------|
 | [docs/using-adsk.md](docs/using-adsk.md) | Install, create-adsk, ask-agent sync, Cursor, custom skills, when to eval |
+| [docs/customizing-org-rules.md](docs/customizing-org-rules.md) | Org rules/policies — customize, survive updates, write agent-friendly rules |
 | [docs/product/create-adsk.md](docs/product/create-adsk.md) | Product contract — create-adsk profiles |
 | [docs/product/for-eng-leads.md](docs/product/for-eng-leads.md) | Eng-lead pitch — team standard vs skills.sh |
 | [docs/product/profiles-and-packs.md](docs/product/profiles-and-packs.md) | Profile (depth) × pack (methodology) model |

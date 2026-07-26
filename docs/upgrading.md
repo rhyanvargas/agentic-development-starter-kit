@@ -29,6 +29,8 @@ Command playbook: [`.cursor/commands/sync-adsk.md`](../.cursor/commands/sync-ads
 
 Step-by-step install, Cursor sync, updates, and custom skills: **[using-adsk.md](using-adsk.md)**.
 
+Org rules and policies (customize, survive updates): **[customizing-org-rules.md](customizing-org-rules.md)**.
+
 **Recommended short path (profile + Cursor):**
 
 1. `npx create-adsk` (or non-interactive: `npx create-adsk --profile delivery --yes`)

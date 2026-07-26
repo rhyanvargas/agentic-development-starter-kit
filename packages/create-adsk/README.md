@@ -55,6 +55,8 @@ npx create-adsk status   # profile + drift (exit 1 if drift)
 
 Other useful flags: `--dry-run`, `--scope project|global`, `--force-rules`, `--target <dir>`. Pack docs: [`docs/engineering-methods.md`](../../docs/engineering-methods.md), [`docs/product-value-loop.md`](../../docs/product-value-loop.md).
 
+**Org rules:** put company policy in `.cursor/rules/org-*/` in the app — `update` does not overwrite those folders. Avoid `--force-rules` unless you intend to reset stock rules. Guide: [`docs/customizing-org-rules.md`](../../docs/customizing-org-rules.md).
+
 ## Two tools
 
 | Tool                  | Owns                                                 |
