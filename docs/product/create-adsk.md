@@ -36,7 +36,7 @@ Machine-readable source: [`profiles.json`](../../profiles.json).
 | Profile | Skills | Cursor default | Rules default |
 |---------|--------|----------------|---------------|
 | **core** | `spec-driven-workflow` | Commands | None |
-| **delivery** | Core + `devops-strategy-facilitator` + `release-automation` | Commands | None |
+| **delivery** | Core + `solution-architecture` + `devops-strategy-facilitator` + `release-automation` | Commands | None |
 | **maintainer** | Delivery + `skill-optimizer` + `readme-authoring` + `supply-chain-gate` + `pull-request-authoring` | Commands | Stock |
 | **skills-only** | All first-party skills | None (no `.cursor/` writes) | None |
 

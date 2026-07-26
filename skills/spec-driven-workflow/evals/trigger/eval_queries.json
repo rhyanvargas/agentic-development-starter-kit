@@ -10,6 +10,7 @@
   { "query": "What's the difference between a vague idea and a testable requirement?", "should_trigger": true },
   { "query": "Implement from the approved spec in docs/specs/export-csv.md", "should_trigger": true },
   { "query": "Design our Kubernetes branching and CI/CD promotion strategy", "should_trigger": false },
+  { "query": "Draw a C4 system context and container diagram for the billing platform", "should_trigger": false },
   { "query": "Update the README to match the current codebase", "should_trigger": false },
   { "query": "Optimize this SKILL.md for token cost and clearer triggers", "should_trigger": false },
   { "query": "Fix this one-character typo in a comment", "should_trigger": false },

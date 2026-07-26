@@ -6,7 +6,8 @@ description: >-
   Use when designing or refining delivery strategy, environment promotion,
   deployment governance, or when /design-devops-strategy is invoked. Do not
   use for wiring release-please/changelog automation (use release-automation),
-  Socket/supply-chain PR triage (use supply-chain-gate), feature specs, writing
+  Socket/supply-chain PR triage (use supply-chain-gate), C4/solution
+  architecture packets (use solution-architecture), feature specs, writing
   Dockerfiles or a single app pipeline, unit tests, or debugging one failed CI
   run.
 ---

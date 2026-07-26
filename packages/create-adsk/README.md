@@ -24,7 +24,7 @@ Profile skills are first-party ADSK (include `evals/`). Packs install upstream s
 | Profile       | You get                                                                |
 | ------------- | ---------------------------------------------------------------------- |
 | `core`        | Spec-driven workflow + Cursor commands                                 |
-| `delivery`    | Core + DevOps strategy + release automation                            |
+| `delivery`    | Core + solution architecture + DevOps strategy + release automation    |
 | `maintainer`  | Delivery + skill/README/PR authoring + supply-chain gate + stock rules |
 | `skills-only` | All first-party skills; no `.cursor/` writes                           |
 

@@ -73,6 +73,7 @@ Profiles: [`profiles.json`](profiles.json). Contract: [docs/product/create-adsk.
 ## First-party skills
 
 - **`spec-driven-workflow`** — spec → plan → implement → review (+ brownfield extract)
+- **`solution-architecture`** — sized C4 packets, ADRs, risks (`/design-architecture`)
 - **`devops-strategy-facilitator`** — concise CI/CD, branching, environments strategy
 - **`release-automation`** — Conventional Commits → changelog/semver (GitHub or Azure DevOps; `/setup-releases`)
 - **`skill-optimizer`** — author/optimize skills for trigger accuracy, clarity, and token cost

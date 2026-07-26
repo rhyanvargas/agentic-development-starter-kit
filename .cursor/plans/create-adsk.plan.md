@@ -435,7 +435,7 @@ Hook: `"prepack": "npm run snapshot"` in create-adsk package.
 
 | Acceptance (spec) | Test |
 |-------------------|------|
-| `create-adsk --profile delivery --yes` → 3 skills args, Cursor commands with `.agents/skills/` paths, config delivery, no catalog | `init.integration.test.ts` |
+| `create-adsk --profile delivery --yes` → delivery skills args (incl. solution-architecture), Cursor commands with `.agents/skills/` paths, config delivery, no catalog | `init.integration.test.ts` |
 | skills-only → no `.cursor/commands` created | same |
 | existing config → `update` refreshes without `--from` | `update.integration.test.ts` |
 | help answers “why not just npx skills?” | `help.test.ts` |
