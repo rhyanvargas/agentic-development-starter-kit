@@ -5,6 +5,14 @@ All notable changes to **The Agentic Development Starter Kit (ADSK)** are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.10.8...v0.11.0) (2026-07-27)
+
+
+### Added
+
+* add solution-architecture skill for sized C4 packets ([#55](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/55)) ([0849d9e](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/0849d9e9632ddb8acaa98e9646e6ba670c2471cb))
+* **spec-driven-workflow:** analyze, bugfix, Design-First; durable org rules docs ([#57](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/57)) ([cb94c93](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/cb94c93ea500b537e8cb354fbb4dbd571d3016d8))
+
 ## [0.10.8](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.10.7...v0.10.8) (2026-07-25)
 
 
