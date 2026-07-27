@@ -93,6 +93,16 @@ Then skip to implementation:
 - Spec prevents scope creep
 - Review ensures completeness
 
+### Architecture packet (when architecture/integration is ambiguous)
+
+If the Medium plan touches unclear architecture or a new integration path, require a sized **architecture packet** before multi-phase implement (skill: `solution-architecture` / `/design-architecture`):
+
+- At minimum: system **context** + **container** (or layered) views, linked from the plan/spec
+- Irreversible choices recorded as ADRs (or an explicit “N/A — no irreversible choices” note)
+- Plan links the packet, **or** includes “N/A — architecture proven” with justification
+
+Skip only when the integration path and boundaries are already proven in-repo.
+
 ### Tracer bullet (when architecture/integration is ambiguous)
 
 If the Medium plan touches unclear architecture or a new integration path, require a **tracer bullet** before multi-phase implement:
@@ -119,7 +129,7 @@ Skip the tracer only when the integration path is already proven in-repo.
 2. Understand constraints and dependencies
 3. `/draft-spec "..."` - be very detailed
 4. Split into smaller specs if needed
-5. Full workflow for each sub-spec — plans **must** include a tracer-bullet task (thin vertical slice + one verify) **before** multi-phase implement, or “N/A — architecture proven” with justification
+5. Full workflow for each sub-spec — plans **must** include a sized architecture packet (context + container via `solution-architecture`) **and** a tracer-bullet task (thin vertical slice + one verify) **before** multi-phase implement, or “N/A — architecture proven” with justification
 
 ### Why research first?
 - Large scope = high ambiguity
@@ -127,10 +137,11 @@ Skip the tracer only when the integration path is already proven in-repo.
 - May require human decisions
 - Spec needs to be very specific
 
-### Why tracer before full build?
-- Validates architecture early with one runnable path
+### Why architecture packet + tracer before full build?
+- Context/container views expose trust boundaries, ownership, and irreversible choices early
+- Tracer validates architecture with one runnable path
 - Cheap to discard vs rewriting after multi-file implement
-- Large path cannot skip tracer without explicit justification
+- Large path cannot skip architecture packet or tracer without explicit justification
 
 ---
 

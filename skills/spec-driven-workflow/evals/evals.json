@@ -96,6 +96,17 @@
         "Explicitly documents unchanged / regression-fence / KEEP behaviors",
         "Ties verification or tests to both the fix and the unchanged fence"
       ]
+    },
+    {
+      "id": 10,
+      "prompt": "Large greenfield: we are planning a new multi-service billing platform with unclear trust boundaries and a new payment-provider integration. What must the implementation plan require before multi-phase implement?",
+      "expected_output": "Plan requires a sized architecture packet (context + container via solution-architecture /design-architecture, ADRs for irreversible choices) and a tracer bullet (or explicit N/A — architecture proven) before multi-phase implement.",
+      "assertions": [
+        "Requires system context and container (or layered) architecture views, or an explicit N/A — architecture proven justification",
+        "Mentions solution-architecture and/or /design-architecture (or equivalent architecture packet)",
+        "Requires a tracer bullet (thin vertical slice + verify) or explicit N/A justification before multi-phase implement",
+        "Does not treat vendor-icon / draw.io rendering as a substitute for the architecture packet gate"
+      ]
     }
   ]
 }

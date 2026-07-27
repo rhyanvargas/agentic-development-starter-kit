@@ -18,6 +18,7 @@ Optional Cursor wiring for **The Agentic Development Starter Kit (ADSK)**.
 | Command | Skill / role |
 |---------|----------------|
 | `/quick-start`, `/draft-spec`, `/plan-impl`, `/implement-spec`, `/review`, `/extract-spec` | `spec-driven-workflow` |
+| `/design-architecture` | `solution-architecture` |
 | `/design-devops-strategy` | `devops-strategy-facilitator` |
 | `/setup-releases` | `release-automation` |
 | `/setup-socket` | `supply-chain-gate` |
@@ -32,7 +33,7 @@ Optional Cursor wiring for **The Agentic Development Starter Kit (ADSK)**.
 
 ### Skills (discovery)
 
-Symlinks only (same first-party skills as `.agents/skills/`): `spec-driven-workflow`, `devops-strategy-facilitator`, `release-automation`, `skill-optimizer`, `readme-authoring`, `supply-chain-gate`, `pull-request-authoring`.
+Symlinks only (same first-party skills as `.agents/skills/`): `spec-driven-workflow`, `solution-architecture`, `devops-strategy-facilitator`, `release-automation`, `skill-optimizer`, `readme-authoring`, `supply-chain-gate`, `pull-request-authoring`.
 
 ## Why
 

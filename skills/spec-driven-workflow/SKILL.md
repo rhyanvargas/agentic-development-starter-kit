@@ -7,7 +7,8 @@ description: >-
   the user wants testable requirements, living specs, spec-driven
   development, bugfix with regression fences, Design-First vs
   Requirements-First, or /draft-spec /plan-impl /implement-spec /review
-  /extract-spec. Do not use for DevOps/CI-CD strategy design, README
+  /extract-spec. Do not use for C4/solution architecture packets
+  (use solution-architecture), DevOps/CI-CD strategy design, README
   authoring, Agent Skill optimization, or trivial one-line fixes.
 ---
 
@@ -41,6 +42,7 @@ SIZE → SPECIFY → ANALYZE (medium+) → PLAN (medium+) → CLEAR → IMPLEMEN
    - **Design-First** (strict NFRs, existing architecture, feasibility before scope): draft TECH/approach first, then derive REQs — see `references/spec-writing-guide.md`.
 3. **Analyze** (medium+) — Cross-requirement check for conflicts, ambiguity, and gaps before planning. Read `references/analyze-requirements.md`.
 4. **Plan** (medium+) — Break work into concrete, verifiable tasks. Prefer a written plan before multi-file changes.
+   - **Architecture packet** (Large, and Medium when architecture/integration is ambiguous): require system context + container views (or “N/A — architecture proven”) and link ADRs for irreversible choices via `solution-architecture` / `/design-architecture` before multi-phase implement. See `references/problem-size-guide.md`.
    - **Tracer bullet** (Large, and Medium when architecture/integration is ambiguous): include a thin vertical slice + one verify **before** multi-phase implement, or an explicit “N/A — architecture proven” justification. See `references/problem-size-guide.md`.
    - Prefer splitting **build** tasks from **verify/review** tasks so QA can proceed in parallel with the next REQ slice (optional for Small).
 5. **Clear** (Medium+) — Persist exploration into the living spec/plan; start implement lean. Do not carry the full exploration transcript as working context. Bounded explore (subagent or dedicated chat) is fine; durable findings must already be in artifacts.
@@ -120,5 +122,6 @@ Load references only when needed:
 - Medium+ specs name preferred test seams (highest useful existing boundary) when behavior is non-trivial.
 - Bugfix specs (when used) document Unchanged behavior and tests cover the fence.
 - After material living-spec edits, the plan/todos are resynced before implement.
+- Large / ambiguous Medium plans include an architecture packet gate (or “N/A — architecture proven”) via `solution-architecture` when integration boundaries are unclear.
 - Implemented requirements have automated tests (or a short justification when truly non-behavioral).
 - **Fail-closed verify:** Before claiming done, run `project-cmds` (or documented project verify). If verify is **not** configured, do **not** claim done — instruct `/quick-start` or set `project-cmds` / portable equivalent. “Looks good” without verify is forbidden.

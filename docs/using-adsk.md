@@ -33,7 +33,7 @@ Follow the prompts. Pick a **profile** (kit depth), then optional **packs** (met
 | Profile       | What you get                                                                                                               |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `core`        | `spec-driven-workflow` + Cursor commands                                                                                   |
-| `delivery`    | Core + DevOps strategy + release automation + Cursor commands                                                              |
+| `delivery`    | Core + solution architecture + DevOps strategy + release automation + Cursor commands                                      |
 | `maintainer`  | Delivery + skill-optimizer + readme-authoring + supply-chain-gate + pull-request-authoring + Cursor commands + stock rules |
 | `skills-only` | All first-party skills; no `.cursor/` writes                                                                               |
 

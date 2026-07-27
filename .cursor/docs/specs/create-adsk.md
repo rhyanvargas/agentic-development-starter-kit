@@ -45,7 +45,7 @@ Profiles: [`profiles.json`](../../../profiles.json).
 
 ## Acceptance Criteria
 
-- Given a clean app repo, when the user runs `npx create-adsk --profile delivery --yes`, then the three delivery skills are installed under `.agents/skills/`, Cursor stock commands are present with `.agents/skills/` paths, `.adsk/config.json` records `delivery`, and no third-party catalog was shown.
+- Given a clean app repo, when the user runs `npx create-adsk --profile delivery --yes`, then the delivery profile skills from `profiles.json` are installed under `.agents/skills/` (including `solution-architecture`), Cursor stock commands are present with `.agents/skills/` paths, `.adsk/config.json` records `delivery`, and no third-party catalog was shown.
 - Given `skills-only`, when init completes, then first-party skills are installed and `.cursor/commands` was not created/updated by create-adsk.
 - Given an existing `.adsk/config.json`, when the user runs `update`, then skills refresh and Cursor re-sync matches the saved profile without requiring a manual kit clone path from the user.
 - Given the question “why not just npx skills?”, when reading CLI/README help, then the answer is kit profile + Cursor wiring in one command — not “a menu of skills.”

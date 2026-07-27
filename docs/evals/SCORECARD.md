@@ -11,6 +11,7 @@ Scoring axes (1–5): **Fit** (lifecycle value), **Portability**, **Clarity**, *
 | Skill | Fit | Portability | Clarity | Trust | Eval readiness | Disposition | Notes |
 |-------|-----|-------------|---------|-------|----------------|-------------|-------|
 | `spec-driven-workflow` | 5 | 5 | 4 | 5 (in-repo Apache-2.0) | 5 (Tier 2 iter 3) | **Keep (core)** | Kit spine: specify → plan → implement → review + brownfield |
+| `solution-architecture` | 5 | 5 | 5 | 5 | 4 (harness ready) | **Keep (delivery+)** | Sized C4 packets, ADRs, risks; not vendor-icon tooling |
 | `devops-strategy-facilitator` | 4 | 5 | 5 | 5 | 5 (Tier 2 iter 3) | **Keep** | Decision-first strategy sessions; not a full SRE pack |
 | `release-automation` | 5 | 5 | 5 | 5 | 5 (Tier 2 iter 3) | **Keep** | Platform-confirmed changelog/semver (GitHub release-please or Azure + git-cliff); strongest Δ this run |
 | `skill-optimizer` | 5 | 5 | 5 | 5 | 5 (Tier 2 iter 3) | **Keep** | Author/optimize skills; required gate; `/run-skill-evals` ends with next actions |

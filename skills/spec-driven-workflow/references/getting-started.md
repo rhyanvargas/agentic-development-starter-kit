@@ -67,7 +67,7 @@ If verify is missing, run `/quick-start` or set `project-cmds` — do not claim 
 
 ## Verify setup
 
-1. Agent discovers `spec-driven-workflow` (and `devops-strategy-facilitator` if installed)
+1. Agent discovers `spec-driven-workflow` (and `solution-architecture` / `devops-strategy-facilitator` if installed)
 2. Cursor commands (optional): `/draft-spec`, `/plan-impl`, `/implement-spec`, `/review`, `/extract-spec`, `/quick-start`, `/sync-adsk`
 3. In an **app** after CLI install: `.agents/skills/` has the skill folders
 4. In **this kit repo**: `skills/` is package source; `.agents/skills/` and `.cursor/skills/` link to it

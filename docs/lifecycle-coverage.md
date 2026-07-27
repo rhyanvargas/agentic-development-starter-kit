@@ -10,7 +10,7 @@ How The Agentic Development Starter Kit maps to enterprise product delivery stag
 | Research (market / competitors) | **Optional** | Anthropic `competitive-intelligence` (+ loop doc) |
 | Prioritize | **Optional** | OST + opportunity assessment + `prioritization-advisor` |
 | Plan / organize | **Core** | First-party `spec-driven-workflow` + recommended `writing-plans`; product roadmaps via `roadmap-planning` / `product-strategy-session` |
-| Design (system) | **Core** | Captured in specs (`spec-writing-guide`) |
+| Design (system) | **Core (delivery+)** | First-party `solution-architecture` (C4 views, ADRs, risks; `/design-architecture`); SDD plan gate for Large / ambiguous Medium |
 | Design (UI) | Optional | `frontend-design` (Anthropic) via recommended optional list |
 | Develop | **Core** | SDD implement + recommended TDD |
 | Test | **Core** | Recommended TDD + Cursor `testing` / `project-cmds` rules in consumer projects |
@@ -39,6 +39,7 @@ Full playbook and install commands: **[product-value-loop.md](product-value-loop
 ```text
 ADSK first-party (in this repo)
 ├── spec-driven-workflow     → specify, plan, implement, review, brownfield
+├── solution-architecture    → sized C4 packets, ADRs, risks (+ `/design-architecture`)
 ├── devops-strategy-facilitator → delivery strategy decisions
 ├── release-automation       → Conventional Commits changelog/semver (GH or Azure)
 ├── skill-optimizer          → create/optimize skills (triggers, tokens, evals)
