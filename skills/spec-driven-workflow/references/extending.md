@@ -200,13 +200,14 @@ Run the complete feature workflow.
 ```
 
 ## Instructions
-1. Run `/draft-spec "feature description"`
+1. Run `/draft-spec "feature description"` (Requirements-First default; Design-First or Bugfix when appropriate)
 2. Wait for user to approve spec
-3. Run `/plan-impl` on the spec
-4. Wait for user to approve plan
-5. Run `/implement-spec` on the plan
-6. Run `/review --spec` on the result
-7. Report completion
+3. Medium+: run cross-requirement analyze (`references/analyze-requirements.md`); update the living spec
+4. Run `/plan-impl` on the spec (resync if REQs changed after an earlier plan)
+5. Wait for user to approve plan
+6. Run `/implement-spec` on the plan
+7. Run `/review --spec` on the result
+8. Report completion
 ```
 
 ---
