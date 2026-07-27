@@ -14,8 +14,8 @@ Read and follow **`skills/spec-driven-workflow`**. Honor `@.cursor/rules/testing
 
 ## Behavior
 
-1. **Clear** (Medium+): confirm exploration is persisted in the living spec/plan; start this session lean — see skill gated procedure.
-2. Read the spec or plan; follow the plan step-by-step when present.
+1. **Clear** (Medium+): confirm exploration is persisted in the living spec/plan; start this session lean — see skill gated procedure. If the living spec changed after the plan was written, **resync** (`/plan-impl`) before coding.
+2. Read the spec or plan; follow the plan step-by-step when present. For bugfix specs, honor the Unchanged (KEEP) fence.
 3. Implement with tests mapped to requirements (or justify non-behavioral exceptions).
 4. Update plan todo status as steps complete (Cursor Plan YAML `todos` and/or portable checklist — see `references/cursor-adapter.md` / `artifact-homes.md`).
 5. **Fail-closed verify:** run `project-cmds` / project verify; fix failures before claiming done. If verify is missing, refuse “done” and point to `/quick-start` — do not invent a silent pass.

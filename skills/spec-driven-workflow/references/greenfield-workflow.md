@@ -52,6 +52,10 @@ Open the generated spec and verify:
 
 Edit the spec directly if needed.
 
+### 3b. Analyze requirements (medium+)
+
+Cross-check the full REQ set for conflicts, ambiguity, and gaps — see [Analyze Requirements](analyze-requirements.md). Update the living spec before planning.
+
 ### 4. Create an implementation plan (medium/large features)
 
 ```
@@ -59,6 +63,7 @@ Edit the spec directly if needed.
 ```
 
 The agent will:
+- Confirm analyze (or N/A) and resync if REQs changed since a prior plan
 - Break down the spec into concrete steps
 - Identify files to create/modify
 - Plan tests to write

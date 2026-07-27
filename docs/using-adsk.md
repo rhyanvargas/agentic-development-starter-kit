@@ -6,6 +6,8 @@ Skills in **your** project live under `.agents/skills/` ([agentskills.io](https:
 
 **Engineering leads** (team standard vs skills.sh discovery): [product/for-eng-leads.md](product/for-eng-leads.md) · [product/profiles-and-packs.md](product/profiles-and-packs.md).
 
+**Org rules & policies** (customize without losing them on update): [customizing-org-rules.md](customizing-org-rules.md).
+
 **Kit maintainers** (this repo): see [upgrading.md](upgrading.md#kit-maintainers) and [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ### Two-tool model
@@ -184,6 +186,8 @@ For a normal app install, pick **Project**.
 
 `npx skills update` alone does **not** refresh Cursor commands/rules. `create-adsk update` or the sync script does. Neither overwrites customized rules unless you pass `--force-rules`.
 
+**Org policy folders** you add (e.g. `.cursor/rules/org-security/`) are never part of the stock sync list — they survive update. Full guide: [customizing-org-rules.md](customizing-org-rules.md).
+
 ---
 
 ## 4. Add your own skill (your project only)
@@ -248,11 +252,25 @@ Hard LLM pass-rate gates and `create-adsk eval` are **out of scope** until cost/
 
 ---
 
-## 6. Quick check
+## 6. Org rules and policies (team leads)
+
+After adopt, put organization constraints in **your app**, not by forking the kit:
+
+1. Add `.cursor/rules/org-*/RULE.md` (and optional short `AGENTS.md`)
+2. Fill `.cursor/rules/project-cmds/` with real verify commands
+3. Optional: company skills under `.agents/skills/` (section 4)
+4. Commit; use `npx create-adsk update` without `--force-rules` so customizations stay
+
+How to write agent-friendly rules, what update preserves, and a checklist: **[customizing-org-rules.md](customizing-org-rules.md)**. Eng-lead mandate framing: [product/for-eng-leads.md](product/for-eng-leads.md).
+
+---
+
+## 7. Quick check
 
 - Agent sees first-party skills from your profile (including `supply-chain-gate` and `pull-request-authoring` on maintainer / skills-only)
 - Project install → real folders under `.agents/skills/`
 - Specs/plans unchanged after update/sync
+- Org rule folders (e.g. `org-*`) still present after `create-adsk update`
 - Synced slash commands reference `.agents/skills/<name>` (not kit `skills/`)
 - `/sync-adsk` is available if you synced Cursor commands (create-adsk or script)
 - `/run-skill-evals` available when you need with/without evidence (maintainer / synced commands)
@@ -266,6 +284,7 @@ Hard LLM pass-rate gates and `create-adsk eval` are **out of scope** until cost/
 | -------------------- | ---------------------------------------------------------------------------------------------------- |
 | This ADSK repo       | Package source under `skills/`; not used that way in your app                                        |
 | Profile adopt        | [`packages/create-adsk`](../packages/create-adsk) · [product/create-adsk.md](product/create-adsk.md) |
+| Org rules / policies | [customizing-org-rules.md](customizing-org-rules.md)                                                 |
 | Cursor sync (script) | [`scripts/sync-adsk.sh`](../scripts/sync-adsk.sh) `adopter`                                          |
 | Ask the agent        | Preferred UX; agent runs create-adsk or the sync script (see above)                                  |
 | Cursor-only skills   | `.cursor/skills/` works; prefer `.agents/skills/` for portability                                    |

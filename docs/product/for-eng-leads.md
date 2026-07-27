@@ -106,6 +106,19 @@ Full adopter guide: [using-adsk.md](../using-adsk.md).
 
 Tune the mandate to org risk; the kit gives you the **mechanism**, not a single org policy.
 
+### Custom org rules (how teams personalize)
+
+After `npx create-adsk`, put company constraints in the **app repo**:
+
+| Layer | Path | Survives `create-adsk update`? |
+|-------|------|--------------------------------|
+| Org quality gates | `.cursor/rules/org-*/RULE.md` | **Yes** — not in the stock sync list |
+| Verify commands | `.cursor/rules/project-cmds/` | **Yes** unless you pass `--force-rules` |
+| Company playbooks | `.agents/skills/<name>/` | **Yes** (skills update is separate; your folders stay) |
+| Short always-on | `AGENTS.md` | **Yes** — sync never rewrites it |
+
+How to write agent-readable rules, avoid `--force-rules` accidents, and distribute via git/templates: **[customizing-org-rules.md](../customizing-org-rules.md)**.
+
 ### Skill evals (org policy)
 
 **Thesis:** process + feedback loops beat more agent power — including skill quality loops. Treat evals as **maintainer work**, not an install feature.
@@ -145,6 +158,7 @@ Adopter quick path: [using-adsk.md — Evaluating skills](../using-adsk.md#5-eva
 
 | Doc | Use |
 |-----|-----|
+| [customizing-org-rules.md](../customizing-org-rules.md) | Add org rules/policies; survive updates; write agent-friendly rules |
 | [agent-autonomy.md](agent-autonomy.md) | HITL vs AFK policy (docs only; no Ralph product) |
 | [profiles-and-packs.md](profiles-and-packs.md) | Depth × methodology model; shipped vs planned |
 | [create-adsk.md](create-adsk.md) | Adopter product contract |

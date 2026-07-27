@@ -21,5 +21,9 @@
   { "query": "Edit CONTRIBUTING.md only with our PR process", "should_trigger": false },
   { "query": "Generate OpenAPI/API reference docs from the code", "should_trigger": false },
   { "query": "Should we install to-prd or to-spec instead of ADSK for writing our feature specs?", "should_trigger": true },
-  { "query": "Run a Mom Test interview script for next week's customer calls", "should_trigger": false }
+  { "query": "Run a Mom Test interview script for next week's customer calls", "should_trigger": false },
+  { "query": "Analyze these REQs for conflicts and gaps before we plan implementation", "should_trigger": true },
+  { "query": "Write a bugfix spec with an Unchanged regression fence for the checkout race", "should_trigger": true },
+  { "query": "Use Design-First for this latency NFR-heavy API change before locking scope", "should_trigger": true },
+  { "query": "Triaging a Socket dependency alert on this PR — can we merge?", "should_trigger": false }
 ]

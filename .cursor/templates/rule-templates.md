@@ -104,3 +104,37 @@ Example skeleton:
 ```
 
 Customize with your actual scripts and required env (e.g. `DATABASE_URL`, `API_KEY`).
+
+---
+
+## 4. Org / company policy
+
+Copy to `.cursor/rules/org-<topic>/RULE.md` (use your own prefix — e.g. `org-security`, `acme-compliance`).
+
+Org-named rule folders are **not** in the stock sync list, so `create-adsk update` / `sync-adsk.sh adopter` will not overwrite them. Full guide: [docs/customizing-org-rules.md](../../docs/customizing-org-rules.md).
+
+```markdown
+---
+description: "Organization constraints agents must follow"
+alwaysApply: true
+---
+
+# Org policy
+
+## Must
+
+- Follow verify commands in `@.cursor/rules/project-cmds` before claiming done
+- Prefer specs (`/draft-spec`) for Medium+ behavior changes
+
+## Must not
+
+- Do not commit secrets, credentials, or private keys
+- Do not bypass auth, authz, or supply-chain checks to ship faster
+
+## Done when
+
+- Relevant tests/lint/typecheck from `project-cmds` pass
+- Review notes call out security- or compliance-sensitive diffs
+```
+
+Keep each org rule short (one concern). Put long playbooks in `.agents/skills/<company-skill>/` instead.

@@ -2,7 +2,7 @@
 
 This repository is the **kit source** (package + optional Cursor wiring).
 
-**Adopters adding ADSK to an app:** follow [docs/using-adsk.md](docs/using-adsk.md) — install into `.agents/skills/`, not a root `skills/` folder.
+**Adopters adding ADSK to an app:** follow [docs/using-adsk.md](docs/using-adsk.md) — install into `.agents/skills/`, not a root `skills/` folder. Org rules/policies (survive kit updates): [docs/customizing-org-rules.md](docs/customizing-org-rules.md).
 
 ## Product direction (adopter)
 
