@@ -50,7 +50,8 @@ See `npx create-adsk --help` for the full option list.
 ```bash
 npx create-adsk          # init (interactive; default)
 npx create-adsk update   # refresh from .adsk/config.json
-npx create-adsk status   # profile + drift (exit 1 if drift)
+npx create-adsk status   # profile + drift (exit 1 if drift) + overlap report
+npx create-adsk overlaps # scan known skill/command collisions (advisory)
 ```
 
 Other useful flags: `--dry-run`, `--scope project|global`, `--force-rules`, `--target <dir>`. Pack docs: [`docs/engineering-methods.md`](../../docs/engineering-methods.md), [`docs/product-value-loop.md`](../../docs/product-value-loop.md).

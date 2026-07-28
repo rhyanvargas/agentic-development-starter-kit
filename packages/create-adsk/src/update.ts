@@ -1,5 +1,6 @@
 import { readConfig, writeConfig } from "./config.js";
 import { syncCursor } from "./cursor-sync.js";
+import { reportOverlaps } from "./overlaps.js";
 import { getSnapshotRoot, readKitRef } from "./snapshot.js";
 import {
   buildSkillsUpdateArgv,
@@ -42,6 +43,16 @@ export async function runUpdate(opts: UpdateOptions): Promise<AdskConfig> {
   });
   if (result.code !== 0) {
     throw new Error(`skills update failed (exit ${result.code})`);
+  }
+
+  if (!opts.dryRun) {
+    reportOverlaps({
+      appRoot: opts.target,
+      snapshotRoot,
+      scope: existing.scope,
+      commands: existing.cursor === "commands" ? "pre-sync" : "off",
+      rules: "off",
+    });
   }
 
   const syncResult = syncCursor({

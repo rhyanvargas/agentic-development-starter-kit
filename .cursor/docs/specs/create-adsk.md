@@ -9,6 +9,8 @@ Profiles: [`profiles.json`](../../../profiles.json).
 
 **Status:** CLI implemented in [`packages/create-adsk`](../../../packages/create-adsk). **Live on npm** as `create-adsk@0.2.0` (verify: `./scripts/verify-create-adsk-registry.sh --npx`). Registry publish workflow: [`.github/workflows/publish-create-adsk.yml`](../../../.github/workflows/publish-create-adsk.yml) (OIDC Trusted Publishing). Maintainer runbook: [`docs/RELEASE.md`](../../../docs/RELEASE.md). Bootstrap plan (complete): [`.cursor/plans/create_adsk_npm_first_publish.plan.md`](../../plans/create_adsk_npm_first_publish.plan.md). Product plan: [`.cursor/plans/create-adsk.plan.md`](../../plans/create-adsk.plan.md).
 
+**Related:** Post-adopt overlap scan — [adopter-overlap-scan.md](adopter-overlap-scan.md) · [plan](../../plans/adopter-overlap-scan.plan.md) (implemented: `create-adsk overlaps` / status section / sync-adsk adopter report).
+
 ## Assumptions
 
 - [x] Package name / bin: `create-adsk` (invoked as `npx create-adsk`)

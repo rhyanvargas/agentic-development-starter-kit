@@ -13,6 +13,14 @@ export { readConfig, writeConfig } from "./config.js";
 export { runInit } from "./init.js";
 export { runUpdate } from "./update.js";
 export { runStatus } from "./status.js";
+export {
+  scanOverlaps,
+  formatOverlapReport,
+  reportOverlaps,
+  buildDoNotAddIndex,
+  skillSlugFromExample,
+} from "./overlaps.js";
+export type { OverlapFinding, OverlapScanResult } from "./overlaps.js";
 export { syncCursor, STOCK_RULES } from "./cursor-sync.js";
 export {
   buildSkillsAddArgv,

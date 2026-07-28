@@ -56,7 +56,8 @@ const PRIMARY_COMMANDS: CmdRow[] = [
     desc: "Non-interactive adopt",
   },
   { cmd: "npx create-adsk update", desc: "Refresh skills + Cursor" },
-  { cmd: "npx create-adsk status", desc: "Show profile and drift" },
+  { cmd: "npx create-adsk status", desc: "Show profile, drift, overlaps" },
+  { cmd: "npx create-adsk overlaps", desc: "Scan conflicting skills/commands" },
 ];
 
 const OPTION_COMMANDS: CmdRow[] = [

@@ -3,6 +3,8 @@ import { Command, Help } from "commander";
 import { renderHelpBanner, showLogo } from "./banner.js";
 import { HELP_DESCRIPTION } from "./help-copy.js";
 import { runInit } from "./init.js";
+import { reportOverlaps } from "./overlaps.js";
+import { getSnapshotRoot } from "./snapshot.js";
 import { runStatus } from "./status.js";
 import { runUpdate } from "./update.js";
 import type { Scope } from "./types.js";
@@ -100,6 +102,49 @@ program
     try {
       const result = runStatus({ target: opts.target });
       process.exit(result.exitCode);
+    } catch (err) {
+      console.error(err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
+program
+  .command("overlaps")
+  .description(
+    "Scan for skills/commands/rules that collide with ADSK (advisory; never deletes)",
+  )
+  .option("--target <dir>", "App root", ".")
+  .option(
+    "--snapshot-root <dir>",
+    "Kit snapshot or kit root with profiles.json + recommended-skills.json",
+  )
+  .option("--scope <scope>", "project|global", "project")
+  .option(
+    "--commands <mode>",
+    "pre-sync|post-sync|off",
+    "pre-sync",
+  )
+  .option("--rules <mode>", "post-sync|off", "off")
+  .action((opts) => {
+    try {
+      const snapshotRoot = opts.snapshotRoot
+        ? opts.snapshotRoot
+        : getSnapshotRoot();
+      const commands = opts.commands as "pre-sync" | "post-sync" | "off";
+      const rules = opts.rules as "post-sync" | "off";
+      if (!["pre-sync", "post-sync", "off"].includes(commands)) {
+        throw new Error("--commands must be pre-sync|post-sync|off");
+      }
+      if (!["post-sync", "off"].includes(rules)) {
+        throw new Error("--rules must be post-sync|off");
+      }
+      reportOverlaps({
+        appRoot: opts.target,
+        snapshotRoot,
+        scope: parseScope(opts.scope),
+        commands,
+        rules,
+      });
     } catch (err) {
       console.error(err instanceof Error ? err.message : err);
       process.exit(1);

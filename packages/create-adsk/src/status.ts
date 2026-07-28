@@ -3,6 +3,12 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 import { readConfig } from "./config.js";
 import { commandBasenames } from "./cursor-sync.js";
+import {
+  formatOverlapReport,
+  scanOverlaps,
+  type OverlapFinding,
+  type OverlapScanResult,
+} from "./overlaps.js";
 import { getProfile, loadProfiles } from "./profiles.js";
 import { getSnapshotRoot } from "./snapshot.js";
 
@@ -15,6 +21,8 @@ export interface StatusResult {
   scope?: string;
   optionalPacks?: string[];
   drift: string[];
+  overlaps: OverlapFinding[];
+  extras: string[];
   exitCode: number;
 }
 
@@ -25,7 +33,13 @@ export function runStatus(opts: {
   const cfg = readConfig(opts.target);
   if (!cfg) {
     console.log("No .adsk/config.json — run `npx create-adsk init`.");
-    return { configPresent: false, drift: ["missing config"], exitCode: 1 };
+    return {
+      configPresent: false,
+      drift: ["missing config"],
+      overlaps: [],
+      extras: [],
+      exitCode: 1,
+    };
   }
 
   const snapshotRoot = getSnapshotRoot(opts.snapshotRoot);
@@ -53,6 +67,14 @@ export function runStatus(opts: {
     }
   }
 
+  const overlapResult: OverlapScanResult = scanOverlaps({
+    appRoot: opts.target,
+    snapshotRoot,
+    scope: cfg.scope,
+    commands: cfg.cursor === "commands" ? "post-sync" : "off",
+    rules: cfg.rules === "stock" ? "post-sync" : "off",
+  });
+
   console.log(`profile:       ${cfg.profile}`);
   console.log(`kitRef:        ${cfg.kitRef}`);
   console.log(`cursor:        ${cfg.cursor}`);
@@ -66,6 +88,9 @@ export function runStatus(opts: {
     for (const d of drift) console.log(`  - ${d}`);
   }
 
+  console.log("");
+  console.log(formatOverlapReport(overlapResult));
+
   return {
     configPresent: true,
     profile: cfg.profile,
@@ -75,6 +100,8 @@ export function runStatus(opts: {
     scope: cfg.scope,
     optionalPacks: cfg.optionalPacks,
     drift,
+    overlaps: overlapResult.findings,
+    extras: overlapResult.extras,
     exitCode: drift.length === 0 ? 0 : 1,
   };
 }
