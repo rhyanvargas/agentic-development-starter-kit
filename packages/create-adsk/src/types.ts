@@ -52,7 +52,23 @@ export interface RecommendedSkillEntry {
   install_global?: string;
 }
 
+export type OverlapRecommendation = "keep-adsk" | "review";
+
+/** Curated known conflicts with first-party ADSK skills (machine-matchable). */
+export interface DoNotAddEntry {
+  id: string;
+  adsk_skill: string;
+  adsk_commands?: string[];
+  skill_names: string[];
+  recommendation: OverlapRecommendation;
+  reason: string;
+  examples?: string[];
+  notes?: string[];
+  absorbed_patterns?: string[];
+}
+
 export interface RecommendedSkillsFile {
   optional?: RecommendedSkillEntry[];
   recommended?: RecommendedSkillEntry[];
+  do_not_add?: DoNotAddEntry[];
 }

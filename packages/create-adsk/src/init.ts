@@ -14,6 +14,7 @@ import {
 	parsePackIdsFlag,
 	resolvePackSelection,
 } from "./profiles.js";
+import { reportOverlaps } from "./overlaps.js";
 import { getSnapshotRoot, readKitRef } from "./snapshot.js";
 import {
 	buildOptionalPackArgv,
@@ -112,6 +113,17 @@ export async function runInit(opts: InitOptions): Promise<AdskConfig> {
 		}
 	} else if (opts.dryRun) {
 		console.log("[dry-run] packs: none");
+	}
+
+	// Overlaps before Cursor sync so pre-existing commands are visible (REQ-005/008).
+	if (!opts.dryRun) {
+		reportOverlaps({
+			appRoot: opts.target,
+			snapshotRoot,
+			scope: opts.scope,
+			commands: profile.cursor === "commands" ? "pre-sync" : "off",
+			rules: "off",
+		});
 	}
 
 	const syncResult = syncCursor({

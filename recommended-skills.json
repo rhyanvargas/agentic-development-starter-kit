@@ -190,6 +190,24 @@
   "do_not_add": [
     {
       "id": "overlapping-sdd",
+      "adsk_skill": "spec-driven-workflow",
+      "adsk_commands": [
+        "draft-spec",
+        "plan-impl",
+        "implement-spec",
+        "review",
+        "extract-spec",
+        "quick-start"
+      ],
+      "skill_names": [
+        "spec-driven-development",
+        "spec-driven-implementation",
+        "create-specification",
+        "to-prd",
+        "to-spec",
+        "to-tickets"
+      ],
+      "recommendation": "keep-adsk",
       "examples": [
         "addyosmani/agent-skills@spec-driven-development",
         "warpdotdev/common-skills@spec-driven-implementation",
@@ -216,6 +234,13 @@
     },
     {
       "id": "overlapping-readme",
+      "adsk_skill": "readme-authoring",
+      "adsk_commands": ["update-readme"],
+      "skill_names": [
+        "crafting-effective-readmes",
+        "accelint-readme-writer"
+      ],
+      "recommendation": "keep-adsk",
       "examples": [
         "softaworks/agent-toolkit@crafting-effective-readmes",
         "accelint/accelint-readme-writer",

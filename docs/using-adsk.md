@@ -188,6 +188,17 @@ For a normal app install, pick **Project**.
 
 **Org policy folders** you add (e.g. `.cursor/rules/org-security/`) are never part of the stock sync list — they survive update. Full guide: [customizing-org-rules.md](customizing-org-rules.md).
 
+### Overlapping skills / commands
+
+Adopt and update scan `.agents/skills/` (and Cursor stock names) for **known conflicts** listed in [`recommended-skills.json`](../recommended-skills.json) `do_not_add` (e.g. a leftover README skill vs ADSK `readme-authoring`). You get a short recommendation and why — nothing is deleted automatically.
+
+```bash
+npx create-adsk status          # includes overlap section
+npx create-adsk overlaps        # scan only (also used by sync-adsk.sh adopter)
+```
+
+Confirm with your team before removing extras. Spec: [`.cursor/docs/specs/adopter-overlap-scan.md`](../.cursor/docs/specs/adopter-overlap-scan.md).
+
 ---
 
 ## 4. Add your own skill (your project only)

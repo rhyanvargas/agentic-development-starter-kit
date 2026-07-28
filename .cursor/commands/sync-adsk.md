@@ -49,8 +49,10 @@ When the user asks to sync ADSK, update kit Cursor artifacts, refresh skills, or
 3. Honor user flags: `--dry-run`, `--commands-only`, `--skip-skills`, `--force-rules`, `--skills-from-path`.
 4. If `npx skills` prompts for Update scope, choose **Project** for a normal app install (not Global unless they used `-g`).
 5. Report what changed. Do **not** overwrite customized rules unless the user asked for `--force-rules`. Never touch specs/plans contents.
+6. Surface the **overlap report** (known `do_not_add` skills, command/rule collisions). Do **not** delete conflicting artifacts unless the user confirms.
 
 ### 4. Done criteria
 
 - Kit: discovery symlinks resolve to `skills/<name>/`.
 - Adopter: stock commands under `.cursor/commands/` reference `.agents/skills/<name>`; skills refreshed unless `--skip-skills`.
+- Overlap report printed (or explicit “Overlaps: none”). For each finding: recommendation + why. Offer removal only after user confirmation.

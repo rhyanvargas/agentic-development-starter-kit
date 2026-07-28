@@ -379,10 +379,102 @@ mode_adopter() {
     info "Skipping rules and skills (--commands-only)"
   fi
 
+  report_adopter_overlaps "$dest" "$kit"
+
   info "Adopter sync complete"
   log ""
   log "Next: open the project in Cursor and try /quick-start"
   log "Specs/plans were not modified. Custom rules were preserved unless --force-rules."
+}
+
+# REQ-009: surface known skill/command/rule overlaps (advisory; never deletes).
+report_adopter_overlaps() {
+  local dest="$1"
+  local kit="$2"
+  local snap="$kit"
+  if [[ ! -f "${snap}/recommended-skills.json" || ! -f "${snap}/profiles.json" ]]; then
+    snap="${kit}/packages/create-adsk/kit-snapshot"
+  fi
+  if [[ ! -f "${snap}/recommended-skills.json" ]]; then
+    warn "overlap scan skipped (no recommended-skills.json in kit source)"
+    return 0
+  fi
+
+  local cli="${kit}/packages/create-adsk/dist/cli.js"
+  if [[ -f "$cli" ]]; then
+    info "Scanning for overlapping skills/commands/rules…"
+    if ! node "$cli" overlaps --target "$dest" --snapshot-root "$snap" \
+      --commands post-sync --rules post-sync --scope project; then
+      warn "overlap scan failed (create-adsk overlaps)"
+    fi
+    return 0
+  fi
+
+  # Fallback when create-adsk is not built: skill_names only via python3
+  if command -v python3 >/dev/null 2>&1; then
+    info "Scanning for known overlapping skills (python fallback)…"
+    python3 - "$dest" "$snap" <<'PY' || warn "overlap scan fallback failed"
+import json, os, sys
+dest, snap = sys.argv[1], sys.argv[2]
+skills_root = os.path.join(dest, ".agents", "skills")
+rec_path = os.path.join(snap, "recommended-skills.json")
+with open(rec_path, encoding="utf-8") as f:
+    rec = json.load(f)
+index = {}
+for entry in rec.get("do_not_add") or []:
+    for name in entry.get("skill_names") or []:
+        index[name] = entry
+    for ex in entry.get("examples") or []:
+        if "@" in ex and not ex.startswith("other "):
+            index[ex.rsplit("@", 1)[-1]] = entry
+        elif "/" in ex and " " not in ex:
+            index[ex.rsplit("/", 1)[-1]] = entry
+installed = []
+if os.path.isdir(skills_root):
+    for name in sorted(os.listdir(skills_root)):
+        if os.path.isfile(os.path.join(skills_root, name, "SKILL.md")):
+            installed.append(name)
+findings = []
+extras = []
+# first-party from profiles
+fp = set()
+try:
+    with open(os.path.join(snap, "profiles.json"), encoding="utf-8") as f:
+        profiles = json.load(f)
+    for p in (profiles.get("profiles") or {}).values():
+        fp.update(p.get("skills") or [])
+except OSError:
+    pass
+for name in installed:
+    if name in index:
+        findings.append((name, index[name]))
+    elif name not in fp:
+        extras.append(name)
+if not findings and not extras:
+    print("Overlaps: none")
+    sys.exit(0)
+if findings:
+    print(f"⚠ Overlaps detected ({len(findings)})\n")
+    for name, entry in findings:
+        adsk = entry.get("adsk_skill", "?")
+        why = (entry.get("reason") or "")[:220]
+        print(f"Skill  {name}")
+        print(f"  Collides: {adsk} (ADSK)")
+        print(f"  Kind:     known-overlap ({entry.get('id', '')})")
+        print(f"  Rec:      Remove {name}; keep {adsk}")
+        print(f"  Why:      {why}")
+        print()
+    print("No files were removed. Confirm before deleting conflicting skills.")
+else:
+    print("Overlaps: none")
+if extras:
+    print("\nExtras not in ADSK profile (no known overlap):")
+    for e in extras:
+        print(f"  - {e}")
+PY
+  else
+    warn "overlap scan skipped (create-adsk dist missing and no python3)"
+  fi
 }
 
 mode_self_check() {
