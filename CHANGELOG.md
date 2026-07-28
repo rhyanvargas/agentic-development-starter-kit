@@ -5,6 +5,18 @@ All notable changes to **The Agentic Development Starter Kit (ADSK)** are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.12.0](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.11.0...v0.12.0) (2026-07-28)
+
+
+### Added
+
+* **create-adsk:** report overlapping skills on adopt and sync ([#63](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/63)) ([cdc8874](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/cdc8874bd7e602166cb85b9bc268762f05c91f14))
+
+
+### Changed
+
+* track harness P0 handoff and evaluator roadmap ([#61](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/61)) ([11359e6](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/11359e6611f37892ff760d1744c297587e14c6f9))
+
 ## [0.11.0](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.10.8...v0.11.0) (2026-07-27)
 
 
