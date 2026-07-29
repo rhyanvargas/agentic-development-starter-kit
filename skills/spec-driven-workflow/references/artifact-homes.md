@@ -45,6 +45,10 @@ Every written plan must expose **trackable tasks** mapped to `REQ-XXX` where pos
 
 A requirements↔tasks table in the body is useful, but it does **not** replace trackable todos.
 
+## Multi-session progress
+
+For Medium+ handoffs, add a `## Handoff / Progress` section on the active **plan** (preferred) or living **spec** — see `session-handoff.md`. Do not invent a separate progress-file tree.
+
 ## Anti-patterns
 
 - Hardcoding `.cursor/...` in the skill playbook when the project uses `docs/`

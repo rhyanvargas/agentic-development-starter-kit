@@ -106,17 +106,19 @@ From plan:
 ```
 
 ### Behavior
-1. Clears exploration into living artifacts when Medium+ (start lean)
+1. Clears exploration into living artifacts when Medium+ (start lean); reads living spec + plan + **Handoff / Progress** before coding (`session-handoff.md`)
 2. Reads spec/plan
 3. Creates and modifies files
 4. Writes tests
 5. **Fail-closed:** runs project verify (`project-cmds`); fixes failures. If verify is not configured, refuses to claim done and points to `/quick-start` — never a silent “looks good”
 6. Fixes issues (up to 3 iterations)
+7. On Medium+ session end with incomplete work: updates **Handoff / Progress** (done, files touched, next REQ/T#, git expectation)
+8. Suggests `/review` — implement self-check is not the evaluate pass (`review-evaluator.md`)
 
 ### Output
 - Generated code following the spec
 - Tests for new functionality
-- Updated files
+- Updated files (and handoff section when applicable)
 
 ### Options
 - Dry run: `/implement-spec spec.md --dry-run` (shows what would change)
@@ -128,7 +130,7 @@ From plan:
 
 ## /review
 
-Perform a quality review of code changes.
+Perform a **separate evaluate** pass on code changes (generator ≠ evaluator). Prefer a fresh `/review` after implement — do not treat implement-session self-grade as done. Depth: `review-evaluator.md`.
 
 ### Usage
 Review recent changes:
@@ -147,10 +149,11 @@ Review against spec:
 ```
 
 ### Behavior
-1. Identifies files to review
-2. Checks code quality, standards, security
-3. Verifies spec compliance (if --spec)
-4. Reports issues and suggestions
+1. Refute-minded evaluate posture (separate from implement)
+2. Identifies files to review
+3. Checks spec/REQ compliance, Unchanged/KEEP fence (bugfix), security-sensitive paths, tests vs REQs
+4. Confirms fail-closed verify already ran (or blocks “done”)
+5. Reports issues and suggestions; re-verify after fixes
 
 ### Output
 - Review summary with issues by severity
@@ -158,11 +161,12 @@ Review against spec:
 - Suggested fixes
 
 ### Review Checklist
-- Code quality (naming, complexity, patterns)
-- Standards compliance (style, architecture)
-- Testing (coverage, edge cases)
-- Security (input validation, secrets)
-- Performance (efficiency, scaling)
+- Spec / REQ compliance (refute “done”)
+- Bugfix Unchanged / KEEP regression fence (fail review if skipped)
+- Security-sensitive paths (auth, secrets, money, PII, destructive ops)
+- Testing (coverage vs REQs, edge cases)
+- Fail-closed verify evidence
+- Code quality / standards (naming, complexity, patterns) as secondary
 
 ---
 

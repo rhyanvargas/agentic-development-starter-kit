@@ -25,5 +25,7 @@
   { "query": "Analyze these REQs for conflicts and gaps before we plan implementation", "should_trigger": true },
   { "query": "Write a bugfix spec with an Unchanged regression fence for the checkout race", "should_trigger": true },
   { "query": "Use Design-First for this latency NFR-heavy API change before locking scope", "should_trigger": true },
-  { "query": "Triaging a Socket dependency alert on this PR — can we merge?", "should_trigger": false }
+  { "query": "Triaging a Socket dependency alert on this PR — can we merge?", "should_trigger": false },
+  { "query": "New chat after a mid-feature session — how do we hand off progress and pick up the next REQ?", "should_trigger": true },
+  { "query": "Should we treat the implement session self-check as done or run a separate /review evaluate pass?", "should_trigger": true }
 ]
