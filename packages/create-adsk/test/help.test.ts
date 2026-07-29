@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
@@ -72,16 +72,24 @@ describe("help (REQ-012, REQ-014)", () => {
     expect(banner).toContain("\x1B[38;2;0;170;111m");
   });
 
-  it("prints package.json version for --version", () => {
+  it("wires --version to package.json (and prints it when dist exists)", () => {
     const pkg = JSON.parse(
       readFileSync(join(pkgRoot, "package.json"), "utf8"),
     ) as { version: string };
-    const out = execFileSync(
-      "node",
-      [join(pkgRoot, "dist", "cli.js"), "--version"],
-      { encoding: "utf8" },
-    ).trim();
+    expect(pkg.version).toMatch(/^\d+\.\d+\.\d+/);
+    expect(pkg.version).not.toBe("0.1.0");
+
+    const cliSrc = readFileSync(join(pkgRoot, "src", "cli.ts"), "utf8");
+    expect(cliSrc).toContain('require("../package.json")');
+    expect(cliSrc).toContain(".version(PACKAGE_VERSION)");
+
+    // Publish CI runs `test` before `build` — skip exec when dist is absent.
+    const cliJs = join(pkgRoot, "dist", "cli.js");
+    if (!existsSync(cliJs)) return;
+
+    const out = execFileSync("node", [cliJs, "--version"], {
+      encoding: "utf8",
+    }).trim();
     expect(out).toBe(pkg.version);
-    expect(out).not.toBe("0.1.0");
   });
 });
