@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
@@ -69,5 +70,18 @@ describe("help (REQ-012, REQ-014)", () => {
     // Brand accent #00aa6f as truecolor ANSI
     expect(BRAND_HEX).toBe("#00aa6f");
     expect(banner).toContain("\x1B[38;2;0;170;111m");
+  });
+
+  it("prints package.json version for --version", () => {
+    const pkg = JSON.parse(
+      readFileSync(join(pkgRoot, "package.json"), "utf8"),
+    ) as { version: string };
+    const out = execFileSync(
+      "node",
+      [join(pkgRoot, "dist", "cli.js"), "--version"],
+      { encoding: "utf8" },
+    ).trim();
+    expect(out).toBe(pkg.version);
+    expect(out).not.toBe("0.1.0");
   });
 });

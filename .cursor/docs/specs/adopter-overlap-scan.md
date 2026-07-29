@@ -34,6 +34,7 @@ When an app adopts or updates ADSK, surface **pre-existing** skills / commands /
 - [x] REQ-009: Run equivalent scan at end of `scripts/sync-adsk.sh adopter` (reuse Node helper or shared JSON + thin matcher — prefer one implementation).
 - [x] REQ-010: Update `.cursor/commands/sync-adsk.md` done criteria: surface the overlap report; offer removal only with user confirmation.
 - [x] REQ-011: Never auto-delete or modify conflicting third-party skills/commands/rules as part of the scan.
+- [x] REQ-015: Default `overlaps` modes match `status` when `.adsk/config.json` exists (`post-sync` for commands/rules per profile); without config, default `commands=pre-sync`. Report labels the mode. Explicit `--commands pre-sync` keeps overwrite preview. (#72)
 
 ### Non-Functional
 

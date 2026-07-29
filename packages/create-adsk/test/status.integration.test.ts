@@ -61,4 +61,35 @@ describe("status integration", () => {
     expect(result.exitCode).toBe(0);
     expect(result.drift).toEqual([]);
   });
+
+  // Issue #72: after stock sync, status must not report command collisions
+  it("reports no command overlaps when stock commands match post-sync", () => {
+    const app = makeTempApp();
+    writeConfig(app, {
+      version: 1,
+      profile: "core",
+      cursor: "commands",
+      rules: "none",
+      scope: "project",
+      kitRef: "test@ref",
+      optionalPacks: [],
+    });
+    const skillDir = join(app, ".agents", "skills", "spec-driven-workflow");
+    mkdirSync(skillDir, { recursive: true });
+    writeFileSync(join(skillDir, "SKILL.md"), "# s\n");
+    const snap = snapshotRoot();
+    syncCursor({
+      snapshotRoot: snap,
+      appRoot: app,
+      cursor: "commands",
+      rules: "none",
+      forceRules: false,
+      dryRun: false,
+    });
+    const result = runStatus({ target: app, snapshotRoot: snap });
+    expect(result.exitCode).toBe(0);
+    expect(
+      result.overlaps.filter((f) => f.kind === "command-collision"),
+    ).toEqual([]);
+  });
 });

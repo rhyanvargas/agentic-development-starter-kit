@@ -193,11 +193,13 @@ For a normal app install, pick **Project**.
 Adopt and update scan `.agents/skills/` (and Cursor stock names) for **known conflicts** listed in [`recommended-skills.json`](../recommended-skills.json) `do_not_add` (e.g. a leftover README skill vs ADSK `readme-authoring`). You get a short recommendation and why — nothing is deleted automatically.
 
 ```bash
-npx create-adsk status          # includes overlap section
-npx create-adsk overlaps        # scan only (also used by sync-adsk.sh adopter)
+npx create-adsk status          # includes overlap section (same defaults as overlaps)
+npx create-adsk overlaps        # scan only; defaults match status when .adsk/config.json exists
 ```
 
-Confirm with your team before removing extras. Spec: [`.cursor/docs/specs/adopter-overlap-scan.md`](../.cursor/docs/specs/adopter-overlap-scan.md).
+**Modes:** With a saved profile, both use **post-sync** for commands (content vs stock) when `cursor: commands`, and **post-sync** for rules when `rules: stock`. That means stock commands that match ADSK after `update` show `Overlaps: none` — they are not “cleared collisions,” they are identical to stock. Use `npx create-adsk overlaps --commands pre-sync` only when you want a **pre-overwrite** preview of existing same-name paths. `update` still prints a pre-sync report before rewriting commands.
+
+Confirm with your team before removing extras. Spec: [`.cursor/docs/specs/adopter-overlap-scan.md`](../.cursor/docs/specs/adopter-overlap-scan.md). Bugfix: [`.cursor/docs/specs/status-overlaps-agreement-bugfix.md`](../.cursor/docs/specs/status-overlaps-agreement-bugfix.md).
 
 ---
 

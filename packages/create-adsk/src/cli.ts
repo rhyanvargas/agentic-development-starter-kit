@@ -1,13 +1,25 @@
 #!/usr/bin/env node
+import { createRequire } from "node:module";
 import { Command, Help } from "commander";
 import { renderHelpBanner, showLogo } from "./banner.js";
+import { readConfig } from "./config.js";
 import { HELP_DESCRIPTION } from "./help-copy.js";
 import { runInit } from "./init.js";
-import { reportOverlaps } from "./overlaps.js";
+import {
+  defaultOverlapModes,
+  reportOverlaps,
+  type CommandsScanMode,
+  type RulesScanMode,
+} from "./overlaps.js";
 import { getSnapshotRoot } from "./snapshot.js";
 import { runStatus } from "./status.js";
 import { runUpdate } from "./update.js";
 import type { Scope } from "./types.js";
+
+const require = createRequire(import.meta.url);
+const { version: PACKAGE_VERSION } = require("../package.json") as {
+  version: string;
+};
 
 const program = new Command();
 
@@ -26,7 +38,7 @@ program.createHelp = () => new AdskHelp();
 program
   .name("create-adsk")
   .description(HELP_DESCRIPTION)
-  .version("0.1.0");
+  .version(PACKAGE_VERSION);
 
 function parseScope(value: string): Scope {
   if (value !== "project" && value !== "global") {
@@ -118,20 +130,27 @@ program
     "--snapshot-root <dir>",
     "Kit snapshot or kit root with profiles.json + recommended-skills.json",
   )
-  .option("--scope <scope>", "project|global", "project")
+  .option("--scope <scope>", "project|global")
   .option(
     "--commands <mode>",
-    "pre-sync|post-sync|off",
-    "pre-sync",
+    "pre-sync|post-sync|off (default: same as status when .adsk/config.json exists; else pre-sync)",
   )
-  .option("--rules <mode>", "post-sync|off", "off")
+  .option(
+    "--rules <mode>",
+    "post-sync|off (default: same as status when config exists; else off)",
+  )
   .action((opts) => {
     try {
       const snapshotRoot = opts.snapshotRoot
         ? opts.snapshotRoot
         : getSnapshotRoot();
-      const commands = opts.commands as "pre-sync" | "post-sync" | "off";
-      const rules = opts.rules as "post-sync" | "off";
+      const cfg = readConfig(opts.target);
+      const defaults = defaultOverlapModes(cfg);
+      const commands = (opts.commands ?? defaults.commands) as CommandsScanMode;
+      const rules = (opts.rules ?? defaults.rules) as RulesScanMode;
+      const scope = opts.scope
+        ? parseScope(opts.scope)
+        : (cfg?.scope ?? "project");
       if (!["pre-sync", "post-sync", "off"].includes(commands)) {
         throw new Error("--commands must be pre-sync|post-sync|off");
       }
@@ -141,7 +160,7 @@ program
       reportOverlaps({
         appRoot: opts.target,
         snapshotRoot,
-        scope: parseScope(opts.scope),
+        scope,
         commands,
         rules,
       });

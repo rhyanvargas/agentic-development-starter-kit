@@ -14,10 +14,32 @@ import {
 import { rewriteCommandBody } from "./path-rewrite.js";
 import { loadRecommendedSkills } from "./profiles.js";
 import type {
+  AdskConfig,
   DoNotAddEntry,
   OverlapRecommendation,
   Scope,
 } from "./types.js";
+
+export type CommandsScanMode = "pre-sync" | "post-sync" | "off";
+export type RulesScanMode = "post-sync" | "off";
+
+/**
+ * Default overlap modes for `status` and bare `overlaps`.
+ * With config: match status (content vs stock after adopt).
+ * Without config: pre-sync command preview (about to overwrite).
+ */
+export function defaultOverlapModes(cfg: AdskConfig | null | undefined): {
+  commands: CommandsScanMode;
+  rules: RulesScanMode;
+} {
+  if (!cfg) {
+    return { commands: "pre-sync", rules: "off" };
+  }
+  return {
+    commands: cfg.cursor === "commands" ? "post-sync" : "off",
+    rules: cfg.rules === "stock" ? "post-sync" : "off",
+  };
+}
 
 export type OverlapKind =
   | "name-collision"
@@ -55,12 +77,12 @@ export interface ScanOverlapsOptions {
    * post-sync: only when body differs from stock rewrite (customized).
    * off: skip commands.
    */
-  commands?: "pre-sync" | "post-sync" | "off";
+  commands?: CommandsScanMode;
   /**
    * post-sync: stock rule dir exists and differs from snapshot (or exists without matching snapshot).
    * off: skip rules.
    */
-  rules?: "post-sync" | "off";
+  rules?: RulesScanMode;
 }
 
 function skillsRootFor(opts: ScanOverlapsOptions): string {
@@ -364,9 +386,25 @@ function dirFingerprint(dir: string): string {
   return parts.join("\n");
 }
 
-export function formatOverlapReport(result: OverlapScanResult): string {
+export function formatOverlapReport(
+  result: OverlapScanResult,
+  modes?: { commands: CommandsScanMode; rules: RulesScanMode },
+): string {
   const lines: string[] = [];
   const n = result.findings.length;
+
+  if (modes) {
+    lines.push(
+      `Overlap modes: commands=${modes.commands}` +
+        (modes.commands === "pre-sync"
+          ? " (path exists → overwrite on sync)"
+          : modes.commands === "post-sync"
+            ? " (content vs stock)"
+            : "") +
+        `; rules=${modes.rules}` +
+        (modes.rules === "post-sync" ? " (content vs stock)" : ""),
+    );
+  }
 
   if (n === 0 && result.extras.length === 0) {
     lines.push("Overlaps: none");
@@ -413,9 +451,12 @@ function truncateWhy(why: string, max = 220): string {
   return `${why.slice(0, max - 1)}…`;
 }
 
-export function printOverlapReport(result: OverlapScanResult): void {
+export function printOverlapReport(
+  result: OverlapScanResult,
+  modes?: { commands: CommandsScanMode; rules: RulesScanMode },
+): void {
   console.log("");
-  console.log(formatOverlapReport(result));
+  console.log(formatOverlapReport(result, modes));
   console.log("");
   if (result.findings.length > 0) {
     console.log(
@@ -428,7 +469,10 @@ export function printOverlapReport(result: OverlapScanResult): void {
 /** Run scan + print for init/update/status/sync-script. */
 export function reportOverlaps(opts: ScanOverlapsOptions): OverlapScanResult {
   const result = scanOverlaps(opts);
-  printOverlapReport(result);
+  printOverlapReport(result, {
+    commands: opts.commands ?? "off",
+    rules: opts.rules ?? "off",
+  });
   return result;
 }
 

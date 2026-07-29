@@ -3,10 +3,12 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   buildDoNotAddIndex,
+  defaultOverlapModes,
   formatOverlapReport,
   scanOverlaps,
   skillSlugFromExample,
 } from "../src/overlaps.js";
+import { syncCursor } from "../src/cursor-sync.js";
 import type { DoNotAddEntry } from "../src/types.js";
 import { makeTempApp, snapshotRoot } from "./helpers/temp-app.js";
 
@@ -139,6 +141,70 @@ describe("scanOverlaps", () => {
     );
     expect(hit).toBeDefined();
     expect(hit?.recommendation).toBe("review");
+  });
+
+  // Issue #72: post-sync stock match must not look like path collisions
+  it("post-sync ignores stock commands that match ADSK rewrite", () => {
+    const app = makeTempApp();
+    const snap = snapshotRoot();
+    syncCursor({
+      snapshotRoot: snap,
+      appRoot: app,
+      cursor: "commands",
+      rules: "none",
+      forceRules: false,
+      dryRun: false,
+    });
+
+    const post = scanOverlaps({
+      appRoot: app,
+      snapshotRoot: snap,
+      scope: "project",
+      commands: "post-sync",
+      rules: "off",
+    });
+    expect(post.findings.filter((f) => f.kind === "command-collision")).toEqual(
+      [],
+    );
+
+    const pre = scanOverlaps({
+      appRoot: app,
+      snapshotRoot: snap,
+      scope: "project",
+      commands: "pre-sync",
+      rules: "off",
+    });
+    expect(
+      pre.findings.filter((f) => f.kind === "command-collision").length,
+    ).toBeGreaterThan(0);
+  });
+
+  it("defaultOverlapModes match status when config present", () => {
+    expect(
+      defaultOverlapModes({
+        version: 1,
+        profile: "delivery",
+        cursor: "commands",
+        rules: "none",
+        scope: "project",
+        kitRef: "test",
+        optionalPacks: [],
+      }),
+    ).toEqual({ commands: "post-sync", rules: "off" });
+    expect(defaultOverlapModes(null)).toEqual({
+      commands: "pre-sync",
+      rules: "off",
+    });
+  });
+
+  it("formatOverlapReport labels scan modes", () => {
+    const text = formatOverlapReport(
+      { findings: [], extras: [] },
+      { commands: "post-sync", rules: "off" },
+    );
+    expect(text).toContain("Overlap modes: commands=post-sync");
+    expect(text).toContain("content vs stock");
+    expect(text).toContain("Overlaps: none");
   });
 
   it("flags name-collision when lock source is not ADSK kit", () => {
