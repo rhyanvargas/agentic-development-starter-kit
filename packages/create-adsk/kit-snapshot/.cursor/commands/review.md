@@ -18,6 +18,6 @@ Read and follow **`skills/spec-driven-workflow`** review guidance and **`referen
 
 1. Adopt a **refute-minded evaluate** posture (separate from the implement session). Do not rubber-stamp implement self-grade as done.
 2. Identify changed or specified files; prefer reviewing against the living `--spec` when provided.
-3. Check at minimum: spec/REQ compliance, regression fence (bugfix Unchanged/KEEP), security-sensitive paths, test coverage vs REQs, and that fail-closed verify already ran (or block “done”).
+3. Check at minimum: spec/REQ compliance, regression fence (bugfix Unchanged/KEEP), security-sensitive paths, test coverage vs REQs, fail-closed verify (or block “done”), and docs/README drift when user-facing surface changed (CLI, install, profiles/packs, Quick Start) — flag and hand off to `/update-readme` / `readme-authoring`; do not full-sync docs inside `/review` unless asked.
 4. Report actionable findings by severity; offer to apply safe fixes when asked.
 5. Re-run verify commands after fixes; re-review if changes were material.

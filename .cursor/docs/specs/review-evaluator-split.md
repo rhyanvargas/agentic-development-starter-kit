@@ -41,6 +41,7 @@ Review MUST check at least:
 - Security-sensitive paths (auth, secrets, money, PII, destructive ops) when in scope
 - Test coverage vs REQs (or justified non-behavioral exception)
 - Fail-closed verify already run (or block “done” if missing)
+- Docs / README drift when user-facing surface changed (CLI, install, profiles/packs, Quick Start): flag and hand off to `/update-readme` / `readme-authoring`; do not require a full README rewrite inside `/review` unless the user asks
 
 ### REQ-EV-003 — Skill + `/review` wiring
 

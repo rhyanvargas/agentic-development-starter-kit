@@ -153,12 +153,13 @@ Review against spec:
 2. Identifies files to review
 3. Checks spec/REQ compliance, Unchanged/KEEP fence (bugfix), security-sensitive paths, tests vs REQs
 4. Confirms fail-closed verify already ran (or blocks “done”)
-5. Reports issues and suggestions; re-verify after fixes
+5. If user-facing surface changed: flag README/`docs/` drift; hand off to `/update-readme` (`readme-authoring`) — do not full-sync docs inside `/review` unless asked
+6. Reports issues and suggestions; re-verify after fixes
 
 ### Output
 - Review summary with issues by severity
 - Spec compliance checklist (if --spec)
-- Suggested fixes
+- Suggested fixes (including `/update-readme` when docs drifted)
 
 ### Review Checklist
 - Spec / REQ compliance (refute “done”)
@@ -166,6 +167,7 @@ Review against spec:
 - Security-sensitive paths (auth, secrets, money, PII, destructive ops)
 - Testing (coverage vs REQs, edge cases)
 - Fail-closed verify evidence
+- Docs / README drift when CLI, install, profiles/packs, or Quick Start claims changed (hand off to `/update-readme`)
 - Code quality / standards (naming, complexity, patterns) as secondary
 
 ---

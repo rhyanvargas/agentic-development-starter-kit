@@ -7,10 +7,13 @@ Per [agentskills.io](https://agentskills.io/client-implementation/adding-skills-
 | Entry | Kind |
 |-------|------|
 | `skills/spec-driven-workflow` | Symlink → `../../skills/spec-driven-workflow` |
+| `skills/solution-architecture` | Symlink → `../../skills/solution-architecture` |
 | `skills/devops-strategy-facilitator` | Symlink → `../../skills/devops-strategy-facilitator` |
 | `skills/release-automation` | Symlink → `../../skills/release-automation` |
 | `skills/skill-optimizer` | Symlink → `../../skills/skill-optimizer` |
 | `skills/readme-authoring` | Symlink → `../../skills/readme-authoring` |
+| `skills/supply-chain-gate` | Symlink → `../../skills/supply-chain-gate` |
+| `skills/pull-request-authoring` | Symlink → `../../skills/pull-request-authoring` |
 
 Refresh discovery links after adding a first-party skill:
 
