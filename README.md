@@ -4,7 +4,9 @@
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-compatible-green.svg)](https://agentskills.io)
-[![npm downloads](https://img.shields.io/npm/dm/create-adsk)](https://www.npmjs.com/package/create-adsk)
+[![tier1](https://github.com/rhyanvargas/agentic-development-starter-kit/actions/workflows/skills-ci.yml/badge.svg?branch=main)](https://github.com/rhyanvargas/agentic-development-starter-kit/actions/workflows/skills-ci.yml)
+[![GitHub release](https://img.shields.io/github/v/release/rhyanvargas/agentic-development-starter-kit)](https://github.com/rhyanvargas/agentic-development-starter-kit/releases)
+[![npm](https://img.shields.io/npm/v/create-adsk.svg)](https://www.npmjs.com/package/create-adsk)
 [![Socket Badge](https://socket.dev/api/badge/npm/package/create-adsk)](https://socket.dev/npm/package/create-adsk)
 
 Adopt agent skills, Cursor commands, and team profiles — versioned in your repo.

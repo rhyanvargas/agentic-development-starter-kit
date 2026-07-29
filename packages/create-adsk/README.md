@@ -2,7 +2,8 @@
 
 # create-adsk
 
-[![npm downloads](https://img.shields.io/npm/dm/create-adsk)](https://www.npmjs.com/package/create-adsk)
+[![npm](https://img.shields.io/npm/v/create-adsk.svg)](https://www.npmjs.com/package/create-adsk)
+[![node](https://img.shields.io/node/v/create-adsk.svg)](https://www.npmjs.com/package/create-adsk)
 [![Socket Badge](https://socket.dev/api/badge/npm/package/create-adsk)](https://socket.dev/npm/package/create-adsk)
 
 Adopt agent skills, Cursor commands, and team profiles — versioned in your repo. Not a skills marketplace.
