@@ -2,14 +2,15 @@
 name: spec-driven-workflow
 description: >-
   Draft specs, analyze requirements, plan implementation, implement from
-  specs, review against specs, extract specs from existing code, run
-  surgical bugfix specs, and size greenfield/brownfield work. Use when
-  the user wants testable requirements, living specs, spec-driven
-  development, bugfix with regression fences, Design-First vs
-  Requirements-First, or /draft-spec /plan-impl /implement-spec /review
-  /extract-spec. Do not use for C4/solution architecture packets
-  (use solution-architecture), DevOps/CI-CD strategy design, README
-  authoring, Agent Skill optimization, or trivial one-line fixes.
+  specs, review against specs (generator≠evaluator), extract specs from
+  existing code, run surgical bugfix specs, multi-session handoff/progress,
+  and size greenfield/brownfield work. Use when the user wants testable
+  requirements, living specs, spec-driven development, session handoff,
+  bugfix with regression fences, Design-First vs Requirements-First, or
+  /draft-spec /plan-impl /implement-spec /review /extract-spec. Do not use
+  for C4/solution architecture packets (use solution-architecture),
+  DevOps/CI-CD strategy design, README authoring, Agent Skill optimization,
+  AFK/Ralph automation products, or trivial one-line fixes.
 ---
 
 # Spec-Driven Workflow
@@ -45,9 +46,9 @@ SIZE → SPECIFY → ANALYZE (medium+) → PLAN (medium+) → CLEAR → IMPLEMEN
    - **Architecture packet** (Large, and Medium when architecture/integration is ambiguous): require system context + container views (or “N/A — architecture proven”) and link ADRs for irreversible choices via `solution-architecture` / `/design-architecture` before multi-phase implement. See `references/problem-size-guide.md`.
    - **Tracer bullet** (Large, and Medium when architecture/integration is ambiguous): include a thin vertical slice + one verify **before** multi-phase implement, or an explicit “N/A — architecture proven” justification. See `references/problem-size-guide.md`.
    - Prefer splitting **build** tasks from **verify/review** tasks so QA can proceed in parallel with the next REQ slice (optional for Small).
-5. **Clear** (Medium+) — Persist exploration into the living spec/plan; start implement lean. Do not carry the full exploration transcript as working context. Bounded explore (subagent or dedicated chat) is fine; durable findings must already be in artifacts.
-6. **Implement** — Follow the spec/plan; map each requirement to tests unless non-behavioral with explicit justification.
-7. **Review** — Check correctness, security-sensitive paths, test coverage, and spec compliance (for bugfixes: regression fence).
+5. **Clear** (Medium+) — Persist exploration into the living spec/plan; start implement lean. Do not carry the full exploration transcript as working context. Bounded explore (subagent or dedicated chat) is fine; durable findings must already be in artifacts. For multi-session work, read `references/session-handoff.md` (start checklist: living spec + plan + progress before coding).
+6. **Implement** — Follow the spec/plan; map each requirement to tests unless non-behavioral with explicit justification. On Medium+ session end (or incomplete work), write the handoff/progress section per `session-handoff.md` — not an AFK product.
+7. **Review** — Separate **evaluate** pass (generator ≠ evaluator): refute-minded check of spec compliance, regression fence, security-sensitive paths, and tests. Do not treat implement-session self-grade as done. Read `references/review-evaluator.md`.
 8. **Brownfield** — Document existing behavior with extract-spec before large changes. Read `references/brownfield-workflow.md`.
 
 ### Before writing a spec
@@ -102,6 +103,8 @@ Load references only when needed:
 |-----------|----------------|
 | `references/artifact-homes.md` | Creating/locating specs or plans; path unclear |
 | `references/cursor-adapter.md` | Cursor `/` commands or `.cursor/plans` / `.cursor/docs` homes |
+| `references/session-handoff.md` | Medium+ multi-session start/end; progress + next REQ |
+| `references/review-evaluator.md` | `/review` or Review phase; generator ≠ evaluator |
 | `references/problem-size-guide.md` | Size unclear or contested |
 | `references/spec-writing-guide.md` | Writing or reviewing a spec; Design-First vs Requirements-First |
 | `references/analyze-requirements.md` | Medium+ before `/plan-impl`, or after material REQ edits |
@@ -125,3 +128,5 @@ Load references only when needed:
 - Large / ambiguous Medium plans include an architecture packet gate (or “N/A — architecture proven”) via `solution-architecture` when integration boundaries are unclear.
 - Implemented requirements have automated tests (or a short justification when truly non-behavioral).
 - **Fail-closed verify:** Before claiming done, run `project-cmds` (or documented project verify). If verify is **not** configured, do **not** claim done — instruct `/quick-start` or set `project-cmds` / portable equivalent. “Looks good” without verify is forbidden.
+- **Multi-session handoff (Medium+):** Session start reads living spec + plan + progress; session end updates handoff (next REQ/T#, git expectation) per `session-handoff.md`. Not an AFK/Ralph product.
+- **Generator ≠ evaluator (Medium+):** Do not claim done from implement self-grade alone; run a separate refute-minded `/review` per `review-evaluator.md` (bugfixes: Unchanged fence required).

@@ -1,36 +1,41 @@
 ---
 name: Harness P0 — handoff + evaluator
-overview: >-
-  Track two P0 kit features that future-proof ADSK as a delivery harness
-  (not more agent power): multi-session handoff/progress contract, and
-  generator≠evaluator split for /review. Dogfood is deferred but remains
-  the preferred validation gate before merge.
+overview: "Track two P0 kit features that future-proof ADSK as a delivery harness (not more agent power): multi-session handoff/progress contract, and generator≠evaluator split for /review. Dogfood is deferred but remains the preferred validation gate before merge."
 todos:
   - id: T0
-    content: "DEFER — Dogfood Runs 1–2 (medium feature + bugfix) when capacity allows; log skips/ratchets"
-    status: pending
+    content: DEFER — Dogfood Runs 1–2 (medium feature + bugfix) when capacity allows; log skips/ratchets
+    status: cancelled
   - id: T1
-    content: "P0-A — Spec + absorb session handoff/progress contract into SDD (Clear / living-spec); no AFK product"
-    status: pending
+    content: P0-A — Spec + absorb session handoff/progress contract into SDD (Clear / living-spec); no AFK product
+    status: completed
   - id: T2
-    content: "P0-A — Implement handoff refs + thin command/skill updates; evals; sync-adsk kit"
-    status: pending
+    content: P0-A — Implement handoff refs + thin command/skill updates; evals; sync-adsk kit
+    status: completed
   - id: T3
-    content: "P0-B — Spec evaluator-split protocol for /review (refute-minded, separate from implement)"
-    status: pending
+    content: P0-B — Spec evaluator-split protocol for /review (refute-minded, separate from implement)
+    status: completed
   - id: T4
-    content: "P0-B — Implement /review hardening + evals; sync-adsk kit"
-    status: pending
+    content: P0-B — Implement /review hardening + evals; sync-adsk kit
+    status: completed
   - id: T5
-    content: "Ship — PR(s) with Conventional Commits; refresh create-adsk snapshot if commands change"
-    status: pending
+    content: Ship — PR(s) with Conventional Commits; refresh create-adsk snapshot if commands change
+    status: completed
 isProject: false
 ---
 
 # Plan: Harness P0 — handoff + evaluator
 
-**Status:** Tracked; dogfood deferred (operator capacity).  
+**Status:** Implemented (T1–T5 sync/snapshot done); open PR when operator asks; dogfood deferred (T0).  
 **Thesis:** Process + feedback loops beat more agent power — these P0s make ADSK the **multi-session delivery harness**.
+
+## Handoff / Progress
+
+- **Updated:** 2026-07-29
+- **Done:** T1–T5 + review fixes (REQ-HO-001 files touched; REQ-HO-004 HITL wording)
+- **Files:** skills/spec-driven-workflow/**, .cursor/commands/{implement-spec,review}.md, .cursor/docs/specs/{session-handoff-progress,review-evaluator-split}.md, packages/create-adsk/kit-snapshot/**
+- **Now:** open PR when ready (issues #59 / #60); optional dogfood T0
+- **Watchouts:** Dogfood T0 still deferred
+- **Git:** clean on `feat/harness-p0-handoff-evaluator` @ f3402cb (pushed)
 
 ## Tracked work (the two P0s)
 
@@ -86,19 +91,19 @@ P0-A and P0-B may ship as **one PR** or **two** if review load is high — keep 
 ## Acceptance (when work resumes)
 
 ### P0-A
-- [ ] Reference docs session start/end checklist (progress + next REQ + clean git expectation)
-- [ ] SDD `SKILL.md` / Clear / implement path points at it
-- [ ] Explicit “not an AFK product” boundary preserved
-- [ ] Trigger or output eval covering handoff behavior
+- [x] Reference docs session start/end checklist (progress + next REQ + clean git expectation)
+- [x] SDD `SKILL.md` / Clear / implement path points at it
+- [x] Explicit “not an AFK product” boundary preserved
+- [x] Trigger or output eval covering handoff behavior
 
 ### P0-B
-- [ ] `/review` (and skill review phase) requires separate evaluate posture
-- [ ] Bugfix path: review checks Unchanged fence
-- [ ] Eval covering “do not self-grade as done without review pass”
+- [x] `/review` (and skill review phase) requires separate evaluate posture
+- [x] Bugfix path: review checks Unchanged fence
+- [x] Eval covering “do not self-grade as done without review pass”
 
 ### Shared
-- [ ] `./scripts/sync-adsk.sh kit` after skill/command edits
-- [ ] If Cursor commands change → `./scripts/prepare-create-adsk-snapshot.sh` (+ npm bump only if adopters need it)
+- [x] `./scripts/sync-adsk.sh kit` after skill/command edits
+- [x] If Cursor commands change → `./scripts/prepare-create-adsk-snapshot.sh` (+ npm bump only if adopters need it)
 
 ## GitHub tracking
 

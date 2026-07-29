@@ -107,6 +107,30 @@
         "Requires a tracer bullet (thin vertical slice + verify) or explicit N/A justification before multi-phase implement",
         "Does not treat vendor-icon / draw.io rendering as a substitute for the architecture packet gate"
       ]
+    },
+    {
+      "id": 11,
+      "prompt": "Medium feature: last session stopped mid-implement after finishing REQ-003. New chat — what do you read before coding, and what do you write before ending this session if REQ-004 is only half done?",
+      "expected_output": "Session start: read living spec + plan + Handoff/Progress (next REQ/T#) before coding; resync plan if REQs changed. Session end: update Handoff/Progress with done/files touched/now/watchouts/git expectation. HITL harness, not an AFK/Ralph product.",
+      "assertions": [
+        "Reads living spec and plan (and progress/handoff) before coding",
+        "Names next REQ or plan task as the bounded continue point",
+        "Updates a handoff/progress note at session end when work is incomplete",
+        "Mentions files touched or equivalent file list in the handoff",
+        "Mentions clean-git or explicit WIP/git expectation",
+        "Does not describe this as an AFK/Ralph automation product"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "We just finished implementing a medium checkout change in this same chat and the tests passed. Can we call it done and merge, or is something else required?",
+      "expected_output": "Refuse to treat implement-session self-grade as done; require a separate refute-minded /review evaluate pass (spec compliance, security-sensitive paths, tests vs REQs) plus fail-closed verify. Bugfix Unchanged fence if applicable.",
+      "assertions": [
+        "Rejects claiming done from implement self-check alone",
+        "Requires a separate /review or evaluate pass",
+        "Mentions refute-minded or generator≠evaluator / not self-grading",
+        "Mentions spec compliance and/or fail-closed verify"
+      ]
     }
   ]
 }

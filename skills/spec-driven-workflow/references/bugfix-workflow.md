@@ -64,7 +64,7 @@ EARS-style `WHEN` / `SHALL` / `SHALL CONTINUE TO` is encouraged here; Given/When
 2. **Draft bugfix** — Fill Current / Expected / Unchanged before designing the fix.
 3. **Analyze** (Medium+) — Read `analyze-requirements.md` across FIX + KEEP items.
 4. **Plan** (Medium+) — Root-cause-informed tasks; map tests to FIX and KEEP REQs. Tracer if the fix path is architecturally unclear.
-5. **Clear → Implement → Review** — Fail-closed verify. Review must check the regression fence, not only the fix.
+5. **Clear → Implement → Review** — Fail-closed verify. Review is a separate evaluate pass (`review-evaluator.md`): must check the Unchanged/KEEP regression fence, not only the fix — fail the review if KEEP items were skipped.
 
 ## Anti-patterns
 

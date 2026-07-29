@@ -164,7 +164,12 @@ Explore → Plan → **Clear** → Implement:
 - Bound exploration (subagent or dedicated chat OK)
 - Persist durable findings into the living spec and/or plan
 - Start implement lean — do not carry the full exploration transcript as working context
+- Multi-session: read **Handoff / Progress** before coding; write it when ending incomplete Medium+ work (`session-handoff.md`) — not an AFK product
 - Reference specific files and the living artifacts; re-state constraints when they matter
+
+### Review as evaluator (Medium+)
+
+After implement, run a separate refute-minded `/review` (`review-evaluator.md`). Implement self-grade is not “done.” For bugfixes, the Unchanged/KEEP fence is mandatory in review.
 
 ---
 
