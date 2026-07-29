@@ -5,6 +5,13 @@ All notable changes to **The Agentic Development Starter Kit (ADSK)** are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.14.3](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.14.2...v0.14.3) (2026-07-29)
+
+
+### Fixed
+
+* **create-adsk:** allow --version test before dist build ([#75](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/75)) ([937663b](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/937663b9260bb08ba53c65706d2603db726c6e31))
+
 ## [0.14.2](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.14.1...v0.14.2) (2026-07-29)
 
 
