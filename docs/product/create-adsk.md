@@ -2,7 +2,7 @@
 
 Single source of truth for ADSK’s **adopter product**. Agents and contributors must align adopter UX with this document and [`profiles.json`](../../profiles.json). Living requirements: [`.cursor/docs/specs/create-adsk.md`](../../.cursor/docs/specs/create-adsk.md).
 
-**Status:** CLI implemented in [`packages/create-adsk`](../../packages/create-adsk). **Live on npm** as [`create-adsk@0.2.0`](https://www.npmjs.com/package/create-adsk) — adopters run `npx create-adsk`. Registry releases use Trusted Publishing ([`publish-create-adsk.yml`](../../.github/workflows/publish-create-adsk.yml)); see [`docs/RELEASE.md`](../RELEASE.md). Alternate paths remain valid: [`docs/using-adsk.md`](../using-adsk.md) (`npx skills` alone, or `sync-adsk.sh adopter`).
+**Status:** CLI implemented in [`packages/create-adsk`](../../packages/create-adsk). **Live on npm** as [`create-adsk`](https://www.npmjs.com/package/create-adsk) (version in [`packages/create-adsk/package.json`](../../packages/create-adsk/package.json)) — adopters run `npx create-adsk`. Registry releases use Trusted Publishing ([`publish-create-adsk.yml`](../../.github/workflows/publish-create-adsk.yml)); see [`docs/RELEASE.md`](../RELEASE.md). Alternate paths remain valid: [`docs/using-adsk.md`](../using-adsk.md) (`npx skills` alone, or `sync-adsk.sh adopter`).
 
 ---
 
@@ -21,7 +21,7 @@ Single source of truth for ADSK’s **adopter product**. Agents and contributors
 | Tool | Owns | Does not own |
 |------|------|----------------|
 | **`npx skills`** (skills.sh) | Discover, install, update skill folders into `.agents/skills/` | Cursor commands/rules, ADSK profiles, kit trust policy |
-| **`npx create-adsk`** | Apply an ADSK **profile** (skills + Cursor + config), update/status | Third-party skill catalog, kit-maintainer symlink sync |
+| **`npx create-adsk`** | Apply an ADSK **profile** (skills + Cursor + config), update/status/overlaps | Third-party skill catalog, kit-maintainer symlink sync |
 
 **README answer:** Use `npx skills` to install skill folders. Use `npx create-adsk` when you want ADSK’s workflow + Cursor commands adopted as a versioned profile in your repo.
 

@@ -48,7 +48,7 @@ npx create-adsk --profile core --yes --packs engineering-methods
 
 **Packs vs first-party layout:** Profile skills are **first-party ADSK** — they install with `evals/` (and usually `references/`). Optional packs pull **upstream** skills (wondelai, deanpeters, Superpowers, …) **as those authors ship them**, so many pack skills will not have an ADSK-style `evals/` folder. That is expected, not a broken install. See [§5 Evaluating skills](#5-evaluating-skills-adopters).
 
-Later: `npx create-adsk update` · `npx create-adsk status`.  
+Later: `npx create-adsk update` · `npx create-adsk status` · `npx create-adsk overlaps`.  
 Flags and local kit path: [`packages/create-adsk/README.md`](../packages/create-adsk/README.md).
 
 The sections below cover skills-only installs and the script-based Cursor path.

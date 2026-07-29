@@ -124,7 +124,7 @@
     {
       "id": 12,
       "prompt": "We just finished implementing a medium checkout change in this same chat and the tests passed. Can we call it done and merge, or is something else required?",
-      "expected_output": "Refuse to treat implement-session self-grade as done; require a separate refute-minded /review evaluate pass (spec compliance, security-sensitive paths, tests vs REQs) plus fail-closed verify. Bugfix Unchanged fence if applicable.",
+      "expected_output": "Refuse to treat implement-session self-grade as done; require a separate refute-minded /review evaluate pass (spec compliance, security-sensitive paths, tests vs REQs, docs/README drift when user-facing surface changed) plus fail-closed verify. Bugfix Unchanged fence if applicable.",
       "assertions": [
         "Rejects claiming done from implement self-check alone",
         "Requires a separate /review or evaluate pass",

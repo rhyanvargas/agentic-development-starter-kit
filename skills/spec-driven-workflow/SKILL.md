@@ -48,7 +48,7 @@ SIZE → SPECIFY → ANALYZE (medium+) → PLAN (medium+) → CLEAR → IMPLEMEN
    - Prefer splitting **build** tasks from **verify/review** tasks so QA can proceed in parallel with the next REQ slice (optional for Small).
 5. **Clear** (Medium+) — Persist exploration into the living spec/plan; start implement lean. Do not carry the full exploration transcript as working context. Bounded explore (subagent or dedicated chat) is fine; durable findings must already be in artifacts. For multi-session work, read `references/session-handoff.md` (start checklist: living spec + plan + progress before coding).
 6. **Implement** — Follow the spec/plan; map each requirement to tests unless non-behavioral with explicit justification. On Medium+ session end (or incomplete work), write the handoff/progress section per `session-handoff.md` — not an AFK product.
-7. **Review** — Separate **evaluate** pass (generator ≠ evaluator): refute-minded check of spec compliance, regression fence, security-sensitive paths, and tests. Do not treat implement-session self-grade as done. Read `references/review-evaluator.md`.
+7. **Review** — Separate **evaluate** pass (generator ≠ evaluator): refute-minded check of spec compliance, regression fence, security-sensitive paths, tests, and docs/README drift on user-facing surface changes (hand off to `/update-readme` / `readme-authoring`; do not full-sync inside review unless asked). Do not treat implement-session self-grade as done. Read `references/review-evaluator.md`.
 8. **Brownfield** — Document existing behavior with extract-spec before large changes. Read `references/brownfield-workflow.md`.
 
 ### Before writing a spec

@@ -169,7 +169,7 @@ Explore → Plan → **Clear** → Implement:
 
 ### Review as evaluator (Medium+)
 
-After implement, run a separate refute-minded `/review` (`review-evaluator.md`). Implement self-grade is not “done.” For bugfixes, the Unchanged/KEEP fence is mandatory in review.
+After implement, run a separate refute-minded `/review` (`review-evaluator.md`). Implement self-grade is not “done.” For bugfixes, the Unchanged/KEEP fence is mandatory in review. If user-facing surface changed (CLI, install, profiles/packs, Quick Start), flag README/`docs/` drift and hand off to `/update-readme` — do not full-sync docs inside `/review` unless asked.
 
 ---
 

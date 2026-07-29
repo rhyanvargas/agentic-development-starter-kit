@@ -25,11 +25,12 @@ Optional Cursor wiring for **The Agentic Development Starter Kit (ADSK)**.
 | `/create-pr` | `pull-request-authoring` |
 | `/optimize-skill` | `skill-optimizer` |
 | `/update-readme` | `readme-authoring` |
+| `/run-skill-evals` | Skill eval harness (maintainer) |
 | `/sync-adsk` | Runs [`scripts/sync-adsk.sh`](../scripts/sync-adsk.sh) |
 
 ### Rules (shipped)
 
-`project`, `project-cmds`, `testing`, `cursor-artifacts`, `skill-authoring`
+`project`, `project-cmds`, `testing`, `cursor-artifacts`, `skill-authoring`, `adopter-product`
 
 ### Skills (discovery)
 

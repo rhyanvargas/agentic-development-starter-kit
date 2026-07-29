@@ -36,7 +36,7 @@ npx create-adsk --profile delivery --yes
 | `--packs <ids>` | Comma-separated pack IDs (e.g. `engineering-methods`) |
 | `--with-optional-packs` | Include all packs |
 
-Later: `npx create-adsk update` · `npx create-adsk status` · [create-adsk docs](packages/create-adsk)
+Later: `npx create-adsk update` · `npx create-adsk status` · `npx create-adsk overlaps` · [create-adsk docs](packages/create-adsk)
 
 ### Alternatives
 
