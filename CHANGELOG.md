@@ -5,6 +5,13 @@ All notable changes to **The Agentic Development Starter Kit (ADSK)** are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.13.0](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.12.0...v0.13.0) (2026-07-29)
+
+
+### Added
+
+* **spec-driven-workflow:** session handoff and review evaluator split ([#64](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/64)) ([476b066](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/476b066c6e8e9c31095f0d40a2acf6b6c43e4cde))
+
 ## [0.12.0](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.11.0...v0.12.0) (2026-07-28)
 
 
