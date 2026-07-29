@@ -33,9 +33,9 @@ isProject: false
 - **Updated:** 2026-07-29
 - **Done:** T1–T5 + review fixes (REQ-HO-001 files touched; REQ-HO-004 HITL wording)
 - **Files:** skills/spec-driven-workflow/**, .cursor/commands/{implement-spec,review}.md, .cursor/docs/specs/{session-handoff-progress,review-evaluator-split}.md, packages/create-adsk/kit-snapshot/**
-- **Now:** commit + push `feat/harness-p0-handoff-evaluator` (issues #59 / #60); optional dogfood T0
+- **Now:** open PR when ready (issues #59 / #60); optional dogfood T0
 - **Watchouts:** Dogfood T0 still deferred
-- **Git:** dirty on branch feat/harness-p0-handoff-evaluator (committing)
+- **Git:** clean on `feat/harness-p0-handoff-evaluator` @ f3402cb (pushed)
 
 ## Tracked work (the two P0s)
 
