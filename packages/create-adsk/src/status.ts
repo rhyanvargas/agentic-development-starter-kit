@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { readConfig } from "./config.js";
 import { commandBasenames } from "./cursor-sync.js";
 import {
+  defaultOverlapModes,
   formatOverlapReport,
   scanOverlaps,
   type OverlapFinding,
@@ -67,12 +68,13 @@ export function runStatus(opts: {
     }
   }
 
+  const modes = defaultOverlapModes(cfg);
   const overlapResult: OverlapScanResult = scanOverlaps({
     appRoot: opts.target,
     snapshotRoot,
     scope: cfg.scope,
-    commands: cfg.cursor === "commands" ? "post-sync" : "off",
-    rules: cfg.rules === "stock" ? "post-sync" : "off",
+    commands: modes.commands,
+    rules: modes.rules,
   });
 
   console.log(`profile:       ${cfg.profile}`);
@@ -89,7 +91,7 @@ export function runStatus(opts: {
   }
 
   console.log("");
-  console.log(formatOverlapReport(overlapResult));
+  console.log(formatOverlapReport(overlapResult, modes));
 
   return {
     configPresent: true,

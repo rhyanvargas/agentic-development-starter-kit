@@ -17,10 +17,16 @@ export {
   scanOverlaps,
   formatOverlapReport,
   reportOverlaps,
+  defaultOverlapModes,
   buildDoNotAddIndex,
   skillSlugFromExample,
 } from "./overlaps.js";
-export type { OverlapFinding, OverlapScanResult } from "./overlaps.js";
+export type {
+  OverlapFinding,
+  OverlapScanResult,
+  CommandsScanMode,
+  RulesScanMode,
+} from "./overlaps.js";
 export { syncCursor, STOCK_RULES } from "./cursor-sync.js";
 export {
   buildSkillsAddArgv,
