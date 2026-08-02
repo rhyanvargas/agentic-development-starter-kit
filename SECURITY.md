@@ -79,6 +79,10 @@ The `create-adsk` package publishes from GitHub Actions with [npm Trusted Publis
 
 After Trusted Publisher works, prefer restricting token publish access on the package (npm “disallow tokens” / 2FA settings). Day-to-day release steps: [docs/RELEASE.md](docs/RELEASE.md).
 
+### Child process (create-adsk)
+
+`create-adsk` must not call `spawn`/`execFile` with both an `args` array and `shell: true` (Node [DEP0190](https://nodejs.org/api/deprecations.html#DEP0190)). On Windows, `npx`/`npm` run via `cmd.exe /d /s /c` with `shell: false` and escaped arguments (see `packages/create-adsk/src/skills.ts`).
+
 ## Skill supply-chain guidance
 
 ADSK recommends (but does not vendor) third-party skills. Treat unpinned installs

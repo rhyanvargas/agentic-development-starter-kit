@@ -32,5 +32,9 @@ export {
   buildSkillsAddArgv,
   buildSkillsUpdateArgv,
   buildOptionalPackArgv,
+  resolveSpawnSpec,
+  resolveSpawnInvocation,
+  quoteWindowsCmdArg,
 } from "./skills.js";
+export type { SpawnSpec, SpawnInvocation } from "./skills.js";
 export type { AdskConfig, ProfileId, Scope } from "./types.js";
