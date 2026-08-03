@@ -4,6 +4,7 @@ import { reportOverlaps } from "./overlaps.js";
 import { getSnapshotRoot, readKitRef } from "./snapshot.js";
 import {
   buildSkillsUpdateArgv,
+  resolveSkillsRunnerArgv,
   runSkills,
   type RunCommand,
 } from "./skills.js";
@@ -28,10 +29,12 @@ export async function runUpdate(opts: UpdateOptions): Promise<AdskConfig> {
   const snapshotRoot = getSnapshotRoot(opts.snapshotRoot);
   const kitRef = readKitRef(snapshotRoot);
 
-  const updateArgv = buildSkillsUpdateArgv({
-    scope: existing.scope,
-    yes: true,
-  });
+  const updateArgv = resolveSkillsRunnerArgv(
+    buildSkillsUpdateArgv({
+      scope: existing.scope,
+      yes: true,
+    }),
+  );
   if (opts.dryRun) {
     console.log(`[dry-run] profile=${existing.profile} kitRef→${kitRef}`);
     console.log(`[dry-run] would run: ${updateArgv.join(" ")}`);

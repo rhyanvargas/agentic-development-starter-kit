@@ -61,6 +61,10 @@ Other useful flags: `--dry-run`, `--scope project|global`, `--force-rules`, `--t
 
 **Org rules:** put company policy in `.cursor/rules/org-*/` in the app — `update` does not overwrite those folders. Avoid `--force-rules` unless you intend to reset stock rules. Guide: [`docs/customizing-org-rules.md`](../../docs/customizing-org-rules.md).
 
+### Windows + pnpm note
+
+When `create-adsk` is launched via outer `npx`, it prefers `node <npm_execpath> exec -- …` over a nested `npx` so skills refresh does not depend on project-local `node_modules/npm` (absent under pnpm). If you still hit nested-npx errors on an older release, run `node path/to/create-adsk/dist/cli.js update` or use the kit `sync-adsk.sh adopter` path.
+
 ## Two tools
 
 | Tool                  | Owns                                                 |
