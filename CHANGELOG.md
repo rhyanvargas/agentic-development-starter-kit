@@ -5,6 +5,13 @@ All notable changes to **The Agentic Development Starter Kit (ADSK)** are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.14.5](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.14.4...v0.14.5) (2026-08-03)
+
+
+### Fixed
+
+* **create-adsk:** avoid nested npx when launched via outer npx ([#82](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/82)) ([b9f7791](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/b9f7791b6aebf305a3cdc608b398939e2c7300a2))
+
 ## [0.14.4](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.14.3...v0.14.4) (2026-08-02)
 
 
