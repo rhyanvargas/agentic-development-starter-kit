@@ -81,7 +81,7 @@ describe("init integration", () => {
 		}
 		const joined = logs.join("\n");
 		expect(joined).toContain("[dry-run] profile=delivery");
-		expect(joined).toContain("would run: npx --yes skills add");
+		expect(joined).toContain("skills add");
 		expect(joined).toContain("packs: none");
 		expect(joined).toContain("no files written");
 		expect(existsSync(join(app, ".adsk", "config.json"))).toBe(false);

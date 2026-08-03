@@ -32,6 +32,8 @@ export {
   buildSkillsAddArgv,
   buildSkillsUpdateArgv,
   buildOptionalPackArgv,
+  resolveSkillsRunnerArgv,
+  resolveNpmCliJs,
   resolveSpawnSpec,
   resolveSpawnInvocation,
   quoteWindowsCmdArg,

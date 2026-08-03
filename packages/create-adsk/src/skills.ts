@@ -1,4 +1,5 @@
 import { spawn, type SpawnOptions } from "node:child_process";
+import { existsSync } from "node:fs";
 import type { Scope } from "./types.js";
 
 export type RunCommand = (
@@ -14,6 +15,62 @@ export type SpawnInvocation = {
   args: string[];
   options: SpawnOptions & { shell: false };
 };
+
+/**
+ * When create-adsk itself was launched via `npx`/`npm`, prefer
+ * `node <npm_execpath> exec --yes -- skills …` over a nested `npx`.
+ *
+ * Nested `npx.cmd` under npm 12 can resolve through project-local
+ * `node_modules/npm` (missing under pnpm) and fail with
+ * `Cannot find module …/npx-cli.js` — see issue #81.
+ */
+export function resolveNpmCliJs(
+  env: NodeJS.ProcessEnv = process.env,
+): string | undefined {
+  const raw = env.npm_execpath;
+  if (!raw) return undefined;
+  if (/npx-cli\.js$/i.test(raw)) {
+    const npmCli = raw.replace(/npx-cli\.js$/i, "npm-cli.js");
+    if (existsSync(npmCli)) return npmCli;
+  }
+  return raw;
+}
+
+/**
+ * Rewrite `npx [flags] skills …` → `node <npm-cli.js> exec --yes -- skills …`
+ * when `npm_execpath` is set. Otherwise return argv unchanged.
+ */
+export function resolveSkillsRunnerArgv(
+  argv: string[],
+  env: NodeJS.ProcessEnv = process.env,
+  execPath: string = process.execPath,
+): string[] {
+  if (argv.length === 0) return argv;
+  const head = argv[0]!;
+  if (head !== "npx" && head !== "npx.cmd") return argv;
+
+  const npmCli = resolveNpmCliJs(env);
+  if (!npmCli) return argv;
+
+  const rest = argv.slice(1);
+  let i = 0;
+  // Drop npx-only flags; `npm exec --yes` covers non-interactive install.
+  while (i < rest.length) {
+    const f = rest[i]!;
+    if (f === "--yes" || f === "-y" || f === "--no-install") {
+      i += 1;
+      continue;
+    }
+    if (f.startsWith("-")) {
+      // Unknown npx flag — keep original argv (safer than guessing).
+      return argv;
+    }
+    break;
+  }
+  if (rest[i] !== "skills") return argv;
+  const skillsArgs = rest.slice(i);
+  return [execPath, npmCli, "exec", "--yes", "--", ...skillsArgs];
+}
 
 /**
  * Windows spawn rules for npm/npx:
@@ -154,7 +211,7 @@ export const defaultRunCommand: RunCommand = async (argv, opts) => {
           new Error(
             `Failed to spawn '${inv.command}' (${err.code}). Ensure Node.js/npm are installed and on PATH` +
               (process.platform === "win32"
-                ? " (Windows: create-adsk runs npx.cmd via cmd.exe /d /s /c, shell:false)."
+                ? " (Windows: create-adsk runs npx via cmd.exe /d /s /c when needed; under outer npx it prefers node+npm exec)."
                 : ".") +
               ` Command was: ${argv.join(" ")}`,
           ),
@@ -172,6 +229,7 @@ export async function runSkills(
   argv: string[],
   opts: { cwd: string; dryRun: boolean; run?: RunCommand },
 ): Promise<{ code: number; argv: string[] }> {
+  const resolved = resolveSkillsRunnerArgv(argv);
   const run = opts.run ?? defaultRunCommand;
-  return run(argv, { cwd: opts.cwd, dryRun: opts.dryRun });
+  return run(resolved, { cwd: opts.cwd, dryRun: opts.dryRun });
 }

@@ -1,9 +1,14 @@
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   buildOptionalPackArgv,
   buildSkillsAddArgv,
   buildSkillsUpdateArgv,
   quoteWindowsCmdArg,
+  resolveNpmCliJs,
+  resolveSkillsRunnerArgv,
   resolveSpawnInvocation,
   resolveSpawnSpec,
 } from "../src/skills.js";
@@ -108,6 +113,90 @@ describe("quoteWindowsCmdArg", () => {
   it("wraps spaces and escapes quotes", () => {
     expect(quoteWindowsCmdArg("hello world")).toMatch(/hello/);
     expect(quoteWindowsCmdArg('say "hi"')).toContain("hi");
+  });
+});
+
+describe("resolveSkillsRunnerArgv (issue #81 nested npx)", () => {
+  const npmCli = "/usr/lib/node_modules/npm/bin/npm-cli.js";
+  const nodeBin = "/usr/bin/node";
+
+  it("rewrites npx skills … to node npm-cli.js exec when npm_execpath is set", () => {
+    const argv = resolveSkillsRunnerArgv(
+      ["npx", "--yes", "skills", "update", "-y", "-p"],
+      { npm_execpath: npmCli },
+      nodeBin,
+    );
+    expect(argv).toEqual([
+      nodeBin,
+      npmCli,
+      "exec",
+      "--yes",
+      "--",
+      "skills",
+      "update",
+      "-y",
+      "-p",
+    ]);
+  });
+
+  it("rewrites skills add the same way", () => {
+    const argv = resolveSkillsRunnerArgv(
+      ["npx", "--yes", "skills", "add", "owner/kit", "--skill", "x", "-y"],
+      { npm_execpath: npmCli },
+      nodeBin,
+    );
+    expect(argv[0]).toBe(nodeBin);
+    expect(argv).toContain("exec");
+    expect(argv.indexOf("--")).toBeLessThan(argv.indexOf("skills"));
+    expect(argv).toContain("add");
+    expect(argv).toContain("owner/kit");
+  });
+
+  it("leaves npx argv unchanged when npm_execpath is unset", () => {
+    const input = ["npx", "--yes", "skills", "update", "-y", "-p"];
+    expect(resolveSkillsRunnerArgv(input, {}, nodeBin)).toEqual(input);
+  });
+
+  it("does not rewrite non-npx argv", () => {
+    const input = [nodeBin, "--version"];
+    expect(
+      resolveSkillsRunnerArgv(input, { npm_execpath: npmCli }, nodeBin),
+    ).toEqual(input);
+  });
+
+  it("maps npx-cli.js to sibling npm-cli.js when the sibling exists", () => {
+    const dir = mkdtempSync(join(tmpdir(), "adsk-npm-cli-"));
+    try {
+      const npmCliPath = join(dir, "npm-cli.js");
+      const npxCli = join(dir, "npx-cli.js");
+      writeFileSync(npmCliPath, "// npm\n");
+      writeFileSync(npxCli, "// npx\n");
+      expect(resolveNpmCliJs({ npm_execpath: npxCli })).toBe(npmCliPath);
+      const argv = resolveSkillsRunnerArgv(
+        ["npx", "--yes", "skills", "update", "-p"],
+        { npm_execpath: npxCli },
+        nodeBin,
+      );
+      expect(argv[1]).toBe(npmCliPath);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it("falls back to raw npx-cli.js path when sibling npm-cli.js is missing", () => {
+    const npxCli = "/tmp/does-not-exist-npm/bin/npx-cli.js";
+    expect(resolveNpmCliJs({ npm_execpath: npxCli })).toBe(npxCli);
+  });
+
+  it("is idempotent when argv is already node+npm exec", () => {
+    const once = resolveSkillsRunnerArgv(
+      ["npx", "--yes", "skills", "update", "-y", "-p"],
+      { npm_execpath: npmCli },
+      nodeBin,
+    );
+    expect(resolveSkillsRunnerArgv(once, { npm_execpath: npmCli }, nodeBin)).toEqual(
+      once,
+    );
   });
 });
 

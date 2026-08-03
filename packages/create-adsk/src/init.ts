@@ -19,6 +19,7 @@ import { getSnapshotRoot, readKitRef } from "./snapshot.js";
 import {
 	buildOptionalPackArgv,
 	buildSkillsAddArgv,
+	resolveSkillsRunnerArgv,
 	runSkills,
 	type RunCommand,
 } from "./skills.js";
@@ -57,12 +58,14 @@ export async function runInit(opts: InitOptions): Promise<AdskConfig> {
 		}
 	}
 
-	const skillsArgv = buildSkillsAddArgv({
-		kitSource: profiles.kit_source,
-		skills: profile.skills,
-		scope: opts.scope,
-		yes: true,
-	});
+	const skillsArgv = resolveSkillsRunnerArgv(
+		buildSkillsAddArgv({
+			kitSource: profiles.kit_source,
+			skills: profile.skills,
+			scope: opts.scope,
+			yes: true,
+		}),
+	);
 
 	if (opts.dryRun) {
 		console.log(`[dry-run] would run: ${skillsArgv.join(" ")}`);
@@ -96,7 +99,9 @@ export async function runInit(opts: InitOptions): Promise<AdskConfig> {
 					`Optional pack entry ${entryId} has no install command`,
 				);
 			}
-			const packArgv = buildOptionalPackArgv(installCmd, opts.scope, true);
+			const packArgv = resolveSkillsRunnerArgv(
+				buildOptionalPackArgv(installCmd, opts.scope, true),
+			);
 			if (opts.dryRun) {
 				console.log(
 					`[dry-run] would run pack entry ${entryId}: ${packArgv.join(" ")}`,
