@@ -147,7 +147,7 @@ For non-trivial bugs, document Current / Expected / **Unchanged** (`bugfix-workf
 | Medium | Spec → Plan → Implement → Review |
 | Large | Research → Spec → Plan → Implement → Review |
 
-See [Problem Size Guide](problem-size-guide.md).
+See `problem-size-guide.md` (`SKILL.md` progressive disclosure table).
 
 ### Fail fast
 

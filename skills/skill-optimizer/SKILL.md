@@ -20,9 +20,10 @@ Make every skill **discoverable**, **lean when activated**, and **eval-backed**.
 3. **Description** — what + when; ≤1024 chars; concrete triggers; at least one near-miss “do not use…” boundary when adjacent skills exist
 4. **Body size** — `SKILL.md` under 500 lines / ~5k tokens; prefer under ~1500 tokens for workflow skills
 5. **Progressive disclosure** — depth in `references/` / `scripts/`; each file has an explicit *when to read*
-6. **Token test** — every paragraph: “Would the agent get this wrong without it?” If no, cut or move to a reference
-7. **Trigger set** — ~20 labeled queries in `evals/trigger/eval_queries.json` (~50/50 should/shouldn’t; include near-misses)
-8. **Output evals** — at least 2–3 cases (+1 edge) in `evals/evals.json` when the skill changes behavior
+6. **Reference depth** — file references are one level deep: `references/*.md` link back to `SKILL.md`'s table, never to a sibling `references/*.md` file (`scripts/check-skills-ci.sh` enforces this for first-party skills)
+7. **Token test** — every paragraph: “Would the agent get this wrong without it?” If no, cut or move to a reference
+8. **Trigger set** — ~20 labeled queries in `evals/trigger/eval_queries.json` (~50/50 should/shouldn’t; include near-misses)
+9. **Output evals** — at least 2–3 cases (+1 edge) in `evals/evals.json` when the skill changes behavior
 
 ## Procedure
 

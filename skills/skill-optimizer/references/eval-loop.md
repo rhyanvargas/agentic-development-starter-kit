@@ -69,4 +69,8 @@ results to concrete steps the user can take without asking “what next?”.
 3. **Skip / defer** — … (force re-run all arms, full rewrite, etc.)
 ```
 
+Before pasting a SCORECARD row: capture the **model name** used for grading and the
+**Token Δ** (with_skill tokens − without_skill tokens) alongside the pass-rate
+delta — do not paste `_TBD_`/`n/a` for either when the run captured them.
+
 Order actions by impact: fix **with_skill** misses → publish scores → tighten no-signal assertions → optional polish. Offer to execute the top action in the same turn when it is a small, obvious edit.

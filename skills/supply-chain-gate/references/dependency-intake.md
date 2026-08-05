@@ -5,7 +5,7 @@
 ## Before merge
 
 1. Prefer **no new dependency** if a few lines of local code suffice.
-2. Check Socket / health signals (Socket.dev page, PR comment, or Socket MCP `depscore` if available): supply chain, vulns, license, install scripts.
+2. Check Socket / health signals (Socket.dev page, PR comment, or a Socket MCP server if configured): supply chain, vulns, license, install scripts.
 3. Reject if: install scripts, known malware signals, git/http deps, unclear license for the org.
 4. For **`create-adsk` production deps**: use **exact** versions (no `^` / `~`).
 5. Run `npm ci && npm audit --audit-level=high`.

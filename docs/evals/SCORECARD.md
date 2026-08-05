@@ -74,7 +74,7 @@ Before enabling in a company environment:
 1. Source org / maintainer reputation  
 2. License compatible with your policy  
 3. Install/star signal (prefer well-known packs)  
-4. Review `SKILL.md` + `scripts/` for exfiltration or credential prompts  
+4. Review `SKILL.md` + `scripts/` for exfiltration or credential prompts (first-party ADSK skills ship **no** `scripts/` — an intentional trust posture, not an inferred gap; treat any upstream skill's `scripts/` as extra review surface)  
 5. Pin version; re-review on upgrade  
 
 See [`recommended-skills.json`](../../recommended-skills.json) and [lifecycle-coverage.md](../lifecycle-coverage.md).
