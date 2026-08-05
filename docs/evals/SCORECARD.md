@@ -14,7 +14,7 @@ Scoring axes (1–5): **Fit** (lifecycle value), **Portability**, **Clarity**, *
 | `solution-architecture` | 5 | 5 | 5 | 5 | 4 (harness ready) | **Keep (delivery+)** | Sized C4 packets, ADRs, risks; not vendor-icon tooling |
 | `devops-strategy-facilitator` | 4 | 5 | 5 | 5 | 5 (Tier 2 iter 3) | **Keep** | Decision-first strategy sessions; not a full SRE pack |
 | `release-automation` | 5 | 5 | 5 | 5 | 5 (Tier 2 iter 3) | **Keep** | Platform-confirmed changelog/semver (GitHub release-please or Azure + git-cliff); strongest Δ this run |
-| `skill-optimizer` | 5 | 5 | 5 | 5 | 5 (Tier 2 iter 3) | **Keep** | Author/optimize skills; required gate; `/run-skill-evals` ends with next actions |
+| `skill-optimizer` | 5 | 5 | 5 | 5 | 4 (Tier 2 iter 3 — **needs re-grade**) | **Keep** | Author/optimize skills; required gate; `/run-skill-evals` ends with next actions; gained a new non-negotiable gate (reference depth) + eval-loop capture requirement since iter 3 grading — re-run before trusting the iter 3 numbers |
 | `readme-authoring` | 4 | 5 | 5 | 5 (in-repo Apache-2.0) | 5 (Tier 2 iter 4) | **Keep** | Audience-aware + evidence-grounded README craft; flag-hygiene fix landed |
 | `pull-request-authoring` | 5 | 5 | 5 | 5 | 5 (Tier 2 iter 3) | **Keep** | Conventional Commits PR title/body via `gh` |
 | `supply-chain-gate` | 5 | 5 | 5 | 5 | 5 (Tier 2 iter 4) | **Keep** | Socket / dependency merge triage; policy-cite requirement landed |
