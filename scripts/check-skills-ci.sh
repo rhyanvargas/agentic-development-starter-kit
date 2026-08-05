@@ -4,6 +4,8 @@
 # Checks first-party skills under skills/*/ :
 #   - skills-ref validate
 #   - SKILL.md frontmatter name == folder name
+#   - SKILL.md line budget (<500 lines)
+#   - references/*.md have no same-skill reference-to-reference links
 #   - evals/evals.json presence + shape
 #   - evals/trigger/eval_queries.json presence + shape (n≥20, ~50/50)
 #
@@ -20,6 +22,7 @@ SKILLS_ROOT="${REPO_ROOT}/skills"
 FIXTURE_VALID="${SCRIPT_DIR}/fixtures/skill-ci/valid-skill"
 MIN_TRIGGER_QUERIES=20
 MIN_CLASS_RATIO=40  # percent; neither true nor false may be under this
+MAX_SKILL_LINES=500  # skill-optimizer body-size gate
 
 usage() {
   cat <<'EOF'
@@ -142,6 +145,52 @@ print("ok")
 PY
 }
 
+# SKILL.md line/token budget — mirrors skill-optimizer's "Body size" gate
+# (<500 lines / ~5k tokens).
+validate_line_budget() {
+  local skill_md="$1"
+  local max_lines="$2"
+  local n
+  n="$(wc -l < "$skill_md" | tr -d ' ')"
+  if (( n > max_lines )); then
+    echo "SKILL.md is ${n} lines (max ${max_lines})"
+    return 1
+  fi
+  echo "ok (${n} lines)"
+}
+
+# Same-skill reference-to-reference link detector — flags the anti-pattern
+# Anthropic's Agent Skills best-practices doc warns against: a references/*.md
+# file linking directly to a sibling references/*.md file instead of routing
+# back through SKILL.md's progressive-disclosure table.
+validate_reference_depth() {
+  local skill_dir="$1"
+  local refs_dir="${skill_dir}/references"
+  if [[ ! -d "$refs_dir" ]]; then
+    echo "ok (no references/)"
+    return 0
+  fi
+  python3 - "$refs_dir" <<'PY'
+import os
+import re
+import sys
+
+refs_dir = sys.argv[1]
+sibling_names = {f for f in os.listdir(refs_dir) if f.endswith(".md")}
+link_re = re.compile(r"\]\(([^)]+\.md)\)")
+violations = []
+for fname in sorted(sibling_names):
+    text = open(os.path.join(refs_dir, fname), encoding="utf-8").read()
+    for m in link_re.finditer(text):
+        base = os.path.basename(m.group(1))
+        if base in sibling_names and base != fname:
+            violations.append(f"{fname} -> {m.group(1)}")
+if violations:
+    sys.exit("reference-to-reference link(s) found: " + "; ".join(violations))
+print("ok")
+PY
+}
+
 check_skill_dir() {
   local skill_dir="$1"
   local name
@@ -167,6 +216,18 @@ check_skill_dir() {
   fi
   if [[ "$fm_name" != "$name" ]]; then
     fail "${name}: frontmatter name '${fm_name}' != folder name '${name}'"
+    return 1
+  fi
+
+  echo "==> ${name}: line budget"
+  if ! err="$(validate_line_budget "$skill_md" "$MAX_SKILL_LINES" 2>&1)"; then
+    fail "${name}: line budget — ${err}"
+    return 1
+  fi
+
+  echo "==> ${name}: reference depth"
+  if ! err="$(validate_reference_depth "$skill_dir" 2>&1)"; then
+    fail "${name}: reference depth — ${err}"
     return 1
   fi
 
@@ -282,6 +343,25 @@ text = re.sub(r"(?m)^name:\s*.+$", "name: other-name", text, count=1)
 open(p, "w", encoding="utf-8").write(text)
 PY
   expect_fail "frontmatter name mismatch" check_skill_dir "${tmp}/wrong-name"
+
+  # Mutation: SKILL.md exceeds line budget
+  rm -rf "${tmp}/oversized-skill"
+  cp -R "$FIXTURE_VALID" "${tmp}/oversized-skill"
+  python3 - "${tmp}/oversized-skill/SKILL.md" "$MAX_SKILL_LINES" <<'PY'
+import sys
+p, max_lines = sys.argv[1], int(sys.argv[2])
+with open(p, "a", encoding="utf-8") as f:
+    f.write("\n" + "\n".join(f"padding line {i}" for i in range(max_lines + 10)))
+PY
+  expect_fail "oversized SKILL.md" check_skill_dir "${tmp}/oversized-skill"
+
+  # Mutation: reference-to-reference link (same-skill anti-pattern)
+  rm -rf "${tmp}/nested-refs"
+  cp -R "$FIXTURE_VALID" "${tmp}/nested-refs"
+  mkdir -p "${tmp}/nested-refs/references"
+  printf '# One\n\nSee [Two](two.md) for more.\n' > "${tmp}/nested-refs/references/one.md"
+  printf '# Two\n\nFixture only.\n' > "${tmp}/nested-refs/references/two.md"
+  expect_fail "reference-to-reference link" check_skill_dir "${tmp}/nested-refs"
 
   # Mutation: skills-ref validate failure (missing description)
   rm -rf "${tmp}/no-description"

@@ -11,7 +11,7 @@ Match your workflow to the size of the problem.
 | **Medium** | Multi-file, 1-5 day work | Yes | Yes | Spec → analyze → plan → implement → review |
 | **Large** | Epic, unclear scope | Yes | Yes | Research first, then full workflow |
 
-Non-trivial bugs: use [Bugfix Workflow](bugfix-workflow.md) sized like Small/Medium above (not Trivial).
+Non-trivial bugs: use `bugfix-workflow.md` (`SKILL.md` table) sized like Small/Medium above (not Trivial).
 
 ## Trivial Changes
 

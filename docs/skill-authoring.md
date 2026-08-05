@@ -23,6 +23,16 @@ See:
 - [Specification](https://agentskills.io/specification)
 - Playbook: `skills/skill-optimizer/SKILL.md` (installed as `.agents/skills/skill-optimizer` for adopters)
 
+## Naming style
+
+First-party names mix gerund (`readme-authoring`, `pull-request-authoring`) and
+noun-phrase (`skill-optimizer`, `release-automation`, `supply-chain-gate`)
+styles. This split is an accepted style note, not an inconsistency to fix —
+pick whichever reads more naturally as a capability name and stay consistent
+with `name` == folder name. **Do not rename existing skills** to force one
+style; adopters reference skills by name (`.agents/skills/<name>`,
+`npx skills add`), so a rename is a breaking change.
+
 ## Progressive disclosure
 
 1. **Catalog** — `name` + `description` at session start  

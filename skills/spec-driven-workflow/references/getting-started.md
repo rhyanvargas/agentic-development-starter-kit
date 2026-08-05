@@ -85,8 +85,4 @@ Do **not** also install parallel “spec-driven” / PRD packs alongside ADSK �
 
 ## Next steps
 
-- [Greenfield Workflow](greenfield-workflow.md)
-- [Brownfield Workflow](brownfield-workflow.md)
-- [Commands Reference](commands-reference.md)
-- [Problem Size Guide](problem-size-guide.md)
-- [docs/using-adsk.md](../../../docs/using-adsk.md)
+Continue with `greenfield-workflow.md`, `brownfield-workflow.md`, `commands-reference.md`, or `problem-size-guide.md` — load whichever `SKILL.md`'s progressive disclosure table points to next. Adopter install details: [docs/using-adsk.md](../../../docs/using-adsk.md).

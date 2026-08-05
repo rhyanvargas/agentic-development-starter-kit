@@ -54,7 +54,7 @@ Edit the spec directly if needed.
 
 ### 3b. Analyze requirements (medium+)
 
-Cross-check the full REQ set for conflicts, ambiguity, and gaps — see [Analyze Requirements](analyze-requirements.md). Update the living spec before planning.
+Cross-check the full REQ set for conflicts, ambiguity, and gaps — see `analyze-requirements.md` (`SKILL.md` table). Update the living spec before planning.
 
 ### 4. Create an implementation plan (medium/large features)
 
@@ -120,7 +120,7 @@ If everything passes:
 
 ## When to Skip Steps
 
-See [Problem Size Guide](problem-size-guide.md) for guidance on when to use the full workflow vs shortcuts.
+See `problem-size-guide.md` (`SKILL.md` table) for guidance on when to use the full workflow vs shortcuts.
 
 | Size | Skip Plan? | Skip Spec? |
 |------|------------|------------|

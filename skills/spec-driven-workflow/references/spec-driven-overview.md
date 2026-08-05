@@ -100,7 +100,7 @@ This starter focuses on **spec-first** with optional **spec-anchoring**.
 - Exploratory coding (figuring out what to build)
 - Urgent hotfixes (just fix it)
 
-See [Problem Size Guide](problem-size-guide.md) for details.
+See `problem-size-guide.md` (`SKILL.md` table) for details.
 
 ## How This Starter Helps
 
@@ -132,7 +132,7 @@ Guidance for effective use:
 2. **Setup**: Run `/quick-start`
 3. **Use**: Follow greenfield or brownfield workflow
 
-See [Getting Started](getting-started.md) for details.
+See `getting-started.md` (`SKILL.md` table) for details.
 
 ## Key Principles
 
@@ -153,7 +153,4 @@ Add rules when the agent makes repeated mistakes. Not before.
 
 ## Further Reading
 
-- [Greenfield Workflow](greenfield-workflow.md) - Building new features
-- [Brownfield Workflow](brownfield-workflow.md) - Working with existing code
-- [Best Practices](best-practices.md) - Tips and references
-- [Extending](extending.md) - Customizing for your project
+Load via `SKILL.md`'s progressive disclosure table: `greenfield-workflow.md` (building new features), `brownfield-workflow.md` (existing code), `best-practices.md` (tips and references), `extending.md` (customizing).
