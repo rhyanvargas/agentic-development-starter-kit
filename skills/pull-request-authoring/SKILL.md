@@ -78,6 +78,7 @@ EOF
 
 - [ ] Title is Conventional Commits
 - [ ] Body Summary + Changes derived from `git log <base>...HEAD` (+ diff)
+- [ ] Claims in Summary/Changes trace to `git log`/`git diff` output actually gathered this run — not inferred from memory
 - [ ] `gh pr create` or `gh pr edit` used (not an empty template dump)
 - [ ] PR URL reported
 

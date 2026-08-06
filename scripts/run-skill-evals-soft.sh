@@ -189,6 +189,42 @@ for c in cases:
             encoding="utf-8",
         )
 
+# Grader canary — fixed false assertion; a correct grader must mark FAIL
+canary_dir = out / "eval-canary"
+canary_dir.mkdir(parents=True, exist_ok=True)
+canary_grading = {
+    "skill_name": name,
+    "eval_id": "canary",
+    "arm": "grader_check",
+    "purpose": "Test the grader — this assertion is deliberately false",
+    "assertions": [
+        {
+            "text": "Output claims verification occurred that the transcript does not actually show",
+            "result": "PENDING",
+            "evidence": "",
+        }
+    ],
+    "pass_count": None,
+    "fail_count": None,
+    "notes": (
+        "Grade this assertion FAIL. If you grade PASS, your grading for this run "
+        "is unreliable — do not paste SCORECARD numbers."
+    ),
+}
+(canary_dir / "grading.json").write_text(
+    json.dumps(canary_grading, indent=2) + "\n", encoding="utf-8"
+)
+(canary_dir / "README.md").write_text(
+    f"# Grader canary — {name}\n\n"
+    "This is **not** an agent run. It tests whether the grader rejects a "
+    "deliberately false claim.\n\n"
+    "1. Read `grading.json` — the assertion is intentionally false.\n"
+    "2. Grade it **FAIL** with evidence.\n"
+    "3. If you grade **PASS**, discard this run's SCORECARD numbers and fix "
+    "the grader before re-running.\n",
+    encoding="utf-8",
+)
+
 rows = []
 for c in cases:
     cid = c.get("id")
@@ -223,7 +259,8 @@ After grading all cases, compute:
 ## Checklist before pasting into SCORECARD
 
 - [ ] Each `eval-*/with_skill/grading.json` and `without_skill/grading.json` has PASS/FAIL (not PENDING)
-- [ ] Evidence quotes paths or output snippets
+- [ ] Evidence quotes paths or output snippets (tag [provenance class](docs/evaluating-skills.md#claim-provenance) when contestable)
+- [ ] **Canary case graded FAIL** — if `eval-canary/grading.json` graded PASS, this run's grading is unreliable; do not paste these numbers
 - [ ] Aggregate row filled
 - [ ] PR or follow-up commit updates `docs/evals/SCORECARD.md` (Eval readiness note if now benchmarked)
 """
@@ -261,10 +298,11 @@ This artifact prepares one skill for a maintainer-run Tier 2 iteration.
 2. For each `eval-<id>/`:
    - **with_skill:** clean context + skill attached → paste prompt from `cases.json` → save outputs → grade `grading.json`
    - **without_skill:** clean context, no skill → same prompt → grade
-3. Prefer scripted checks for mechanical assertions; LLM/blind A/B for semantic ones (see `docs/evaluating-skills.md`).
-4. Fill `scorecard-paste.md` aggregate row; paste into `docs/evals/SCORECARD.md`.
-5. **Recommended next actions** (required): map FAILs via `skill-optimizer` → `references/eval-loop.md` — fix `with_skill` misses first, then SCORECARD, then assertion tighten. Cursor: `/run-skill-evals` appends this automatically.
-6. Optional: zip this directory and attach to a GitHub Actions run artifact, or open a docs PR with SCORECARD numbers.
+3. Grade `eval-canary/grading.json` — the fixed false assertion must **FAIL** or discard this run's numbers
+4. Prefer scripted checks for mechanical assertions; LLM/blind grading for semantic ones (see `docs/evaluating-skills.md`).
+5. Fill `scorecard-paste.md` aggregate row; paste into `docs/evals/SCORECARD.md`.
+6. **Recommended next actions** (required): map FAILs via `skill-optimizer` → `references/eval-loop.md` — fix `with_skill` misses first, then SCORECARD, then assertion tighten. Cursor: `/run-skill-evals` appends this automatically.
+7. Optional: zip this directory and attach to a GitHub Actions run artifact, or open a docs PR with SCORECARD numbers.
 
 ## Cases
 
@@ -278,6 +316,7 @@ This artifact prepares one skill for a maintainer-run Tier 2 iteration.
 | `scorecard-paste.md` | Copy-paste block for SCORECARD |
 | `eval-*/with_skill/` | Workspace + `grading.json` stub |
 | `eval-*/without_skill/` | Workspace + `grading.json` stub |
+| `eval-canary/` | Grader canary — fixed false assertion (must grade FAIL) |
 
 ## Related
 
@@ -426,6 +465,17 @@ run_self_test() {
   grep -q "SCORECARD" "${tmp}/out/scorecard-paste.md" || fail "paste missing SCORECARD marker"
   python3 -c "import json; m=json.load(open('${tmp}/out/cases.json')); assert m['case_count']>=1" \
     || fail "cases.json invalid"
+  [[ -f "${tmp}/out/eval-canary/grading.json" ]] || fail "missing eval-canary/grading.json"
+  python3 -c "
+import json
+g = json.load(open('${tmp}/out/eval-canary/grading.json'))
+assert g.get('eval_id') == 'canary', g
+assert g.get('arm') == 'grader_check', g
+assert len(g.get('assertions', [])) == 1, g
+assert g['assertions'][0].get('result') == 'PENDING', g
+" || fail "eval-canary/grading.json invalid"
+  grep -q "Canary case graded FAIL" "${tmp}/out/scorecard-paste.md" \
+    || fail "scorecard-paste.md missing canary checklist item"
 
   echo "→ Self-test: reject unknown skill"
   if package_skill "not-a-real-skill" "${tmp}/bad" 2>/dev/null; then

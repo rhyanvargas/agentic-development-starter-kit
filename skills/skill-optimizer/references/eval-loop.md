@@ -35,6 +35,8 @@ Patterns:
 
 - Trigger validation acceptable on near-misses
 - Output pass-rate improved or plateaued with acceptable token cost
+- **Author ≠ grader:** grading session is separate from the agent runs that produced outputs; arms graded blind until scoring is complete
+- **`eval-canary` graded FAIL:** if the canary assertion grades PASS, this run's grading is unreliable — discard numbers, fix grader, re-run
 - `skills-ref validate` still green
 - Human feedback empty or only nits
 

@@ -11,6 +11,20 @@ ADSK does not treat agent confidence as a vibe check. Trust comes from **evidenc
 | **Skill ground truth** | A skill beats **no skill** on labeled assertions (trigger + output), not a single happy path | First-party `evals/` + published with/without Δ in [evals/SCORECARD.md](evals/SCORECARD.md); harness integrity on every PR (Tier 1 below) |
 | **Delivery ground truth** | Work is done only when requirements are testable and verify passes | `spec-driven-workflow`: `REQ-XXX` + acceptance criteria + fail-closed `project-cmds` (no trustworthy “done” without verify — [agent-autonomy.md](product/agent-autonomy.md)) |
 
+### Claim provenance
+
+Rank claims by **evidence source**, not agent confidence. Tag evidence by class when grading contestable assertions:
+
+| Class | Example in this repo |
+|-------|----------------------|
+| Live observation | `git diff` / `git log` read in `pull-request-authoring`; Socket PR comment read in `supply-chain-gate` |
+| Authoritative reference | `references/policy-allowlist.md` / repo `SECURITY.md` citation |
+| Recorded context | `references/project-context.md` loaded earlier in a `release-automation` run |
+| Model memory | Agent recalling an earlier turn without re-checking |
+| Model knowledge | General training knowledge, no source cited — weakest |
+
+**(a)** A claim is only as strong as its weakest cited source. **(b)** Higher-stakes surfaces (PR bodies, changelogs, merge/block verdicts) require higher-grade sources than a scratch note.
+
 **Scope of measured lift:** SCORECARD numeric deltas cover **first-party** kit skills only. Recommended / pack / upstream skills use the [trust checklist](evals/SCORECARD.md#trust-checklist-any-upstream-skill) — they are not SCORECARD-benchmarked unless you run `/run-skill-evals` yourself.
 
 **What this is not (yet):** hard CI pass-rate gates (Tier 3) and published token Δ on every row — both deferred until baselines are stable. Until then, adopter default is: read SCORECARD; re-run only after a skill or model change.
@@ -82,7 +96,11 @@ Record `total_tokens` and `duration_ms` in `timing.json` when available.
 
 ## Grading
 
-Grade each assertion **PASS/FAIL with evidence** (quote paths or output). Prefer scripts for mechanical checks (file exists, valid JSON). Use LLM grading for semantic checks; use **blind A/B** when comparing versions.
+Grade each assertion **PASS/FAIL with evidence** (quote paths or output). Tag each evidence quote with its [provenance class](#claim-provenance) when the grade is contestable — not just “quote paths or output.” Prefer scripts for mechanical checks (file exists, valid JSON). Use LLM grading for semantic checks.
+
+**Author ≠ grader:** the agent/session grading `with_skill` vs `without_skill` outputs must **not** be the same session that generated them. Grade **blind** to which arm is which until after scoring (blind A/B is a grading requirement for semantic assertions, not an optional comparison technique).
+
+**Grader canary:** each Tier 2 package includes `eval-canary/grading.json` — a fixed false assertion a correct grader must mark **FAIL**. If the canary grades **PASS**, discard that run's numbers and fix the grader before pasting SCORECARD.
 
 ## Aggregating
 
@@ -169,7 +187,7 @@ Tier 1 has **no path filters** so the required `tier1` status always reports (in
    Or: Actions → **skills-evals-soft** → Run workflow → optional `skill` input (`all` or one skill) → download artifact.  
    Adopter apps without kit scripts: read prompts from `.agents/skills/<name>/evals/evals.json` (see `/run-skill-evals`).
 2. **Run agents** for each `eval-<id>/`: clean context **with** skill, then **without**; paste prompts from `cases.json`; save outputs under each arm.
-3. **Grade** each `grading.json` (PASS/FAIL + evidence). Prefer scripts for mechanical checks; LLM/blind A/B for semantic ones ([Grading](#grading)).
+3. **Grade** each `grading.json` (PASS/FAIL + evidence + provenance class where contestable). Prefer scripts for mechanical checks; LLM/blind grading for semantic ones ([Grading](#grading)). Grade `eval-canary/grading.json` too — it must **FAIL** or the run is unreliable.
 4. **Paste** the aggregate table from `scorecard-paste.md` into [evals/SCORECARD.md](evals/SCORECARD.md). Update that skill’s **Eval readiness** note when benchmarked.
 5. **Recommend next actions** — required close-out ([above](#recommended-next-actions-after-every-tier-2-pass)); prioritize `with_skill` misses over chasing larger Δ.
 6. Keep workspaces gitignored (`.adsk-tier2-out/`, `*-workspace/`, `**/iteration-*/`).
