@@ -75,6 +75,7 @@ Follow the loaded guide’s checklist. Prefer additive, idempotent edits
 ### 5. Verify before done
 
 - [ ] `references/project-context.md` records platform, branch, package type
+- [ ] Platform/branch claims in `project-context.md` and `docs/RELEASE.md` cite the evidence gathered in step 2 (remotes/CI files), not assumption
 - [ ] `docs/RELEASE.md` matches that context
 - [ ] Platform checklist complete (permissions, first tag / bootstrap called out)
 - [ ] No second competing release tool added without explicit user approval
