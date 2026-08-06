@@ -177,12 +177,15 @@ import sys
 
 refs_dir = sys.argv[1]
 sibling_names = {f for f in os.listdir(refs_dir) if f.endswith(".md")}
-link_re = re.compile(r"\]\(([^)]+\.md)\)")
+# Matches "file.md", "file.md#anchor", and "./file.md" alike — strip any
+# trailing "#..." fragment before checking the .md basename.
+link_re = re.compile(r"\]\(([^)]+?\.md(?:#[^)]*)?)\)")
 violations = []
 for fname in sorted(sibling_names):
     text = open(os.path.join(refs_dir, fname), encoding="utf-8").read()
     for m in link_re.finditer(text):
-        base = os.path.basename(m.group(1))
+        target = m.group(1).split("#", 1)[0]
+        base = os.path.basename(target)
         if base in sibling_names and base != fname:
             violations.append(f"{fname} -> {m.group(1)}")
 if violations:
@@ -362,6 +365,14 @@ PY
   printf '# One\n\nSee [Two](two.md) for more.\n' > "${tmp}/nested-refs/references/one.md"
   printf '# Two\n\nFixture only.\n' > "${tmp}/nested-refs/references/two.md"
   expect_fail "reference-to-reference link" check_skill_dir "${tmp}/nested-refs"
+
+  # Mutation: reference-to-reference link with an anchor fragment
+  rm -rf "${tmp}/nested-refs-anchor"
+  cp -R "$FIXTURE_VALID" "${tmp}/nested-refs-anchor"
+  mkdir -p "${tmp}/nested-refs-anchor/references"
+  printf '# One\n\nSee [Two](two.md#section) for more.\n' > "${tmp}/nested-refs-anchor/references/one.md"
+  printf '# Two\n\n## Section\n\nFixture only.\n' > "${tmp}/nested-refs-anchor/references/two.md"
+  expect_fail "reference-to-reference link with anchor" check_skill_dir "${tmp}/nested-refs-anchor"
 
   # Mutation: skills-ref validate failure (missing description)
   rm -rf "${tmp}/no-description"

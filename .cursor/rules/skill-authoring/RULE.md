@@ -16,7 +16,7 @@ Also apply when the user asks to create, optimize, or review a skill — even if
 2. Keep `SKILL.md` lean; put depth in `references/` with explicit when-to-load conditions.
 3. Write `description` as what + when; add near-miss “Do not use for…” when adjacent skills share keywords.
 4. Add/update `evals/trigger/eval_queries.json` (~20 queries, include near-misses) and behavior `evals/evals.json` when instructions change. For a with/without pass, use `/run-skill-evals`.
-5. Run `npx --yes skills-ref validate <skill-dir>` before claiming done.
+5. Run `./scripts/check-skills-ci.sh <skill-dir>` before claiming done — it runs `skills-ref validate` plus the line-budget and reference-depth gates that CI (Tier 1) enforces, so a local pass matches what CI will check.
 
 ## Layout
 
