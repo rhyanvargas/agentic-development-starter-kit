@@ -30,8 +30,8 @@ Cases and assertions live under each skill’s `evals/`. Published **with vs wit
    ./scripts/run-skill-evals-soft.sh
    # or one skill: ./scripts/run-skill-evals-soft.sh --skill skill-optimizer
    ```
-2. Complete with/without runs and grade `eval-*/**/grading.json`.
-3. Copy the **Aggregate** table from `.adsk-tier2-out/<skill>/scorecard-paste.md` into the template below (replace `_TBD_` for that skill).
+2. Complete with/without runs and grade `eval-*/**/grading.json` (and `eval-canary/grading.json`, which must grade **FAIL**).
+3. Run `./scripts/run-skill-evals-soft.sh --aggregate .adsk-tier2-out/<skill>/iteration-N` to compute `benchmark.json`, then copy the **Aggregate** table from that iteration's `scorecard-paste.md` into the template below (replace `_TBD_` for that skill).
 4. Optionally bump **Eval readiness** to 5 and note the iteration date in **Notes**.
 
 Adopters deciding keep/optional/replace: use the published table below; re-run only when you change the skill or model ([evaluating-skills.md](../evaluating-skills.md#adopters-first)).
