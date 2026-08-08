@@ -5,6 +5,23 @@ All notable changes to **The Agentic Development Starter Kit (ADSK)** are docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.15.0](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.14.5...v0.15.0) (2026-08-08)
+
+
+### Added
+
+* **evals:** add iteration-N, benchmark.json, and feedback.json to Tier 2 ([#90](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/90)) ([fbfb615](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/fbfb6158ee1abd882407de3b85fcc05b5d758670))
+
+
+### Fixed
+
+* **deps:** bump nanoid to 3.3.18 for npm audit high ([#91](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/91)) ([93566da](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/93566dabe60e2b39c56266b4cbb2e94ab66bf0a3))
+
+
+### Changed
+
+* **evals:** add provenance-based trust for skill grading and SCORECARD ([#88](https://github.com/rhyanvargas/agentic-development-starter-kit/issues/88)) ([f735f78](https://github.com/rhyanvargas/agentic-development-starter-kit/commit/f735f78d43ed39e63d5318d5ad29497c93ad9f7c))
+
 ## [0.14.5](https://github.com/rhyanvargas/agentic-development-starter-kit/compare/v0.14.4...v0.14.5) (2026-08-03)
 
 
