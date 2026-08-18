@@ -67,3 +67,12 @@ Executable tooling:
 - create-adsk: `npm test -w create-adsk` (see `.cursor/rules/project-cmds/`)
 
 When adding executable code, keep exact verify commands in `project-cmds` and map spec requirements to tests where applicable.
+
+## Cursor Cloud specific instructions
+
+The startup update script runs `npm ci` (installs the `create-adsk` workspace deps). The only executable product is the `create-adsk` CLI under `packages/create-adsk`; everything else is docs, skills, and shell scripts.
+
+- No lint step exists. Exact build/test/typecheck commands live in [`.cursor/rules/project-cmds/RULE.md`](.cursor/rules/project-cmds/RULE.md) — use those.
+- `dist/` is gitignored, so `node packages/create-adsk/dist/cli.js …` only works after `npm run build -w create-adsk`. `npm test -w create-adsk` (vitest) runs against `src/` and does not need the build.
+- Running the CLI end-to-end (`init`/`update`/packs) and the Tier 1 skill gates (`./scripts/check-skills-ci.sh`) require network: they shell out to `npx skills` / `npx skills-ref`. Skill discovery under `.agents/skills/` and `.cursor/skills/` are symlinks into `skills/`; run `./scripts/sync-adsk.sh kit` to (re)create them (self-check does this too).
+- Smoke-test the CLI against a throwaway dir, e.g. `node packages/create-adsk/dist/cli.js --profile core --yes --target /tmp/adsk-check` — never run `init`/`update` against this kit repo root.
