@@ -36,7 +36,7 @@ Pack     = which methodology contracts apply?    (consistency domains)
 | ------------- | ---------------------------------------------------------------------------- |
 | `core`        | Spec-driven delivery spine + Cursor commands                                 |
 | `delivery`    | Core + solution architecture + DevOps strategy + release automation          |
-| `maintainer`  | Delivery + skill authoring, README, supply-chain, PR authoring + stock rules |
+| `maintainer`  | Delivery + skill authoring, README, supply-chain, PR authoring, technical posts + stock rules |
 | `skills-only` | All first-party skills; no `.cursor/` writes                                 |
 
 Details: [create-adsk.md](create-adsk.md).

@@ -34,7 +34,7 @@ Follow the prompts. Pick a **profile** (kit depth), then optional **packs** (met
 | ------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `core`        | `spec-driven-workflow` + Cursor commands                                                                                   |
 | `delivery`    | Core + solution architecture + DevOps strategy + release automation + Cursor commands                                      |
-| `maintainer`  | Delivery + skill-optimizer + readme-authoring + supply-chain-gate + pull-request-authoring + Cursor commands + stock rules |
+| `maintainer`  | Delivery + skill-optimizer + readme-authoring + supply-chain-gate + pull-request-authoring + create-article + Cursor commands + stock rules |
 | `skills-only` | All first-party skills; no `.cursor/` writes                                                                               |
 
 ### Non-interactive
@@ -280,7 +280,7 @@ How to write agent-friendly rules, what update preserves, and a checklist: **[cu
 
 ## 7. Quick check
 
-- Agent sees first-party skills from your profile (including `supply-chain-gate` and `pull-request-authoring` on maintainer / skills-only)
+- Agent sees first-party skills from your profile (including `supply-chain-gate`, `pull-request-authoring`, and `create-article` on maintainer / skills-only)
 - Project install → real folders under `.agents/skills/`
 - Specs/plans unchanged after update/sync
 - Org rule folders (e.g. `org-*`) still present after `create-adsk update`

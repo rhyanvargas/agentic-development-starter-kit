@@ -18,6 +18,7 @@ Scoring axes (1–5): **Fit** (lifecycle value), **Portability**, **Clarity**, *
 | `readme-authoring` | 4 | 5 | 5 | 5 (in-repo Apache-2.0) | 5 (Tier 2 iter 4) | **Keep** | Audience-aware + evidence-grounded README craft; flag-hygiene fix landed |
 | `pull-request-authoring` | 5 | 5 | 5 | 5 | 5 (Tier 2 iter 3) | **Keep** | Conventional Commits PR title/body via `gh` |
 | `supply-chain-gate` | 5 | 5 | 5 | 5 | 5 (Tier 2 iter 4) | **Keep** | Socket / dependency merge triage; policy-cite requirement landed |
+| `create-article` | 4 | 4 | 5 | 5 (in-repo; no `scripts/`; style-guide location is a placeholder) | 4 (harness ready) | **Keep (maintainer / skills-only)** | Technical post from a finished module through QA and written approval. rhyan.dev series, palette, and CMS are a labeled worked example. Axes set when the skill was added. No Tier 2 pass rate yet. |
 
 ### How to interpret “Eval readiness”
 

@@ -82,6 +82,7 @@ Profiles: [`profiles.json`](profiles.json). Contract: [docs/product/create-adsk.
 - **`readme-authoring`** — evidence-grounded README create/update/review (audience-aware; `/update-readme`)
 - **`supply-chain-gate`** — Socket / supply-chain PR triage and dependency intake (`/setup-socket`)
 - **`pull-request-authoring`** — open/refresh GitHub PRs from branch commits (`/create-pr`)
+- **`create-article`** — technical post from a finished module through outline, QA, and written approval (rhyan.dev Real Runtime is the swappable worked example)
 
 Source of truth for which profile installs which skills: [`profiles.json`](profiles.json).
 
