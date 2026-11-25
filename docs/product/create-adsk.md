@@ -37,7 +37,7 @@ Machine-readable source: [`profiles.json`](../../profiles.json).
 |---------|--------|----------------|---------------|
 | **core** | `spec-driven-workflow` | Commands | None |
 | **delivery** | Core + `solution-architecture` + `devops-strategy-facilitator` + `release-automation` | Commands | None |
-| **maintainer** | Delivery + `skill-optimizer` + `readme-authoring` + `supply-chain-gate` + `pull-request-authoring` | Commands | Stock |
+| **maintainer** | Delivery + `skill-optimizer` + `readme-authoring` + `supply-chain-gate` + `pull-request-authoring` + `create-article` | Commands | Stock |
 | **skills-only** | All first-party skills | None (no `.cursor/` writes) | None |
 
 After profile choice, optional **pack** multiselect from `optional_packs.packs` in [`profiles.json`](../../profiles.json) (defaults off). Each pack expands to `entry_ids` in [`recommended-skills.json`](../../recommended-skills.json). Never a free-form skill picker. Flags: `--packs <ids>`, `--with-optional-packs` (all). See [profiles-and-packs.md](profiles-and-packs.md).

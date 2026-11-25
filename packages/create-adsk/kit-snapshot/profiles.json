@@ -31,7 +31,7 @@
       "rules": "none"
     },
     "maintainer": {
-      "description": "Full first-party kit including skill authoring and README workflows.",
+      "description": "Full first-party kit including skill authoring, README workflows, and technical-post publishing.",
       "skills": [
         "spec-driven-workflow",
         "solution-architecture",
@@ -40,7 +40,8 @@
         "skill-optimizer",
         "readme-authoring",
         "supply-chain-gate",
-        "pull-request-authoring"
+        "pull-request-authoring",
+        "create-article"
       ],
       "cursor": "commands",
       "rules": "stock"
@@ -55,7 +56,8 @@
         "skill-optimizer",
         "readme-authoring",
         "supply-chain-gate",
-        "pull-request-authoring"
+        "pull-request-authoring",
+        "create-article"
       ],
       "cursor": "none",
       "rules": "none"

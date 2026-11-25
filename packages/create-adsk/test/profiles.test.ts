@@ -25,4 +25,12 @@ describe("profiles", () => {
     expect(skills).toContain("supply-chain-gate");
     expect(skills).toContain("pull-request-authoring");
   });
+
+  it("create-article ships on maintainer and skills-only", () => {
+    const profiles = loadProfiles(snapshotRoot());
+    expect(getProfile(profiles, "maintainer").skills).toContain("create-article");
+    expect(getProfile(profiles, "skills-only").skills).toContain("create-article");
+    expect(getProfile(profiles, "core").skills).not.toContain("create-article");
+    expect(getProfile(profiles, "delivery").skills).not.toContain("create-article");
+  });
 });

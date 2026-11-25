@@ -22,6 +22,7 @@ How The Agentic Development Starter Kit maps to enterprise product delivery stag
 | Author agent skills | **Core** | First-party `skill-optimizer` (+ Cursor `skill-authoring` rule / `/optimize-skill`) |
 | Document (README) | **Core** | First-party `readme-authoring` (+ Cursor `/update-readme`) |
 | Pull requests | **Core (maintainer)** | First-party `pull-request-authoring` (+ Cursor `/create-pr`) — commit-derived PR bodies |
+| Technical posts | **Maintainer** | First-party `create-article` — finished module through outline, draft checks, QA, and the author's written approval |
 | Secure / supply chain | **Core (maintainer)** | First-party `supply-chain-gate` (+ `/setup-socket`); Dependabot + npm audit + Socket CI |
 
 ## Best workflow (product → delivery)
@@ -45,7 +46,8 @@ ADSK first-party (in this repo)
 ├── skill-optimizer          → create/optimize skills (triggers, tokens, evals)
 ├── readme-authoring         → evidence-grounded README create/update/review
 ├── supply-chain-gate        → Socket / supply-chain PR triage + dependency intake
-└── pull-request-authoring   → commit-derived GitHub PR title/body (+ `/create-pr`)
+├── pull-request-authoring   → commit-derived GitHub PR title/body (+ `/create-pr`)
+└── create-article           → technical post from finished module to written approval
 
 
 Recommended upstream (pinned in recommended-skills.json)

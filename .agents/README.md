@@ -14,6 +14,7 @@ Per [agentskills.io](https://agentskills.io/client-implementation/adding-skills-
 | `skills/readme-authoring` | Symlink → `../../skills/readme-authoring` |
 | `skills/supply-chain-gate` | Symlink → `../../skills/supply-chain-gate` |
 | `skills/pull-request-authoring` | Symlink → `../../skills/pull-request-authoring` |
+| `skills/create-article` | Symlink → `../../skills/create-article` |
 
 Refresh discovery links after adding a first-party skill:
 
